@@ -9,7 +9,7 @@ abstract class DatabaseRepository {
   List<String> getFeed();
 
   //Create
-  void createUser(String userName, String userPassword);
+  void createUser(String userName, String userPassword, String userImagePath);
   // Check
   bool checkLoginData(String userName, String userPassword);
 

@@ -1,7 +1,10 @@
 class User {
-  String userName;
-  String userPassword;
-  
-  User({required this.userName, required this.userPassword});
-}
+  final String userName;
+  final String userPassword;
+  final String userImagePath;
 
+  User(
+      {required this.userName,
+      required this.userPassword,
+      required this.userImagePath});
+}

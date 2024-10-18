@@ -3,10 +3,17 @@ import '../models/user.dart';
 import '../models/user_article.dart';
 
 class MockDatabase implements DatabaseRepository {
-  List<User> users = [User(userName: "Sascha", userPassword: "baum123")];
+  List<User> users = [
+    User(
+        userName: "Sascha",
+        userPassword: "baum123",
+        userImagePath: "assets/images/ich.jpeg")
+  ];
   List<UserArticle> articles = [
     UserArticle(
-        userName: "Otto", userArticle: "Ich habe Gehwegplatten abzugeben !"),
+        userName: "Sascha",
+        userArticle:
+            "Ich habe Gehwegplatten abzugeben ! Essen und trinken ist auch genug da"),
     UserArticle(
         userName: "Jane",
         userArticle: "Will jemand Ableger von meinen Rosen haben ?")
@@ -32,8 +39,11 @@ class MockDatabase implements DatabaseRepository {
   }
 
   @override
-  void createUser(String userName, String userPassword) {
-    User newUser = User(userName: userName, userPassword: userPassword);
+  void createUser(String userName, String userPassword, String userImagePath) {
+    User newUser = User(
+        userName: userName,
+        userPassword: userPassword,
+        userImagePath: userImagePath);
     users.add(newUser);
   }
 
