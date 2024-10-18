@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:zaunfunk/config/themes.dart';
 import 'package:zaunfunk/models/user.dart';
 import 'package:zaunfunk/repositories/database_repository.dart';
 import 'package:zaunfunk/repositories/mock_database.dart';
-import 'package:zaunfunk/styles/colors.dart';
+import 'package:zaunfunk/config/colors.dart';
 
 void main() {
   runApp(MainApp());
@@ -15,10 +16,9 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: lightTheme,
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: navBarBeige,
-          elevation: 2,
           shadowColor: gardenGreen,
           title: const Padding(
             padding: EdgeInsets.only(left: 8.0),
@@ -40,12 +40,10 @@ class MainApp extends StatelessWidget {
                 ))
           ],
         ),
-        backgroundColor: naturalBeige,
         body: Center(
           child: ArticleCard(repositroy: repository),
         ),
-        bottomNavigationBar:
-            NavigationBar(backgroundColor: navBarBeige, destinations: const [
+        bottomNavigationBar: NavigationBar(destinations: const [
           NavigationDestination(
               icon: Icon(
                 Icons.bungalow_outlined,
