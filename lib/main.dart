@@ -36,36 +36,38 @@ class MainApp extends StatelessWidget {
                 icon: const Icon(
                   Icons.search,
                   size: 32,
-                  color: gardenGreen,
                 ))
           ],
         ),
         body: Center(
           child: ArticleCard(repositroy: repository),
         ),
-        bottomNavigationBar: NavigationBar(destinations: const [
-          NavigationDestination(
-              icon: Icon(
-                Icons.bungalow_outlined,
-                color: gardenGreen,
-                size: 32,
-              ),
-              label: "Home"),
-          NavigationDestination(
-              icon: Icon(
-                Icons.add_box_outlined,
-                color: gardenGreen,
-                size: 32,
-              ),
-              label: "Beitrag"),
-          NavigationDestination(
-              icon: Icon(
-                Icons.account_circle,
-                color: gardenGreen,
-                size: 32,
-              ),
-              label: "Profil"),
-        ]),
+        bottomNavigationBar: NavigationBar(
+            indicatorColor: impulseGreen.withOpacity(0.3),
+            
+            destinations: const [
+              NavigationDestination(
+                  icon: Icon(
+                    Icons.bungalow_outlined,
+                    color: gardenGreen,
+                    size: 32,
+                  ),
+                  label: "Home"),
+              NavigationDestination(
+                  icon: Icon(
+                    Icons.add_box_outlined,
+                    color: gardenGreen,
+                    size: 32,
+                  ),
+                  label: "Beitrag"),
+              NavigationDestination(
+                  icon: Icon(
+                    Icons.account_circle,
+                    color: gardenGreen,
+                    size: 32,
+                  ),
+                  label: "Profil"),
+            ]),
       ),
     );
   }
@@ -109,7 +111,9 @@ class ArticleCard extends StatelessWidget {
               ),
             ),
             const Divider(),
-            Text("HAllo Test 123 test123")
+            Text(
+                style: Theme.of(context).textTheme.headlineMedium,
+                "HAllo Test 123 test123")
           ],
         ),
       ),
