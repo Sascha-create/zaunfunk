@@ -5,18 +5,23 @@ ThemeData lightTheme = ThemeData(
     scaffoldBackgroundColor: naturalBeige,
     fontFamily: "Roboto",
     textTheme: const TextTheme(
-      headlineLarge: TextStyle(fontWeight: FontWeight.bold ,color:  gardenGreen),
-      headlineMedium: TextStyle(fontWeight: FontWeight.bold ,color: gardenGreen),
+      headlineLarge: TextStyle(fontWeight: FontWeight.bold, color: gardenGreen),
+      headlineMedium:
+          TextStyle(fontWeight: FontWeight.bold, color: gardenGreen),
       headlineSmall: TextStyle(color: gardenGreen),
       titleMedium: TextStyle(color: gardenGreen),
       bodyLarge: TextStyle(color: gardenGreen),
     ),
     iconTheme: const IconThemeData(color: gardenGreen),
     appBarTheme: const AppBarTheme(
+        centerTitle: false,
+        titleTextStyle: TextStyle(
+            color: gardenGreen,
+            fontFamily: "Roboto",
+            fontSize: 30,
+            fontWeight: FontWeight.bold),
         color: navBarBeige,
-        elevation: 2,
-        iconTheme: IconThemeData(color: gardenGreen)),
-    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      backgroundColor: navBarBeige,
-      
-    ));
+        elevation: 1,
+        iconTheme: IconThemeData(color: gardenGreen,size: 32)),
+    
+    );

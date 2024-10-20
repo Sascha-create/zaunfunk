@@ -22,20 +22,13 @@ class MainApp extends StatelessWidget {
           shadowColor: gardenGreen,
           title: const Padding(
             padding: EdgeInsets.only(left: 8.0),
-            child: Text(
-                style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.w600,
-                    color: gardenGreen),
-                "Zaunfunk"),
+            child: Text("Zaunfunk"),
           ),
-          centerTitle: false,
           actions: [
             IconButton(
                 onPressed: () {},
                 icon: const Icon(
                   Icons.search,
-                  size: 32,
                 ))
           ],
         ),
@@ -43,8 +36,8 @@ class MainApp extends StatelessWidget {
           child: ArticleCard(repositroy: repository),
         ),
         bottomNavigationBar: NavigationBar(
+            backgroundColor: navBarBeige,
             indicatorColor: impulseGreen.withOpacity(0.3),
-            
             destinations: const [
               NavigationDestination(
                   icon: Icon(
