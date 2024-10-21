@@ -9,7 +9,7 @@ class ZfTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-        onPressed: () {},
+        onPressed: onPressed,
         style: const ButtonStyle(
           fixedSize: WidgetStatePropertyAll(Size(160, 40)),
         ),

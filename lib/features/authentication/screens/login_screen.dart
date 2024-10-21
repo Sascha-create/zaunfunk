@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:zaunfunk/config/colors.dart';
+import 'package:zaunfunk/features/authentication/screens/registration_screen.dart';
+import 'package:zaunfunk/home_screen.dart';
+import 'package:zaunfunk/repositories/database_repository.dart';
 import 'package:zaunfunk/widgets/zf_elevated_button.dart';
 import 'package:zaunfunk/widgets/zf_outlined_button.dart';
 import 'package:zaunfunk/widgets/zf_text_button.dart';
 import 'package:zaunfunk/widgets/zf_textfield.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+  const LoginScreen({super.key, required this.repository});
+  final DatabaseRepository repository;
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
+//final DatabaseRepository repository = repository;
 bool isChecked = false;
 
 class _LoginScreenState extends State<LoginScreen> {
@@ -68,9 +73,25 @@ class _LoginScreenState extends State<LoginScreen> {
                   padding: const EdgeInsets.symmetric(vertical: 24.0),
                   child: Column(
                     children: [
-                      ZfElevatedButton(onPressed: () {}, text: "Anmelden"),
+                      ZfElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        HomeScreen(repository: widget.repository)));
+                          },
+                          text: "Anmelden"),
                       const SizedBox(height: 16),
-                      ZfOutlinedButton(onPressed: () {}, text: "Registrieren"),
+                      ZfOutlinedButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => RegistrationScreen(
+                                        repository: widget.repository)));
+                          },
+                          text: "Registrieren"),
                       const SizedBox(height: 56),
                       ZfTextButton(
                           onPressed: () {}, text: "Passwort vergessen"),

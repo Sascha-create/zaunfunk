@@ -10,7 +10,7 @@ class ZfElevatedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-        onPressed: () {},
+        onPressed: onPressed,
         style: ButtonStyle(
           fixedSize: const WidgetStatePropertyAll(Size(160, 40)),
           shape: const WidgetStatePropertyAll(RoundedRectangleBorder(

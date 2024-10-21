@@ -3,10 +3,10 @@ import 'package:zaunfunk/config/colors.dart';
 import 'package:zaunfunk/models/user.dart';
 import 'package:zaunfunk/repositories/database_repository.dart';
 
-User user1 = User(
-    userName: "Sascha",
-    userPassword: "baum123",
-    userImagePath: "assets/images/ich.jpeg");
+// User user1 = User(
+//     userName: "Sascha",
+//     userPassword: "baum123",
+//     userImagePath: "assets/images/ich.jpeg");
 
 class ArticleCard extends StatelessWidget {
   const ArticleCard({super.key, required this.repositroy});
@@ -23,20 +23,20 @@ class ArticleCard extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
+          const Padding(
+            padding: EdgeInsets.only(top: 8.0),
             child: Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(8.0),
                   child: CircleAvatar(
-                    backgroundImage: AssetImage(user1.userImagePath),
+                    backgroundImage: AssetImage("assets/images/ich.jpeg"),
                     radius: 24,
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 16.0),
-                  child: Text(user1.userName),
+                  padding: EdgeInsets.only(left: 16.0),
+                  child: Text("Sascha"),
                 )
               ],
             ),

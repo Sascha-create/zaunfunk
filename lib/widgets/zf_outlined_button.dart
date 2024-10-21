@@ -10,7 +10,7 @@ class ZfOutlinedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
-        onPressed: () {},
+        onPressed: onPressed,
         style: ButtonStyle(
           fixedSize: const WidgetStatePropertyAll(Size(160, 40)),
           side: WidgetStatePropertyAll(

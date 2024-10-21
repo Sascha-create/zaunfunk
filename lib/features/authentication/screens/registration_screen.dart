@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:zaunfunk/home_screen.dart';
+import 'package:zaunfunk/repositories/database_repository.dart';
 import 'package:zaunfunk/widgets/zf_elevated_button.dart';
 import 'package:zaunfunk/widgets/zf_textfield.dart';
 
 class RegistrationScreen extends StatelessWidget {
-  const RegistrationScreen({super.key});
+  const RegistrationScreen({super.key, required this.repository});
+  final DatabaseRepository repository;
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +44,15 @@ class RegistrationScreen extends StatelessWidget {
                 const ZfTextfield(labelText: "Passwort wiederholen"),
                 Padding(
                   padding: const EdgeInsets.only(top: 80.0),
-                  child:
-                      ZfElevatedButton(onPressed: () {}, text: "Registrieren"),
+                  child: ZfElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    HomeScreen(repository: repository)));
+                      },
+                      text: "Registrieren"),
                 ),
               ],
             ),
