@@ -16,7 +16,7 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
-//final DatabaseRepository repository = repository;
+
 bool isChecked = false;
 
 class _LoginScreenState extends State<LoginScreen> {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zaunfunk/article_card.dart';
+import 'package:zaunfunk/widgets/article_card.dart';
 import 'package:zaunfunk/config/colors.dart';
 import 'package:zaunfunk/repositories/database_repository.dart';
 

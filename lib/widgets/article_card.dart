@@ -23,11 +23,11 @@ class ArticleCard extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Padding(
-            padding: EdgeInsets.only(top: 8.0),
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
             child: Row(
               children: [
-                Padding(
+                const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: CircleAvatar(
                     backgroundImage: AssetImage("assets/images/ich.jpeg"),
@@ -35,8 +35,9 @@ class ArticleCard extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 16.0),
-                  child: Text("Sascha"),
+                  padding: const EdgeInsets.only(left: 16.0),
+                  child: Text(
+                      style: Theme.of(context).textTheme.titleMedium, "Sascha"),
                 )
               ],
             ),
