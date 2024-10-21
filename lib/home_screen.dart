@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zaunfunk/models/user_article.dart';
-import 'package:zaunfunk/widgets/article_card.dart';
-import 'package:zaunfunk/config/colors.dart';
 import 'package:zaunfunk/repositories/database_repository.dart';
+import 'package:zaunfunk/widgets/article_card.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
@@ -15,57 +14,15 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<UserArticle> articles = repository.getArticles();
-    return Scaffold(
-      appBar: AppBar(
-        shadowColor: gardenGreen,
-        title: const Padding(
-          padding: EdgeInsets.only(left: 8.0),
-          child: Text("Zaunfunk"),
-        ),
-        actions: [
-          IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.search,
-              ))
-        ],
+    return Center(
+      child: Expanded(
+        child: ListView.builder(
+            shrinkWrap: true,
+            itemCount: articles.length,
+            itemBuilder: (BuildContext context, int index) => ArticleCard(
+                  article: articles[index],
+                )),
       ),
-      body: Center(
-        child: Expanded(
-          child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: articles.length,
-              itemBuilder: (BuildContext context, int index) => ArticleCard(
-                    article: articles[index],
-                  )),
-        ),
-      ),
-      bottomNavigationBar: NavigationBar(
-          backgroundColor: navBarBeige,
-          indicatorColor: impulseGreen.withOpacity(0.3),
-          destinations: const [
-            NavigationDestination(
-                icon: Icon(
-                  Icons.bungalow_outlined,
-                  color: gardenGreen,
-                  size: 32,
-                ),
-                label: "Home"),
-            NavigationDestination(
-                icon: Icon(
-                  Icons.add_box_outlined,
-                  color: gardenGreen,
-                  size: 32,
-                ),
-                label: "Beitrag"),
-            NavigationDestination(
-                icon: Icon(
-                  Icons.account_circle,
-                  color: gardenGreen,
-                  size: 32,
-                ),
-                label: "Profil"),
-          ]),
     );
   }
 }

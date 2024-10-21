@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zaunfunk/config/colors.dart';
 import 'package:zaunfunk/features/authentication/screens/registration_screen.dart';
-import 'package:zaunfunk/home_screen.dart';
+import 'package:zaunfunk/app_home.dart';
 import 'package:zaunfunk/repositories/database_repository.dart';
 import 'package:zaunfunk/widgets/zf_elevated_button.dart';
 import 'package:zaunfunk/widgets/zf_outlined_button.dart';
@@ -15,7 +15,6 @@ class LoginScreen extends StatefulWidget {
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
-
 
 bool isChecked = false;
 
@@ -78,8 +77,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        HomeScreen(repository: widget.repository)));
+                                    builder: (context) => AppHome(
+                                        repository: widget.repository)));
                           },
                           text: "Anmelden"),
                       const SizedBox(height: 16),
