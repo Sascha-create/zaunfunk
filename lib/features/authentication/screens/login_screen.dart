@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:zaunfunk/config/colors.dart';
 import 'package:zaunfunk/widgets/zf_elevated_button.dart';
 import 'package:zaunfunk/widgets/zf_outlined_button.dart';
 import 'package:zaunfunk/widgets/zf_text_button.dart';
 import 'package:zaunfunk/widgets/zf_textfield.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+bool isChecked = false;
+
+class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,14 +47,31 @@ class LoginScreen extends StatelessWidget {
                 ),
                 const ZfTextfield(labelText: "Email / Nutzername"),
                 const ZfTextfield(labelText: "Passwort"),
+                Row(
+                  children: [
+                    Checkbox(
+                        side: const BorderSide(color: gardenGreen),
+                        overlayColor: const WidgetStatePropertyAll(gardenGreen),
+                        activeColor: gardenGreen,
+                        value: isChecked,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            isChecked = value!;
+                          });
+                        }),
+                    Text(
+                        style: Theme.of(context).textTheme.bodyLarge,
+                        "Passwort speichern"),
+                  ],
+                ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 32.0),
+                  padding: const EdgeInsets.symmetric(vertical: 24.0),
                   child: Column(
                     children: [
                       ZfElevatedButton(onPressed: () {}, text: "Anmelden"),
                       const SizedBox(height: 16),
                       ZfOutlinedButton(onPressed: () {}, text: "Registrieren"),
-                      const SizedBox(height: 88),
+                      const SizedBox(height: 56),
                       ZfTextButton(
                           onPressed: () {}, text: "Passwort vergessen"),
                     ],

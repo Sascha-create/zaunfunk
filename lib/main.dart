@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zaunfunk/config/themes.dart';
+import 'package:zaunfunk/features/authentication/screens/login_screen.dart';
 import 'package:zaunfunk/features/authentication/screens/registration_screen.dart';
 import 'package:zaunfunk/repositories/database_repository.dart';
 import 'package:zaunfunk/repositories/mock_database.dart';
@@ -18,7 +19,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: lightTheme,
-      home: const RegistrationScreen(),
+      home: const LoginScreen(),
     );
   }
 }

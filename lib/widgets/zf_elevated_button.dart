@@ -11,11 +11,12 @@ class ZfElevatedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
         onPressed: () {},
-        style: const ButtonStyle(
-          fixedSize: WidgetStatePropertyAll(Size(160, 40)),
-          shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+        style: ButtonStyle(
+          fixedSize: const WidgetStatePropertyAll(Size(160, 40)),
+          shape: const WidgetStatePropertyAll(RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(8)))),
-          backgroundColor: WidgetStatePropertyAll(impulseGreen),
+          backgroundColor:
+              WidgetStatePropertyAll(impulseGreen.withOpacity(0.8)),
         ),
         child: Text(
             style: const TextStyle(color: naturalBeige, fontSize: 20), text));
