@@ -11,14 +11,17 @@ class ZfOutlinedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return OutlinedButton(
         onPressed: () {},
-        style: const ButtonStyle(
-          fixedSize: WidgetStatePropertyAll(Size(160, 40)),
-          side: WidgetStatePropertyAll(BorderSide(color: gardenGreen)),
-          shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+        style: ButtonStyle(
+          fixedSize: const WidgetStatePropertyAll(Size(160, 40)),
+          side: WidgetStatePropertyAll(
+              BorderSide(color: gardenGreen.withOpacity(0.75))),
+          shape: const WidgetStatePropertyAll(RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(8)),
           )),
         ),
         child: Text(
-            style: const TextStyle(color: gardenGreen, fontSize: 20), text));
+            style:
+                TextStyle(color: gardenGreen.withOpacity(0.75), fontSize: 20),
+            text));
   }
 }
