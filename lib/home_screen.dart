@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zaunfunk/models/user_article.dart';
 import 'package:zaunfunk/widgets/article_card.dart';
 import 'package:zaunfunk/config/colors.dart';
 import 'package:zaunfunk/repositories/database_repository.dart';
@@ -13,6 +14,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<UserArticle> articles = repository.getArticles();
     return Scaffold(
       appBar: AppBar(
         shadowColor: gardenGreen,
@@ -29,7 +31,14 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       body: Center(
-        child: ArticleCard(repositroy: repository),
+        child: Expanded(
+          child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: articles.length,
+              itemBuilder: (BuildContext context, int index) => ArticleCard(
+                    article: articles[index],
+                  )),
+        ),
       ),
       bottomNavigationBar: NavigationBar(
           backgroundColor: navBarBeige,

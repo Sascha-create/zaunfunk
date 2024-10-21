@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zaunfunk/config/themes.dart';
 import 'package:zaunfunk/features/authentication/screens/create_profile_screen.dart';
+import 'package:zaunfunk/features/authentication/screens/login_screen.dart';
 import 'package:zaunfunk/repositories/database_repository.dart';
 import 'package:zaunfunk/repositories/mock_database.dart';
 import 'package:zaunfunk/widgets/zf_elevated_button.dart';
@@ -19,7 +20,9 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: lightTheme,
-      home: const CreateProfileScreen(),
+      home: LoginScreen(
+        repository: repository,
+      ),
     );
   }
 }

@@ -14,7 +14,7 @@ abstract class DatabaseRepository {
   bool checkLoginData(String userName, String userPassword);
 
   //Create
-  void createArticle(String userName, String userArticle);
+  void createArticle(String userName, String userArticle, String articleImagePath);
   //Delete
   void deleteUser(User user);
 

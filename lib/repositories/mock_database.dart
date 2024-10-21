@@ -7,16 +7,27 @@ class MockDatabase implements DatabaseRepository {
     User(
         userName: "Sascha",
         userPassword: "baum123",
-        userImagePath: "assets/images/ich.jpeg")
+        userImagePath: "assets/images/ich.jpeg"),
+    User(
+        userName: "Jane",
+        userPassword: "rose123",
+        userImagePath: "assets/images/jane.png")
   ];
   List<UserArticle> articles = [
+     UserArticle(
+        userName: "Sascha",
+        userArticle:
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+            articleImagePath: "assets/images/ernte.png"),
     UserArticle(
         userName: "Sascha",
         userArticle:
-            "Ich habe Gehwegplatten abzugeben ! Essen und trinken ist auch genug da"),
+            "Ich habe Gehwegplatten abzugeben ! Essen und trinken ist auch genug da",
+            articleImagePath: "assets/images/floor.png"),
     UserArticle(
         userName: "Jane",
-        userArticle: "Will jemand Ableger von meinen Rosen haben ?")
+        userArticle: "Will jemand Ableger von meinen Rosen haben ?",
+        articleImagePath: "assets/images/roses.png")
   ];
 
   @override
@@ -62,9 +73,9 @@ class MockDatabase implements DatabaseRepository {
   }
 
   @override
-  void createArticle(String userName, String userArticle) {
+  void createArticle(String userName, String userArticle, String articleImagePath) {
     UserArticle newUserArticle =
-        UserArticle(userName: userName, userArticle: userArticle);
+        UserArticle(userName: userName, userArticle: userArticle, articleImagePath: articleImagePath);
     articles.add(newUserArticle);
   }
 
