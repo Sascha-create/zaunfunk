@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zaunfunk/features/authentication/screens/create_profile_screen.dart';
 import 'package:zaunfunk/home_screen.dart';
 import 'package:zaunfunk/models/user_article.dart';
 import 'package:zaunfunk/profile_screen.dart';
@@ -18,20 +19,16 @@ class AppHome extends StatefulWidget {
   State<AppHome> createState() => _AppHomeState();
 }
 
-//DatabaseRepository repository = repository;
-
 class _AppHomeState extends State<AppHome> {
-  //DatabaseRepository repository = widget.repository;
-
   int currentIndex = 0;
-  // List<Widget> screens = [
-  //   HomeScreen(repository: widget.repository),
-  //   const ProfileScreen()
-  // ];
+  late List<Widget> screens = [
+    HomeScreen(repository: widget.repository),
+    const CreateProfileScreen(),
+    const ProfileScreen()
+  ];
 
   @override
   Widget build(BuildContext context) {
-    //List<UserArticle> articles = repository.getArticles();
     return Scaffold(
       appBar: AppBar(
         shadowColor: gardenGreen,
@@ -47,7 +44,7 @@ class _AppHomeState extends State<AppHome> {
               ))
         ],
       ),
-      body: HomeScreen(repository: widget.repository),
+      body: screens[currentIndex],
       bottomNavigationBar: NavigationBar(
           selectedIndex: currentIndex,
           onDestinationSelected: (int index) {
