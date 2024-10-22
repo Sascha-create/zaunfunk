@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:zaunfunk/app_home.dart';
+import 'package:zaunfunk/repositories/database_repository.dart';
 import 'package:zaunfunk/widgets/zf_elevated_button.dart';
 import 'package:zaunfunk/widgets/zf_icon_button.dart';
 import 'package:zaunfunk/widgets/zf_textfield.dart';
 
 class CreateProfileScreen extends StatelessWidget {
-  const CreateProfileScreen({super.key});
+  const CreateProfileScreen({super.key, required this.repository});
+  final DatabaseRepository repository;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +51,12 @@ class CreateProfileScreen extends StatelessWidget {
               const ZfTextfield(labelText: "Nachname"),
               const ZfTextfield(labelText: "Geburtsdatum"),
               const ZfTextfield(labelText: "Über mich"),
-              ZfElevatedButton(onPressed: () {}, text: "Registrieren")
+              ZfElevatedButton(onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => AppHome(repository: repository)));
+                      }, text: "Registrieren")
             ],
           ),
         ),

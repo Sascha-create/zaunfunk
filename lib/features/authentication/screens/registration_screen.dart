@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zaunfunk/app_home.dart';
+import 'package:zaunfunk/features/authentication/screens/create_profile_screen.dart';
 import 'package:zaunfunk/repositories/database_repository.dart';
 import 'package:zaunfunk/widgets/zf_elevated_button.dart';
 import 'package:zaunfunk/widgets/zf_textfield.dart';
@@ -49,8 +50,9 @@ class RegistrationScreen extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    AppHome(repository: repository)));
+                                builder: (context) => CreateProfileScreen(
+                                      repository: repository,
+                                    )));
                       },
                       text: "Registrieren"),
                 ),
