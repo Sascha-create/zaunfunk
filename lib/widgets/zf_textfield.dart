@@ -13,6 +13,7 @@ class ZfTextfield extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16.0),
       child: TextField(
+        cursorColor: gardenGreen,
         decoration: InputDecoration(
             enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: gardenGreen)),

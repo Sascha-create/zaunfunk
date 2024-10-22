@@ -22,14 +22,14 @@ class AppHome extends StatefulWidget {
 
 class _AppHomeState extends State<AppHome> {
   int currentIndex = 0;
-  late List<Widget> screens = [
-    HomeScreen(repository: widget.repository),
-    const CreateArticleScreen(),
-    const ProfileScreen()
-  ];
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> screens = [
+      HomeScreen(repository: widget.repository),
+      const CreateArticleScreen(),
+      const ProfileScreen()
+    ];
     return Scaffold(
       appBar: AppBar(
         shadowColor: gardenGreen,

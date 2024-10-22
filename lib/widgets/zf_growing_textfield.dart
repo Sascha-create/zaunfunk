@@ -12,6 +12,7 @@ class ZfGrowingTextfield extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 16.0),
       child: TextField(
         maxLines: null,
+        cursorColor: gardenGreen,
         decoration: InputDecoration(
             enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: gardenGreen)),

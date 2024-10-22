@@ -15,14 +15,12 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     List<UserArticle> articles = repository.getArticles();
     return Center(
-      child: Expanded(
-        child: ListView.builder(
-            shrinkWrap: true,
-            itemCount: articles.length,
-            itemBuilder: (BuildContext context, int index) => ArticleCard(
-                  article: articles[index],
-                )),
-      ),
+      child: ListView.builder(
+          shrinkWrap: true,
+          itemCount: articles.length,
+          itemBuilder: (BuildContext context, int index) => ArticleCard(
+                article: articles[index],
+              )),
     );
   }
 }
