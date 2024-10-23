@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zaunfunk/config/colors.dart';
+import 'package:zaunfunk/widgets/profile_grid_item.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -39,6 +40,17 @@ class ProfileScreen extends StatelessWidget {
               const Divider(
                 color: gardenGreen,
               ),
+              GridView(
+                shrinkWrap: true,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2),
+                children: const [
+                  ProfileGridItem(imagePath: "assets/images/ernte.png"),
+                  ProfileGridItem(imagePath: "assets/images/floor.png"),
+                  ProfileGridItem(imagePath: "assets/images/ernte.png"),
+                  ProfileGridItem(imagePath: "assets/images/roses.png"),
+                ],
+              )
             ],
           ),
         ),

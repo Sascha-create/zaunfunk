@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zaunfunk/screens/create_article_screen.dart';
-import 'package:zaunfunk/features/authentication/screens/create_profile_screen.dart';
 import 'package:zaunfunk/screens/home_screen.dart';
-import 'package:zaunfunk/models/user_article.dart';
 import 'package:zaunfunk/screens/profile_screen.dart';
-import 'package:zaunfunk/widgets/article_card.dart';
 import 'package:zaunfunk/config/colors.dart';
 import 'package:zaunfunk/repositories/database_repository.dart';
 

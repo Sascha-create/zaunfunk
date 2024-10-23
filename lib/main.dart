@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:zaunfunk/config/themes.dart';
-import 'package:zaunfunk/features/authentication/screens/create_profile_screen.dart';
 import 'package:zaunfunk/features/authentication/screens/login_screen.dart';
 import 'package:zaunfunk/repositories/database_repository.dart';
 import 'package:zaunfunk/repositories/mock_database.dart';
-import 'package:zaunfunk/widgets/zf_elevated_button.dart';
-import 'package:zaunfunk/widgets/zf_icon_button.dart';
-import 'package:zaunfunk/widgets/zf_textfield.dart';
+
 
 void main() {
   runApp(MainApp());
