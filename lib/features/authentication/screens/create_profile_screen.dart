@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:zaunfunk/app_home.dart';
 import 'package:zaunfunk/repositories/database_repository.dart';
-import 'package:zaunfunk/widgets/zf_elevated_button.dart';
-import 'package:zaunfunk/widgets/zf_icon_button.dart';
-import 'package:zaunfunk/widgets/zf_textfield.dart';
+import 'package:zaunfunk/widgets/buttons/zf_elevated_button.dart';
+import 'package:zaunfunk/widgets/buttons/zf_icon_button.dart';
+import 'package:zaunfunk/widgets/textfields/zf_textfield.dart';
 
 class CreateProfileScreen extends StatelessWidget {
   const CreateProfileScreen({super.key, required this.repository});

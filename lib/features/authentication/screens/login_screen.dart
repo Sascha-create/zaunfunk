@@ -3,10 +3,10 @@ import 'package:zaunfunk/config/colors.dart';
 import 'package:zaunfunk/features/authentication/screens/registration_screen.dart';
 import 'package:zaunfunk/app_home.dart';
 import 'package:zaunfunk/repositories/database_repository.dart';
-import 'package:zaunfunk/widgets/zf_elevated_button.dart';
-import 'package:zaunfunk/widgets/zf_outlined_button.dart';
-import 'package:zaunfunk/widgets/zf_text_button.dart';
-import 'package:zaunfunk/widgets/zf_textfield.dart';
+import 'package:zaunfunk/widgets/buttons/zf_elevated_button.dart';
+import 'package:zaunfunk/widgets/buttons/zf_outlined_button.dart';
+import 'package:zaunfunk/widgets/buttons/zf_text_button.dart';
+import 'package:zaunfunk/widgets/textfields/zf_textfield.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key, required this.repository});

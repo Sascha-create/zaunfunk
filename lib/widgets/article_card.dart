@@ -33,7 +33,6 @@ class ArticleCard extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Row(
                   children: [
-                    
                     const Padding(
                       padding: EdgeInsets.all(8.0),
                       child: CircleAvatar(

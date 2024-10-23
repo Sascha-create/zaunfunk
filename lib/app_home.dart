@@ -29,6 +29,7 @@ class _AppHomeState extends State<AppHome> {
     ];
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false, // weil mit push zu AppHome navigiert
         shadowColor: gardenGreen,
         title: const Padding(
           padding: EdgeInsets.only(left: 8.0),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:zaunfunk/config/colors.dart';
 import 'package:zaunfunk/models/user_article.dart';
+import 'package:zaunfunk/widgets/delete_article_dialog.dart';
+
 
 class ArticleScreen extends StatelessWidget {
   const ArticleScreen({super.key, required this.article});
@@ -16,11 +18,23 @@ class ArticleScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: const Icon(Icons.arrow_back_ios_new)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: const Icon(Icons.arrow_back_ios_new)),
+                IconButton.outlined(
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (context) => const DeleteArticleDialog());
+                    },
+                    icon: const Icon(Icons.delete_forever)),
+              ],
+            ),
             const Divider(),
             Row(
               children: [

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:zaunfunk/widgets/zf_elevated_button.dart';
-import 'package:zaunfunk/widgets/zf_growing_textfield.dart';
+import 'package:zaunfunk/widgets/buttons/zf_elevated_button.dart';
+import 'package:zaunfunk/widgets/textfields/zf_growing_textfield.dart';
 
 class CreateArticleScreen extends StatelessWidget {
   const CreateArticleScreen({super.key});
