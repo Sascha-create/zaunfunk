@@ -4,6 +4,7 @@ import 'package:zaunfunk/screens/home_screen.dart';
 import 'package:zaunfunk/screens/profile_screen.dart';
 import 'package:zaunfunk/config/colors.dart';
 import 'package:zaunfunk/repositories/database_repository.dart';
+import 'package:zaunfunk/screens/settings_screen.dart';
 
 class AppHome extends StatefulWidget {
   const AppHome({
@@ -25,11 +26,12 @@ class _AppHomeState extends State<AppHome> {
     final List<Widget> screens = [
       HomeScreen(repository: widget.repository),
       const CreateArticleScreen(),
-      const ProfileScreen()
+      const ProfileScreen(),
+      const SettingsScreen()
     ];
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false, // weil mit push zu AppHome navigiert
+        automaticallyImplyLeading: false,
         shadowColor: gardenGreen,
         title: const Padding(
           padding: EdgeInsets.only(left: 8.0),
@@ -45,6 +47,7 @@ class _AppHomeState extends State<AppHome> {
       ),
       body: screens[currentIndex],
       bottomNavigationBar: NavigationBar(
+          height: 64,
           selectedIndex: currentIndex,
           onDestinationSelected: (int index) {
             currentIndex = index;
@@ -52,26 +55,54 @@ class _AppHomeState extends State<AppHome> {
           },
           backgroundColor: navBarBeige,
           indicatorColor: impulseGreen.withOpacity(0.3),
+          labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
           destinations: const [
             NavigationDestination(
+                selectedIcon: Icon(
+                  Icons.bungalow_outlined,
+                  color: gardenGreen,
+                  size: 34,
+                ),
                 icon: Icon(
                   Icons.bungalow_outlined,
                   color: gardenGreen,
-                  size: 32,
+                  size: 30,
                 ),
                 label: "Home"),
             NavigationDestination(
+                selectedIcon: Icon(
+                  Icons.add_box_outlined,
+                  color: gardenGreen,
+                  size: 34,
+                ),
                 icon: Icon(
                   Icons.add_box_outlined,
                   color: gardenGreen,
-                  size: 32,
+                  size: 30,
                 ),
                 label: "Beitrag"),
             NavigationDestination(
+                selectedIcon: Icon(
+                  Icons.account_circle,
+                  color: gardenGreen,
+                  size: 34,
+                ),
                 icon: Icon(
                   Icons.account_circle,
                   color: gardenGreen,
-                  size: 32,
+                  size: 30,
+                ),
+                label: "Profil"),
+            NavigationDestination(
+                selectedIcon: Icon(
+                  Icons.settings,
+                  color: gardenGreen,
+                  size: 34,
+                ),
+                icon: Icon(
+                  Icons.settings,
+                  color: gardenGreen,
+                  size: 30,
                 ),
                 label: "Profil"),
           ]),

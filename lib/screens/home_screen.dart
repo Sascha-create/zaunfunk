@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:zaunfunk/features/glowing_club_article/is_club_article_card.dart';
 import 'package:zaunfunk/models/user_article.dart';
 import 'package:zaunfunk/repositories/database_repository.dart';
-import 'package:zaunfunk/widgets/article_card.dart';
+
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({

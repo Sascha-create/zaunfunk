@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zaunfunk/config/colors.dart';
 import 'package:zaunfunk/widgets/profile_grid_item.dart';
+import 'package:zaunfunk/widgets/zf_divider.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -31,15 +32,12 @@ class ProfileScreen extends StatelessWidget {
                 ]),
               ),
               Text(style: Theme.of(context).textTheme.headlineMedium, "Sascha"),
-              const Divider(
-                color: gardenGreen,
-              ),
+              const ZfDivider(),
               Text(
                   style: Theme.of(context).textTheme.headlineSmall,
                   "Garten 82"),
-              const Divider(
-                color: gardenGreen,
-              ),
+              const ZfDivider(),
+              const SizedBox(height: 16),
               GridView(
                 shrinkWrap: true,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
