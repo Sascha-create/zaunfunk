@@ -9,12 +9,23 @@ class DeleteArticleDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: navBarBeige,
-      title: const Center(child: Text("Beitrag löschen")),
-      titleTextStyle: const TextStyle(
-          color: gardenGreen, fontSize: 30, fontWeight: FontWeight.bold),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(size: 32, Icons.close))
+            ],
+          ),
+          Text(
+              style: Theme.of(context).textTheme.headlineMedium,
+              "Beitrag löschen"),
+          const SizedBox(height: 16),
           Text(
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.titleMedium,

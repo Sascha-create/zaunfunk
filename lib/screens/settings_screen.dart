@@ -15,7 +15,7 @@ class SettingsScreen extends StatelessWidget {
               Text(
                   style: Theme.of(context).textTheme.headlineLarge,
                   "Einstellungen"),
-              const ZfDivider()
+              const ZfDivider(),
             ],
           ),
         ),
