@@ -3,6 +3,7 @@ import 'package:zaunfunk/features/authentication/screens/create_profile_screen.d
 import 'package:zaunfunk/repositories/database_repository.dart';
 import 'package:zaunfunk/widgets/buttons/zf_elevated_button.dart';
 import 'package:zaunfunk/widgets/textfields/zf_text_form_field.dart';
+import 'package:zaunfunk/widgets/textfields/zf_text_form_field_pw.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key, required this.repository});
@@ -56,7 +57,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     return null;
   }
 
-  bool passwordVisible = true; // in build ?
+  bool passwordVisible = true;
 
   @override
   Widget build(BuildContext context) {
@@ -100,16 +101,36 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     validator: isEmailValid,
                     controller: emailController,
                   ),
-                  ZfTextFormfield(
-                    labelText: "Passwort",
-                    validator: isValidPassword,
-                    controller: passwordController,
-                  ),
-                  ZfTextFormfield(
-                    labelText: "Passwort wiederholen",
-                    validator: isConfirmPassword,
-                    controller: passwordConfirmController,
-                  ),
+                  ZfTextFormfieldPassword(
+                      labelText: "Passwort",
+                      obscureText: passwordVisible,
+                      validator: isValidPassword,
+                      controller: passwordController,
+                      suffix: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            passwordVisible = !passwordVisible;
+                          });
+                        },
+                        child: Icon(passwordVisible
+                            ? Icons.visibility_off_outlined
+                            : Icons.visibility_outlined),
+                      )),
+                  ZfTextFormfieldPassword(
+                      labelText: "Passwort wiederholen",
+                      obscureText: passwordVisible,
+                      validator: isConfirmPassword,
+                      controller: passwordConfirmController,
+                      suffix: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            passwordVisible = !passwordVisible;
+                          });
+                        },
+                        child: Icon(passwordVisible
+                            ? Icons.visibility_off_outlined
+                            : Icons.visibility_outlined),
+                      )),
                   Padding(
                     padding: const EdgeInsets.only(top: 80.0),
                     child: ZfElevatedButton(
