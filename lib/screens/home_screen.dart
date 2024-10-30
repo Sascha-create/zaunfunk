@@ -3,7 +3,6 @@ import 'package:zaunfunk/features/glowing_club_article/is_club_article_card.dart
 import 'package:zaunfunk/models/user_article.dart';
 import 'package:zaunfunk/repositories/database_repository.dart';
 
-
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
     super.key,
