@@ -1,6 +1,6 @@
 import 'database_repository.dart';
-import '../models/user.dart';
-import '../models/user_article.dart';
+import '../features/authentication/models/user.dart';
+import '../features/article/models/user_article.dart';
 
 class MockDatabase implements DatabaseRepository {
   List<User> users = [

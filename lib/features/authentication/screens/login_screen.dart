@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:zaunfunk/config/colors.dart';
 import 'package:zaunfunk/features/authentication/screens/registration_screen.dart';
-import 'package:zaunfunk/app_home.dart';
+import 'package:zaunfunk/features/feed/app_home.dart';
 import 'package:zaunfunk/repositories/database_repository.dart';
-import 'package:zaunfunk/widgets/buttons/zf_elevated_button.dart';
-import 'package:zaunfunk/widgets/buttons/zf_outlined_button.dart';
-import 'package:zaunfunk/widgets/buttons/zf_text_button.dart';
-import 'package:zaunfunk/widgets/textfields/zf_textfield.dart';
+import 'package:zaunfunk/features/shared/widgets/buttons/zf_elevated_button.dart';
+import 'package:zaunfunk/features/shared/widgets/buttons/zf_outlined_button.dart';
+import 'package:zaunfunk/features/shared/widgets/buttons/zf_text_button.dart';
+import 'package:zaunfunk/features/shared/widgets/textfields/zf_textfield.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key, required this.repository});

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zaunfunk/config/colors.dart';
-import 'package:zaunfunk/widgets/profile_grid_item.dart';
-import 'package:zaunfunk/widgets/zf_divider.dart';
+import 'package:zaunfunk/features/profile/profile_grid_item.dart';
+import 'package:zaunfunk/features/shared/widgets/zf_divider.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});

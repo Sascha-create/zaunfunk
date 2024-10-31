@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:zaunfunk/features/authentication/screens/create_profile_screen.dart';
 import 'package:zaunfunk/repositories/database_repository.dart';
-import 'package:zaunfunk/widgets/buttons/zf_elevated_button.dart';
-import 'package:zaunfunk/widgets/textfields/zf_text_form_field.dart';
-import 'package:zaunfunk/widgets/textfields/zf_text_form_field_pw.dart';
+import 'package:zaunfunk/features/shared/widgets/buttons/zf_elevated_button.dart';
+import 'package:zaunfunk/features/shared/widgets/textfields/zf_text_form_field.dart';
+import 'package:zaunfunk/features/shared/widgets/textfields/zf_text_form_field_pw.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key, required this.repository});
@@ -118,7 +118,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       )),
                   ZfTextFormfieldPassword(
                       labelText: "Passwort wiederholen",
-                      obscureText: passwordVisible,
+                      //obscureText: passwordVisible,
                       validator: isConfirmPassword,
                       controller: passwordConfirmController,
                       suffix: GestureDetector(

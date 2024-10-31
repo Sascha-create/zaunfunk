@@ -1,5 +1,5 @@
-import '../models/user.dart';
-import '../models/user_article.dart';
+import '../features/authentication/models/user.dart';
+import '../features/article/models/user_article.dart';
 
 abstract class DatabaseRepository {
   List<User> getAllUser();

@@ -7,14 +7,14 @@ class ZfTextFormfieldPassword extends StatelessWidget {
     required this.labelText,
     required this.validator,
     required this.controller,
-    required this.suffix,
-    required this.obscureText,
+     this.suffix,
+     this.obscureText,
   });
   final String labelText;
   final String? Function(String? value)? validator;
   final TextEditingController controller;
-  final Widget suffix;
-  final bool obscureText;
+  final Widget? suffix;
+  final bool? obscureText;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class ZfTextFormfieldPassword extends StatelessWidget {
         controller: controller,
         validator: validator,
         cursorColor: gardenGreen,
-        obscureText: obscureText,
+        obscureText: obscureText??true,  // default true wenn nichts angegeben
         decoration: InputDecoration(
             enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: gardenGreen)),

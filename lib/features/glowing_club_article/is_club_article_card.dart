@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:zaunfunk/features/glowing_club_article/club_article.dart';
 import 'package:zaunfunk/features/glowing_club_article/member_article.dart';
-import 'package:zaunfunk/models/user_article.dart';
-import 'package:zaunfunk/screens/article_screen.dart';
+import 'package:zaunfunk/features/article/models/user_article.dart';
+import 'package:zaunfunk/features/article/article_screen.dart';
 
 class IsClubArticleCard extends StatelessWidget {
   const IsClubArticleCard({super.key, required this.article, required this.isClub});

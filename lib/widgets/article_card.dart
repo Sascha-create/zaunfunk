@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zaunfunk/config/colors.dart';
-import 'package:zaunfunk/models/user_article.dart';
-import 'package:zaunfunk/screens/article_screen.dart';
+import 'package:zaunfunk/features/article/models/user_article.dart';
+import 'package:zaunfunk/features/article/article_screen.dart';
 
 class ArticleCard extends StatelessWidget {
   const ArticleCard({super.key, required this.article});

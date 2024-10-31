@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zaunfunk/config/colors.dart';
-import 'package:zaunfunk/models/user_article.dart';
+import 'package:zaunfunk/features/article/models/user_article.dart';
 
 class MemberArticle extends StatelessWidget {
   const MemberArticle({

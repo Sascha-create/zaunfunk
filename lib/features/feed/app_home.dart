@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:zaunfunk/screens/create_article_screen.dart';
-import 'package:zaunfunk/screens/home_screen.dart';
-import 'package:zaunfunk/screens/profile_screen.dart';
+import 'package:zaunfunk/features/article/create_article_screen.dart';
+import 'package:zaunfunk/features/feed/home_screen.dart';
+import 'package:zaunfunk/features/profile/profile_screen.dart';
 import 'package:zaunfunk/config/colors.dart';
 import 'package:zaunfunk/repositories/database_repository.dart';
-import 'package:zaunfunk/screens/settings_screen.dart';
+import 'package:zaunfunk/features/settings/settings_screen.dart';
 
 class AppHome extends StatefulWidget {
   const AppHome({

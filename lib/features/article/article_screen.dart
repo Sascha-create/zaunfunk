@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zaunfunk/config/colors.dart';
-import 'package:zaunfunk/models/user_article.dart';
-import 'package:zaunfunk/widgets/delete_article_dialog.dart';
+import 'package:zaunfunk/features/article/models/user_article.dart';
+import 'package:zaunfunk/features/article/delete_article_dialog.dart';
 
 
 class ArticleScreen extends StatelessWidget {

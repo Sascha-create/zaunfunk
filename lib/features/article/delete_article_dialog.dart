@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zaunfunk/config/colors.dart';
-import 'package:zaunfunk/widgets/buttons/zf_elevated_button.dart';
+import 'package:zaunfunk/features/shared/widgets/buttons/zf_elevated_button.dart';
 
 class DeleteArticleDialog extends StatelessWidget {
   const DeleteArticleDialog({super.key});
