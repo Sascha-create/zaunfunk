@@ -14,73 +14,89 @@ class MockDatabase implements DatabaseRepository {
         userImagePath: "assets/images/jane.png")
   ];
   List<UserArticle> articles = [
-     UserArticle(
+    UserArticle(
         userName: "Sascha",
         userArticle:
             "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-            articleImagePath: "assets/images/ernte.png"),
+        articleImagePath: "assets/images/ernte.png"),
     UserArticle(
         userName: "Sascha",
         userArticle:
             "Ich habe Gehwegplatten abzugeben ! Essen und trinken ist auch genug da",
-            articleImagePath: "assets/images/floor.png"),
+        articleImagePath: "assets/images/floor.png"),
     UserArticle(
         userName: "Jane",
         userArticle: "Will jemand Ableger von meinen Rosen haben ?",
         articleImagePath: "assets/images/roses.png")
   ];
 
+  User? _currentUser;
+
   @override
-  List<User> getAllUser() {
-    return users;
+  Future<User?> getCurrentUser() {
+    return Future.value(_currentUser);
   }
 
   @override
-  List<UserArticle> getArticles() {
-    return articles;
+  Future<List<User>> getAllUser() {
+    return Future.value(users);
   }
 
   @override
-  List<String> getFeed() {
+  Future<List<UserArticle>> getArticles() {
+    return Future.delayed(const Duration(seconds: 2), () {
+      return articles;
+    });
+  }
+
+  @override
+  Future<List<String>> getFeed() {
     List<String> feed = [];
     for (UserArticle currentArticle in articles) {
       feed.add("${currentArticle.userName} : ${currentArticle.userArticle}");
     }
-    return feed;
+    return Future.value(feed);
   }
 
   @override
-  void createUser(String userName, String userPassword, String userImagePath) {
+  Future<void> createUser(
+      String userName, String userPassword, String userImagePath) {
     User newUser = User(
         userName: userName,
         userPassword: userPassword,
         userImagePath: userImagePath);
     users.add(newUser);
+    return Future.value();
   }
 
   @override
-  bool checkLoginData(String userName, String userPassword) {
+  Future<bool> checkLoginData(String userName, String userPassword) {
     for (User currentUser in users) {
       if (currentUser.userName == userName) {
         if (currentUser.userPassword == userPassword) {
-          return true;
+          _currentUser = currentUser;
+          return Future.value(true);
         } else {
-          return false;
+          return Future.value(false);
         }
       }
     }
-    return false;
+    return Future.value(false);
   }
 
   @override
-  void createArticle(String userName, String userArticle, String articleImagePath) {
-    UserArticle newUserArticle =
-        UserArticle(userName: userName, userArticle: userArticle, articleImagePath: articleImagePath);
+  Future<void> createArticle(
+      String userName, String userArticle, String articleImagePath) {
+    UserArticle newUserArticle = UserArticle(
+        userName: userName,
+        userArticle: userArticle,
+        articleImagePath: articleImagePath);
     articles.add(newUserArticle);
+    return Future.value();
   }
 
   @override
-  void deleteUser(User user) {
+  Future<void> deleteUser(User user) {
     for (User currentUser in users) {
       if (currentUser.userName == user.userName) {
         if (currentUser.userPassword == user.userPassword) {
@@ -89,10 +105,11 @@ class MockDatabase implements DatabaseRepository {
         }
       }
     }
+    return Future.value();
   }
 
   @override
-  void deleteArticle(UserArticle userArticle) {
+  Future<void> deleteArticle(UserArticle userArticle) {
     for (UserArticle currentArticle in articles) {
       if (currentArticle.userName == userArticle.userName) {
         if (currentArticle.userArticle == userArticle.userArticle) {
@@ -101,5 +118,6 @@ class MockDatabase implements DatabaseRepository {
         }
       }
     }
+    return Future.value();
   }
 }

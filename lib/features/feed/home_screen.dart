@@ -13,16 +13,35 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<UserArticle> articles = repository.getArticles();
+    late final Future<List<UserArticle>> futureArticles =
+        repository.getArticles();
     bool isClub = false;
-    return Center(
-      child: ListView.builder(
-          shrinkWrap: true,
-          itemCount: articles.length,
-          itemBuilder: (BuildContext context, int index) => IsClubArticleCard(
-                article: articles[index],
-                isClub: isClub,
-              )),
+    return FutureBuilder(
+      future: futureArticles,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done &&
+            snapshot.hasData) {
+          final List<UserArticle> articles = snapshot.data!;
+          return Center(
+            child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: articles.length,
+                itemBuilder: (BuildContext context, int index) =>
+                    IsClubArticleCard(
+                      article: articles[index],
+                      isClub: isClub,
+                    )),
+          );
+        } else if (snapshot.connectionState == ConnectionState.done &&
+            snapshot.hasError) {
+          return const Icon(
+            Icons.error,
+            size: 48,
+            color: Colors.red,
+          );
+        }
+        return const CircularProgressIndicator();
+      },
     );
   }
 }
