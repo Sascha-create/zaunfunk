@@ -16,7 +16,13 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
+//DatabaseRepository repository = repository;
+
+TextEditingController userNameController = TextEditingController();
+TextEditingController passwordController = TextEditingController();
+
 bool isChecked = false;
+bool isLoginDataCorrect = false;
 
 class _LoginScreenState extends State<LoginScreen> {
   @override
@@ -49,8 +55,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                 ),
-                const ZfTextfield(labelText: "Email / Nutzername"),
-                const ZfTextfield(labelText: "Passwort"),
+                ZfTextfield(
+                    controller: userNameController, labelText: "Nutzername"),
+                ZfTextfield(
+                    controller: passwordController,
+                    obscureText: true,
+                    labelText: "Passwort"),
                 Row(
                   children: [
                     Checkbox(
@@ -73,12 +83,17 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Column(
                     children: [
                       ZfElevatedButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => AppHome(
-                                        repository: widget.repository)));
+                          onPressed: () async {
+                            isLoginDataCorrect = await widget.repository
+                                .checkLoginData(userNameController.text,
+                                    passwordController.text);
+                            if (isLoginDataCorrect) {
+                              Navigator.push(
+                                  context, 
+                                  MaterialPageRoute(
+                                      builder: (context) => AppHome(
+                                          repository: widget.repository)));
+                            }
                           },
                           text: "Anmelden"),
                       const SizedBox(height: 16),

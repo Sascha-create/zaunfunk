@@ -11,6 +11,11 @@ class CreateProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController firstNameController = TextEditingController();
+    TextEditingController lastNameController = TextEditingController();
+    TextEditingController birthDateController = TextEditingController();
+    TextEditingController aboutMeController = TextEditingController();
+
     return Scaffold(
       body: SafeArea(
           child: Center(
@@ -47,16 +52,27 @@ class CreateProfileScreen extends StatelessWidget {
                       "Mitglied"),
                 ],
               ),
-              const ZfTextfield(labelText: "Vorname"),
-              const ZfTextfield(labelText: "Nachname"),
-              const ZfTextfield(labelText: "Geburtsdatum"),
-              const ZfTextfield(labelText: "Über mich"),
-              ZfElevatedButton(onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => AppHome(repository: repository)));
-                      }, text: "Registrieren")
+              ZfTextfield(
+                controller: firstNameController,
+                labelText: "Vorname"),
+              ZfTextfield(
+                controller: lastNameController,
+                labelText: "Nachname"),
+              ZfTextfield(
+                controller: birthDateController,
+                labelText: "Geburtsdatum"),
+              ZfTextfield(
+                controller: aboutMeController,
+                labelText: "Über mich"),
+              ZfElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                AppHome(repository: repository)));
+                  },
+                  text: "Registrieren")
             ],
           ),
         ),

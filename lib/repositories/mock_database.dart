@@ -71,17 +71,19 @@ class MockDatabase implements DatabaseRepository {
 
   @override
   Future<bool> checkLoginData(String userName, String userPassword) {
-    for (User currentUser in users) {
-      if (currentUser.userName == userName) {
-        if (currentUser.userPassword == userPassword) {
-          _currentUser = currentUser;
-          return Future.value(true);
-        } else {
-          return Future.value(false);
+    return Future.delayed(const Duration(seconds: 2), () {
+      for (User currentUser in users) {
+        if (currentUser.userName == userName) {
+          if (currentUser.userPassword == userPassword) {
+            _currentUser = currentUser;
+            return Future.value(true);
+          } else {
+            return Future.value(false);
+          }
         }
       }
-    }
-    return Future.value(false);
+      return Future.value(false);
+    });
   }
 
   @override
