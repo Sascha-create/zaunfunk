@@ -7,8 +7,8 @@ class ZfTextFormfieldPassword extends StatelessWidget {
     required this.labelText,
     required this.validator,
     required this.controller,
-     this.suffix,
-     this.obscureText,
+    this.suffix,
+    this.obscureText,
   });
   final String labelText;
   final String? Function(String? value)? validator;
@@ -24,10 +24,10 @@ class ZfTextFormfieldPassword extends StatelessWidget {
         controller: controller,
         validator: validator,
         cursorColor: gardenGreen,
-        obscureText: obscureText??true,  // default true wenn nichts angegeben
+        obscureText: obscureText ?? true, // default true wenn nichts angegeben
         decoration: InputDecoration(
             enabledBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: gardenGreen)),
+                borderSide: BorderSide(color: gardenGreen, width: 0.7)),
             focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: gardenGreen)),
             errorBorder: const OutlineInputBorder(

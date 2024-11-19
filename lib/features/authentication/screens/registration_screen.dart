@@ -78,7 +78,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         scale: 8, "assets/images/app_logo_shadow.png"),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 24.0),
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -132,7 +132,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             : Icons.visibility_outlined),
                       )),
                   Padding(
-                    padding: const EdgeInsets.only(top: 80.0),
+                    padding: const EdgeInsets.only(top: 48.0),
                     child: ZfElevatedButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {

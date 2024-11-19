@@ -4,7 +4,9 @@ import 'package:zaunfunk/config/colors.dart';
 class ZfTextfield extends StatelessWidget {
   const ZfTextfield({
     super.key,
-    required this.labelText, required this.controller,  this.obscureText,
+    required this.labelText,
+    required this.controller,
+    this.obscureText,
   });
   final String labelText;
   final TextEditingController controller;
@@ -16,11 +18,11 @@ class ZfTextfield extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 16.0),
       child: TextField(
         controller: controller,
-        obscureText: obscureText?? false,
+        obscureText: obscureText ?? false,
         cursorColor: gardenGreen,
         decoration: InputDecoration(
             enabledBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: gardenGreen)),
+                borderSide: BorderSide(color: gardenGreen, width: 0.7)),
             focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: gardenGreen)),
             labelText: labelText,

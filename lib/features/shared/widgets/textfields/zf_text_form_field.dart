@@ -22,7 +22,7 @@ class ZfTextFormfield extends StatelessWidget {
         cursorColor: gardenGreen,
         decoration: InputDecoration(
             enabledBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: gardenGreen)),
+                borderSide: BorderSide(color: gardenGreen,width: 0.7)),
             focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: gardenGreen)),
             errorBorder: const OutlineInputBorder(
