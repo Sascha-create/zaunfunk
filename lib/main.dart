@@ -4,7 +4,6 @@ import 'package:zaunfunk/features/authentication/screens/login_screen.dart';
 import 'package:zaunfunk/repositories/database_repository.dart';
 import 'package:zaunfunk/repositories/mock_database.dart';
 
-
 void main() {
   runApp(MainApp());
 }
@@ -17,6 +16,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: lightTheme,
+      debugShowCheckedModeBanner: false,
       home: LoginScreen(
         repository: repository,
       ),
