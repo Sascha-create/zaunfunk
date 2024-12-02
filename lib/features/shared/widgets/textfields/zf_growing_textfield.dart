@@ -14,10 +14,11 @@ class ZfGrowingTextfield extends StatelessWidget {
         maxLines: null,
         cursorColor: gardenGreen,
         decoration: InputDecoration(
-            enabledBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: gardenGreen,)),
-            focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: gardenGreen)),
+            border: InputBorder.none,
+            focusedBorder: InputBorder.none,
+            enabledBorder: InputBorder.none,
+            errorBorder: InputBorder.none,
+            disabledBorder: InputBorder.none,
             labelText: labelText,
             labelStyle: const TextStyle(color: gardenGreen),
             fillColor: lightBeige,
