@@ -5,10 +5,12 @@ import '../features/article/models/user_article.dart';
 class MockDatabase implements DatabaseRepository {
   List<User> users = [
     User(
+      userId: '001',
         userName: "Sascha",
         userPassword: "baum123",
         userImagePath: "assets/images/ich.jpeg"),
     User(
+      userId: '002',
         userName: "Jane",
         userPassword: "rose123",
         userImagePath: "assets/images/jane.png")
@@ -60,8 +62,9 @@ class MockDatabase implements DatabaseRepository {
 
   @override
   Future<void> createUser(
-      String userName, String userPassword, String userImagePath) {
+      String userId ,String userName, String userPassword, String userImagePath) {
     User newUser = User(
+      userId: userId,
         userName: userName,
         userPassword: userPassword,
         userImagePath: userImagePath);

@@ -19,7 +19,7 @@ class CreateArticleScreen extends StatelessWidget {
                     style: Theme.of(context).textTheme.headlineMedium,
                     "Beitrag erstellen"),
               ),
-              const ZfGrowingTextfield(labelText: "Beitrag erstellen"),
+              const ZfGrowingTextfield(labelText: "Beitrag erstellen..."),
               Padding(
                 padding: const EdgeInsets.only(top: 16.0),
                 child: ZfElevatedButton(onPressed: () {}, text: "Posten"),
