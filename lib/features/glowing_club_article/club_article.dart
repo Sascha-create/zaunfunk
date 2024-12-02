@@ -53,9 +53,9 @@ class ClubArticle extends StatelessWidget {
           ),
           const Divider(),
           SizedBox(
-            height: 240,
+            height: article.articleImagePath == '' ? 8 : 240,
             width: double.infinity,
-            child: Image.asset(fit: BoxFit.cover, article.articleImagePath),
+            child: article.articleImagePath == '' ? const Text('') : Image.asset(fit: BoxFit.cover, article.articleImagePath),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),

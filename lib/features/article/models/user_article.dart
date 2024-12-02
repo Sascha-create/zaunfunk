@@ -8,5 +8,5 @@ class UserArticle {
       {required this.userName,
       required this.userImagePath,
       required this.userArticle,
-      required this.articleImagePath});
+      this.articleImagePath = ''});
 }
