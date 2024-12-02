@@ -3,11 +3,21 @@ import 'package:zaunfunk/config/colors.dart';
 import 'package:zaunfunk/features/profile/profile_grid_item.dart';
 import 'package:zaunfunk/features/shared/widgets/zf_divider.dart';
 
+import '../authentication/models/user.dart';
+
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+  const ProfileScreen({super.key, required this.currentUser});
+
+  final User currentUser;
 
   @override
   Widget build(BuildContext context) {
+    User loggedInUser = User(
+        userId: currentUser.userId,
+        userName: currentUser.userName,
+        userPassword: currentUser.userPassword,
+        aboutMe: currentUser.aboutMe,
+        userImagePath: currentUser.userImagePath);
     return Scaffold(
       body: Center(
         child: Padding(
@@ -25,17 +35,19 @@ class ProfileScreen extends StatelessWidget {
                         border: Border.all(
                             color: impulseGreen, style: BorderStyle.solid)),
                   ),
-                  const CircleAvatar(
-                    backgroundImage: AssetImage("assets/images/ich.jpeg"),
+                  CircleAvatar(
+                    backgroundImage: AssetImage(loggedInUser.userImagePath),
                     radius: 64,
                   ),
                 ]),
               ),
-              Text(style: Theme.of(context).textTheme.headlineMedium, "Sascha"),
+              Text(
+                  style: Theme.of(context).textTheme.headlineMedium,
+                  loggedInUser.userName),
               const ZfDivider(),
               Text(
                   style: Theme.of(context).textTheme.headlineSmall,
-                  "Garten 82"),
+                  loggedInUser.aboutMe),
               const ZfDivider(),
               const SizedBox(height: 16),
               GridView(

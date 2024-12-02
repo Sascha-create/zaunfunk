@@ -4,6 +4,8 @@ import 'package:zaunfunk/features/glowing_club_article/is_club_article_card.dart
 import 'package:zaunfunk/features/article/models/user_article.dart';
 import 'package:zaunfunk/repositories/database_repository.dart';
 
+import '../authentication/models/user.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
     super.key,
@@ -11,12 +13,16 @@ class HomeScreen extends StatelessWidget {
   });
 
   final DatabaseRepository repository;
+  
+ 
 
   @override
   Widget build(BuildContext context) {
     late final Future<List<UserArticle>> futureArticles =
         repository.getArticles();
     bool isClub = false;
+    
+    
     return FutureBuilder(
       future: futureArticles,
       builder: (context, snapshot) {
@@ -31,6 +37,7 @@ class HomeScreen extends StatelessWidget {
                     IsClubArticleCard(
                       article: articles[index],
                       isClub: isClub,
+                      
                     )),
           );
         } else if (snapshot.connectionState == ConnectionState.done &&

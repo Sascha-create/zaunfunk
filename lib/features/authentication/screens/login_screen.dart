@@ -68,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         overlayColor: const WidgetStatePropertyAll(gardenGreen),
                         activeColor: gardenGreen,
                         value: isChecked,
-                        onChanged: (bool? value) {
+                        onChanged: (value) {
                           setState(() {
                             isChecked = value!;
                           });

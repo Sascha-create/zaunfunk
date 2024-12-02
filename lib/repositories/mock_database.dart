@@ -8,11 +8,13 @@ class MockDatabase implements DatabaseRepository {
       userId: '001',
         userName: "Sascha",
         userPassword: "baum123",
+        aboutMe: 'Garten 82',
         userImagePath: "assets/images/ich.jpeg"),
     User(
       userId: '002',
         userName: "Jane",
         userPassword: "rose123",
+        aboutMe: 'Ich liebe Rosen',
         userImagePath: "assets/images/jane.png")
   ];
   List<UserArticle> articles = [
@@ -39,6 +41,8 @@ class MockDatabase implements DatabaseRepository {
     return Future.value(_currentUser);
   }
 
+  
+
   @override
   Future<List<User>> getAllUser() {
     return Future.value(users);
@@ -62,11 +66,12 @@ class MockDatabase implements DatabaseRepository {
 
   @override
   Future<void> createUser(
-      String userId ,String userName, String userPassword, String userImagePath) {
+      String userId ,String userName, String userPassword, String aboutMe, String userImagePath) {
     User newUser = User(
       userId: userId,
         userName: userName,
         userPassword: userPassword,
+        aboutMe: aboutMe,
         userImagePath: userImagePath);
     users.add(newUser);
     return Future.value();

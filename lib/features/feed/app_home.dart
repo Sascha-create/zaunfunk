@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zaunfunk/features/article/create_article_screen.dart';
+import 'package:zaunfunk/features/authentication/models/user.dart';
 import 'package:zaunfunk/features/feed/home_screen.dart';
 
 import 'package:zaunfunk/features/profile/profile_screen.dart';
@@ -21,13 +22,32 @@ class AppHome extends StatefulWidget {
 
 class _AppHomeState extends State<AppHome> {
   int currentIndex = 0;
+  late User currentUser;
+
+  @override
+  void initState() {
+    super.initState();
+    getLoggedInUser();
+  }
+
+  void getLoggedInUser() async {
+    currentUser = await widget.repository.getCurrentUser() ??
+        User(
+          userId: '000',
+          userName: 'name',
+          userPassword: 'passwort',
+          aboutMe: 'über mich',
+          userImagePath: 'assets/icon/app_icon.png',
+        );
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
     final List<Widget> screens = [
       HomeScreen(repository: widget.repository),
       const CreateArticleScreen(),
-      const ProfileScreen(),
+      ProfileScreen(currentUser: currentUser),
       const SettingsScreen()
     ];
     return Scaffold(
