@@ -10,8 +10,7 @@ abstract class DatabaseRepository {
 
   Future<List<UserArticle>> getArticles();
 
-  Future<List<String>> getFeed();
-
+  
   //Create
   Future<void> createUser(String userId ,String userName, String userPassword, String aboutMe, String userImagePath);
   // Check

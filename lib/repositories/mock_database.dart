@@ -56,14 +56,7 @@ class MockDatabase implements DatabaseRepository {
     });
   }
 
-  @override
-  Future<List<String>> getFeed() {
-    List<String> feed = [];
-    for (UserArticle currentArticle in articles) {
-      feed.add("${currentArticle.userName} : ${currentArticle.userArticle}");
-    }
-    return Future.value(feed);
-  }
+
 
   @override
   Future<void> createUser(String userId, String userName, String userPassword,
