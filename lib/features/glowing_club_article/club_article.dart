@@ -2,25 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:zaunfunk/config/colors.dart';
 import 'package:zaunfunk/features/article/models/user_article.dart';
 
+import '../authentication/models/user.dart';
+
 class ClubArticle extends StatelessWidget {
   const ClubArticle({
     super.key,
     required this.article,
+    required this.currentUser,
   });
 
   final UserArticle article;
+  final User currentUser;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
           color: lightBeige,
-          boxShadow: const [BoxShadow(
-            color: impulseGreen,
-            blurRadius: 4,
-            spreadRadius: 1,
-            offset: Offset(0.5, 2)
-          )],
+          boxShadow: const [
+            BoxShadow(
+                color: impulseGreen,
+                blurRadius: 4,
+                spreadRadius: 1,
+                offset: Offset(0.5, 2))
+          ],
           border: Border.all(color: impulseGreen, strokeAlign: 1),
           borderRadius: BorderRadius.circular(16)),
       child: Column(
@@ -53,8 +58,7 @@ class ClubArticle extends StatelessWidget {
             child: Image.asset(fit: BoxFit.cover, article.articleImagePath),
           ),
           Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
             child: Text(
                 style: Theme.of(context).textTheme.bodyMedium,
                 overflow: TextOverflow.ellipsis,

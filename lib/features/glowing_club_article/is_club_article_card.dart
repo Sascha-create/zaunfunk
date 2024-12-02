@@ -7,11 +7,15 @@ import 'package:zaunfunk/features/article/article_screen.dart';
 import '../authentication/models/user.dart';
 
 class IsClubArticleCard extends StatelessWidget {
-  const IsClubArticleCard(
-      {super.key, required this.article, required this.isClub, });
+  const IsClubArticleCard({
+    super.key,
+    required this.article,
+    required this.currentUser,
+    required this.isClub, 
+  });
   final UserArticle article;
+  final User currentUser;
   final bool isClub;
-  
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +32,8 @@ class IsClubArticleCard extends StatelessWidget {
               ));
         },
         child: isClub
-            ? ClubArticle(article: article)
-            : MemberArticle(article: article),
+            ? ClubArticle(article: article, currentUser: currentUser)
+            : MemberArticle(article: article, currentUser: currentUser),
       ),
     );
   }

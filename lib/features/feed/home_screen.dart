@@ -10,19 +10,19 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({
     super.key,
     required this.repository,
+    required this.currentUser,
   });
 
   final DatabaseRepository repository;
-  
- 
+  final User currentUser;
 
   @override
   Widget build(BuildContext context) {
     late final Future<List<UserArticle>> futureArticles =
         repository.getArticles();
+    //late final User currentUser = repository;
     bool isClub = false;
-    
-    
+
     return FutureBuilder(
       future: futureArticles,
       builder: (context, snapshot) {
@@ -36,8 +36,8 @@ class HomeScreen extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) =>
                     IsClubArticleCard(
                       article: articles[index],
+                      currentUser: currentUser,
                       isClub: isClub,
-                      
                     )),
           );
         } else if (snapshot.connectionState == ConnectionState.done &&

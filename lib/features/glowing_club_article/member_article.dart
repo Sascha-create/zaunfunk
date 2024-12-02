@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:zaunfunk/config/colors.dart';
 import 'package:zaunfunk/features/article/models/user_article.dart';
 
+import '../authentication/models/user.dart';
+
 class MemberArticle extends StatelessWidget {
   const MemberArticle({
     super.key,
     required this.article,
+    required this.currentUser,
   });
 
   final UserArticle article;
+  final User currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +28,10 @@ class MemberArticle extends StatelessWidget {
             padding: const EdgeInsets.only(top: 8.0),
             child: Row(
               children: [
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
                   child: CircleAvatar(
-                    backgroundImage: AssetImage("assets/images/ich.jpeg"),
+                    backgroundImage: AssetImage(article.userImagePath),
                     radius: 24,
                   ),
                 ),
@@ -47,8 +51,7 @@ class MemberArticle extends StatelessWidget {
             child: Image.asset(fit: BoxFit.cover, article.articleImagePath),
           ),
           Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
             child: Text(
                 style: Theme.of(context).textTheme.bodyMedium,
                 overflow: TextOverflow.ellipsis,

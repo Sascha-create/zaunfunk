@@ -45,7 +45,10 @@ class _AppHomeState extends State<AppHome> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> screens = [
-      HomeScreen(repository: widget.repository),
+      HomeScreen(
+        repository: widget.repository,
+        currentUser: currentUser,
+      ),
       const CreateArticleScreen(),
       ProfileScreen(currentUser: currentUser),
       const SettingsScreen()

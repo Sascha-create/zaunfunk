@@ -3,7 +3,6 @@ import 'package:zaunfunk/config/colors.dart';
 import 'package:zaunfunk/features/article/models/user_article.dart';
 import 'package:zaunfunk/features/article/delete_article_dialog.dart';
 
-
 class ArticleScreen extends StatelessWidget {
   const ArticleScreen({super.key, required this.article});
   final UserArticle article;
@@ -38,10 +37,10 @@ class ArticleScreen extends StatelessWidget {
             const Divider(),
             Row(
               children: [
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
                   child: CircleAvatar(
-                    backgroundImage: AssetImage("assets/images/ich.jpeg"),
+                    backgroundImage: AssetImage(article.userImagePath),
                     radius: 24,
                   ),
                 ),

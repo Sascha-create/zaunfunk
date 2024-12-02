@@ -19,7 +19,7 @@ abstract class DatabaseRepository {
 
   //Create
   Future<void> createArticle(
-      String userName, String userArticle, String articleImagePath);
+      String userName, String userImagePath, String userArticle, String articleImagePath);
   //Delete
   Future<void> deleteUser(User user);
 

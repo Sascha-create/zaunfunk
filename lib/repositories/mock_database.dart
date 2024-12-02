@@ -5,13 +5,13 @@ import '../features/article/models/user_article.dart';
 class MockDatabase implements DatabaseRepository {
   List<User> users = [
     User(
-      userId: '001',
+        userId: '001',
         userName: "Sascha",
         userPassword: "baum123",
         aboutMe: 'Garten 82',
         userImagePath: "assets/images/ich.jpeg"),
     User(
-      userId: '002',
+        userId: '002',
         userName: "Jane",
         userPassword: "rose123",
         aboutMe: 'Ich liebe Rosen',
@@ -20,16 +20,19 @@ class MockDatabase implements DatabaseRepository {
   List<UserArticle> articles = [
     UserArticle(
         userName: "Sascha",
+        userImagePath: "assets/images/ich.jpeg",
         userArticle:
             "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
         articleImagePath: "assets/images/ernte.png"),
     UserArticle(
         userName: "Sascha",
+        userImagePath: "assets/images/ich.jpeg",
         userArticle:
             "Ich habe Gehwegplatten abzugeben ! Essen und trinken ist auch genug da",
         articleImagePath: "assets/images/floor.png"),
     UserArticle(
         userName: "Jane",
+        userImagePath: "assets/images/jane.png",
         userArticle: "Will jemand Ableger von meinen Rosen haben ?",
         articleImagePath: "assets/images/roses.png")
   ];
@@ -40,8 +43,6 @@ class MockDatabase implements DatabaseRepository {
   Future<User?> getCurrentUser() {
     return Future.value(_currentUser);
   }
-
-  
 
   @override
   Future<List<User>> getAllUser() {
@@ -65,10 +66,10 @@ class MockDatabase implements DatabaseRepository {
   }
 
   @override
-  Future<void> createUser(
-      String userId ,String userName, String userPassword, String aboutMe, String userImagePath) {
+  Future<void> createUser(String userId, String userName, String userPassword,
+      String aboutMe, String userImagePath) {
     User newUser = User(
-      userId: userId,
+        userId: userId,
         userName: userName,
         userPassword: userPassword,
         aboutMe: aboutMe,
@@ -95,10 +96,11 @@ class MockDatabase implements DatabaseRepository {
   }
 
   @override
-  Future<void> createArticle(
-      String userName, String userArticle, String articleImagePath) {
+  Future<void> createArticle(String userName, String userImagePath,
+      String userArticle, String articleImagePath) {
     UserArticle newUserArticle = UserArticle(
         userName: userName,
+        userImagePath: userImagePath,
         userArticle: userArticle,
         articleImagePath: articleImagePath);
     articles.add(newUserArticle);
