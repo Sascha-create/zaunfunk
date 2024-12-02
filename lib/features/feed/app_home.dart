@@ -53,7 +53,10 @@ class _AppHomeState extends State<AppHome> {
         repository: widget.repository,
         currentUser: currentUser,
       ),
-      ProfileScreen(currentUser: currentUser),
+      ProfileScreen(
+        repository: widget.repository,
+        currentUser: currentUser,
+      ),
       const SettingsScreen()
     ];
     return Scaffold(

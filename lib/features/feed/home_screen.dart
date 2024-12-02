@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     late final Future<List<UserArticle>> futureArticles =
         repository.getArticles();
-    //late final User currentUser = repository;
+    
     bool isClub = false;
 
     return FutureBuilder(
@@ -35,6 +35,7 @@ class HomeScreen extends StatelessWidget {
                 itemCount: articles.length,
                 itemBuilder: (BuildContext context, int index) =>
                     IsClubArticleCard(
+                      repository: repository,
                       article: articles[index],
                       currentUser: currentUser,
                       isClub: isClub,

@@ -8,7 +8,8 @@ class MockDatabase implements DatabaseRepository {
         userId: '001',
         userName: "Sascha",
         userPassword: "baum123",
-        aboutMe: 'Garten 82',
+        aboutMe:
+            'Garten 82 dskjafhdsflkdsjgfkdlgjfdlkgjfdglödfkgfdlöagjfdlhjfdlkgjhfdlgkjdsaföljdaflgjafdglkjdgälajkdg',
         userImagePath: "assets/images/ich.jpeg"),
     User(
         userId: '002',
@@ -55,8 +56,6 @@ class MockDatabase implements DatabaseRepository {
       return articles;
     });
   }
-
-
 
   @override
   Future<void> createUser(String userId, String userName, String userPassword,

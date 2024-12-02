@@ -3,8 +3,12 @@ import 'package:zaunfunk/config/colors.dart';
 import 'package:zaunfunk/features/article/models/user_article.dart';
 import 'package:zaunfunk/features/article/delete_article_dialog.dart';
 
+import '../../repositories/database_repository.dart';
+
 class ArticleScreen extends StatelessWidget {
-  const ArticleScreen({super.key, required this.article});
+  const ArticleScreen(
+      {super.key, required this.article, required this.repository});
+  final DatabaseRepository repository;
   final UserArticle article;
 
   @override
@@ -29,7 +33,10 @@ class ArticleScreen extends StatelessWidget {
                     onPressed: () {
                       showDialog(
                           context: context,
-                          builder: (context) => const DeleteArticleDialog());
+                          builder: (context) => DeleteArticleDialog(
+                                repository: repository,
+                                article: article,
+                              ));
                     },
                     icon: const Icon(Icons.delete_forever)),
               ],

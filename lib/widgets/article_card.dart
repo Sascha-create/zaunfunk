@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:zaunfunk/config/colors.dart';
 import 'package:zaunfunk/features/article/models/user_article.dart';
-import 'package:zaunfunk/features/article/article_screen.dart';
+
+
+// Diese Klasse wird wahrscheinlich noch gelöscht!!
 
 class ArticleCard extends StatelessWidget {
   const ArticleCard({super.key, required this.article});
@@ -13,13 +15,13 @@ class ArticleCard extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
         onTap: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ArticleScreen(
-                  article: article,
-                ),
-              ));
+          // Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //       builder: (context) => ArticleScreen(
+          //         article: article,
+          //       ),
+          //     ));
         },
         child: Container(
           decoration: BoxDecoration(
