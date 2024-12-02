@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:zaunfunk/config/colors.dart';
 
 class ZfGrowingTextfield extends StatelessWidget {
-  const ZfGrowingTextfield({super.key, required this.labelText});
+  const ZfGrowingTextfield(
+      {super.key, required this.labelText, required this.controller});
 
   final String labelText;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -12,6 +14,7 @@ class ZfGrowingTextfield extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 16.0),
       child: TextField(
         maxLines: null,
+        controller: controller,
         cursorColor: gardenGreen,
         decoration: InputDecoration(
             border: InputBorder.none,

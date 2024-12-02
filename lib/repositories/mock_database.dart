@@ -51,7 +51,7 @@ class MockDatabase implements DatabaseRepository {
 
   @override
   Future<List<UserArticle>> getArticles() {
-    return Future.delayed(const Duration(seconds: 2), () {
+    return Future.delayed(const Duration(seconds: 1), () {
       return articles;
     });
   }
@@ -80,7 +80,7 @@ class MockDatabase implements DatabaseRepository {
 
   @override
   Future<bool> checkLoginData(String userName, String userPassword) {
-    return Future.delayed(const Duration(seconds: 2), () {
+    return Future.delayed(const Duration(seconds: 1), () {
       for (User currentUser in users) {
         if (currentUser.userName == userName) {
           if (currentUser.userPassword == userPassword) {

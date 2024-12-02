@@ -49,7 +49,10 @@ class _AppHomeState extends State<AppHome> {
         repository: widget.repository,
         currentUser: currentUser,
       ),
-      const CreateArticleScreen(),
+      CreateArticleScreen(
+        repository: widget.repository,
+        currentUser: currentUser,
+      ),
       ProfileScreen(currentUser: currentUser),
       const SettingsScreen()
     ];
