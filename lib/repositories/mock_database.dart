@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'database_repository.dart';
 import '../features/authentication/models/user.dart';
 import '../features/article/models/user_article.dart';
@@ -49,6 +51,11 @@ class MockDatabase implements DatabaseRepository {
   }
 
   @override
+  User? logoutUser() {
+    return _currentUser = null;
+  }
+
+  @override
   Future<List<User>> getAllUser() {
     return Future.value(users);
   }
@@ -65,6 +72,7 @@ class MockDatabase implements DatabaseRepository {
       String userImagePath) {
     int lastId = int.parse(userIds.last);
     int newId = lastId + 1;
+    log('$newId');
     User newUser = User(
         userId: newId.toString(),
         userName: userName,

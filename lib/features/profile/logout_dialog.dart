@@ -40,6 +40,7 @@ class LogoutDialog extends StatelessWidget {
           ZfElevatedButton(
               onPressed: () {
                 // richtig so ?
+                repository.logoutUser();
                 Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
