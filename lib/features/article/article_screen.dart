@@ -34,17 +34,21 @@ class ArticleScreen extends StatelessWidget {
                       Navigator.pop(context);
                     },
                     icon: const Icon(Icons.arrow_back_ios_new)),
-                IconButton.outlined(
-                    onPressed: () {
-                      showDialog(
-                          context: context,
-                          builder: (context) => DeleteArticleDialog(
-                                repository: repository,
-                                article: article,
-                                currentUser: currentUser,
-                              ));
-                    },
-                    icon: const Icon(Icons.delete_forever)),
+                Visibility(
+                  visible:
+                      currentUser.userName == article.userName ? true : false,
+                  child: IconButton.outlined(
+                      onPressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (context) => DeleteArticleDialog(
+                                  repository: repository,
+                                  article: article,
+                                  currentUser: currentUser,
+                                ));
+                      },
+                      icon: const Icon(Icons.delete_forever)),
+                ),
               ],
             ),
             const Divider(),
