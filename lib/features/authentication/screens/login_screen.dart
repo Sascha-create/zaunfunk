@@ -50,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           style: Theme.of(context).textTheme.headlineMedium,
                           "Anmelden"),
                       Text(
-                          style: Theme.of(context).textTheme.bodyLarge,
+                          style: Theme.of(context).textTheme.titleMedium,
                           "Melde dich mit Deinen Nutzerdaten an\noder erstelle ein Profil"),
                     ],
                   ),
@@ -74,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           });
                         }),
                     Text(
-                        style: Theme.of(context).textTheme.bodyLarge,
+                        style: Theme.of(context).textTheme.titleMedium,
                         "Passwort speichern"),
                   ],
                 ),

@@ -39,7 +39,9 @@ class MemberArticle extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 16.0),
                   child: Text(
                       style: Theme.of(context).textTheme.titleMedium,
-                      article.userName),
+                      article.userName == currentUser.userName
+                          ? 'Du'
+                          : article.userName),
                 )
               ],
             ),
@@ -48,12 +50,14 @@ class MemberArticle extends StatelessWidget {
           SizedBox(
             height: article.articleImagePath == '' ? 8 : 240,
             width: double.infinity,
-            child: article.articleImagePath == '' ? const Text('') : Image.asset(fit: BoxFit.cover, article.articleImagePath),
+            child: article.articleImagePath == ''
+                ? const Text('')
+                : Image.asset(fit: BoxFit.cover, article.articleImagePath),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
             child: Text(
-                style: Theme.of(context).textTheme.bodyMedium,
+                style: Theme.of(context).textTheme.bodyLarge,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 5,
                 article.userArticle),

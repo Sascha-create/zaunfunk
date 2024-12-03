@@ -8,7 +8,10 @@ import '../../repositories/database_repository.dart';
 
 class ArticleScreen extends StatelessWidget {
   const ArticleScreen(
-      {super.key, required this.article, required this.repository, required this.currentUser});
+      {super.key,
+      required this.article,
+      required this.repository,
+      required this.currentUser});
   final DatabaseRepository repository;
   final UserArticle article;
   final User currentUser;
@@ -73,7 +76,7 @@ class ArticleScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8.0),
               child: Text(
-                  style: Theme.of(context).textTheme.bodyMedium,
+                  style: Theme.of(context).textTheme.bodyLarge,
                   article.userArticle),
             ),
           ],

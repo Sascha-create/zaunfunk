@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:zaunfunk/config/colors.dart';
 
 ThemeData lightTheme = ThemeData(
+  useMaterial3: true,
   scaffoldBackgroundColor: naturalBeige,
   fontFamily: "Roboto",
   textTheme: const TextTheme(
@@ -9,7 +10,6 @@ ThemeData lightTheme = ThemeData(
     headlineMedium: TextStyle(fontWeight: FontWeight.bold, color: gardenGreen),
     headlineSmall: TextStyle(color: gardenGreen),
     titleMedium: TextStyle(color: gardenGreen),
-    bodyLarge: TextStyle(color: gardenGreen),
   ),
   iconTheme: const IconThemeData(color: gardenGreen),
   appBarTheme: const AppBarTheme(
