@@ -4,7 +4,7 @@ import '../features/article/models/user_article.dart';
 abstract class DatabaseRepository {
   
 
-  Future<User?> getCurrentUser();
+  User? getCurrentUser();
 
   Future<List<User>> getAllUser();
 
@@ -12,7 +12,7 @@ abstract class DatabaseRepository {
 
   
   //Create
-  Future<void> createUser(String userId ,String userName, String userPassword, String aboutMe, String userImagePath);
+  Future<void> createUser(String userName, String userPassword, String aboutMe, String userImagePath);
   // Check
   Future<bool> checkLoginData(String userName, String userPassword);
 

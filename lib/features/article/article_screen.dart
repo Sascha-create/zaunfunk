@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:zaunfunk/config/colors.dart';
 import 'package:zaunfunk/features/article/models/user_article.dart';
 import 'package:zaunfunk/features/article/delete_article_dialog.dart';
+import 'package:zaunfunk/features/authentication/models/user.dart';
 
 import '../../repositories/database_repository.dart';
 
 class ArticleScreen extends StatelessWidget {
   const ArticleScreen(
-      {super.key, required this.article, required this.repository});
+      {super.key, required this.article, required this.repository, required this.currentUser});
   final DatabaseRepository repository;
   final UserArticle article;
+  final User currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +38,7 @@ class ArticleScreen extends StatelessWidget {
                           builder: (context) => DeleteArticleDialog(
                                 repository: repository,
                                 article: article,
+                                currentUser: currentUser,
                               ));
                     },
                     icon: const Icon(Icons.delete_forever)),

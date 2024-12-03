@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zaunfunk/config/colors.dart';
+import 'package:zaunfunk/features/authentication/models/user.dart';
+import 'package:zaunfunk/features/authentication/screens/create_profile_screen.dart';
 import 'package:zaunfunk/features/authentication/screens/registration_screen.dart';
 import 'package:zaunfunk/features/feed/app_home.dart';
 import 'package:zaunfunk/repositories/database_repository.dart';
@@ -15,8 +17,6 @@ class LoginScreen extends StatefulWidget {
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
-
-//DatabaseRepository repository = repository;
 
 TextEditingController userNameController = TextEditingController();
 TextEditingController passwordController = TextEditingController();
@@ -87,12 +87,16 @@ class _LoginScreenState extends State<LoginScreen> {
                             isLoginDataCorrect = await widget.repository
                                 .checkLoginData(userNameController.text,
                                     passwordController.text);
-                            if (isLoginDataCorrect) {
+                            final User? currentUser =
+                                widget.repository.getCurrentUser();
+                            if (isLoginDataCorrect && currentUser != null) {
                               Navigator.push(
-                                  context, 
+                                  context,
                                   MaterialPageRoute(
                                       builder: (context) => AppHome(
-                                          repository: widget.repository)));
+                                            repository: widget.repository,
+                                            currentUser: currentUser,
+                                          )));
                             }
                           },
                           text: "Anmelden"),
@@ -102,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => RegistrationScreen(
+                                    builder: (context) => CreateProfileScreen(
                                         repository: widget.repository)));
                           },
                           text: "Registrieren"),

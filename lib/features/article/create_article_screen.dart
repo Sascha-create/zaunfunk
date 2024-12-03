@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zaunfunk/features/authentication/models/user.dart';
 import 'package:zaunfunk/features/feed/app_home.dart';
-import 'package:zaunfunk/features/feed/home_screen.dart';
 import 'package:zaunfunk/features/shared/widgets/buttons/zf_elevated_button.dart';
 import 'package:zaunfunk/features/shared/widgets/textfields/zf_growing_textfield.dart';
 import 'package:zaunfunk/repositories/database_repository.dart';
@@ -46,7 +45,7 @@ class CreateArticleScreen extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (context) => AppHome(
-                                    repository: repository,
+                                    repository: repository, currentUser: currentUser,
                                   )));
                     },
                     text: "Posten"),

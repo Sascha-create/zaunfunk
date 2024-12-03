@@ -35,7 +35,7 @@ class LogoutDialog extends StatelessWidget {
           Text(
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.titleMedium,
-              "Möchtest du dich von Zaunfunk abmelden?"),
+              "Möchtest Du Dich von Zaunfunk abmelden?"),
           const SizedBox(height: 40),
           ZfElevatedButton(
               onPressed: () {

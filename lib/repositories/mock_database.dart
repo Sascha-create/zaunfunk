@@ -5,19 +5,22 @@ import '../features/article/models/user_article.dart';
 class MockDatabase implements DatabaseRepository {
   List<User> users = [
     User(
-        userId: '001',
+        userId: '1',
         userName: "Sascha",
         userPassword: "baum123",
         aboutMe:
             'Garten 82 dskjafhdsflkdsjgfkdlgjfdlkgjfdglödfkgfdlöagjfdlhjfdlkgjhfdlgkjdsaföljdaflgjafdglkjdgälajkdg',
         userImagePath: "assets/images/ich.jpeg"),
     User(
-        userId: '002',
+        userId: '2',
         userName: "Jane",
         userPassword: "rose123",
         aboutMe: 'Ich liebe Rosen',
         userImagePath: "assets/images/jane.png")
   ];
+
+  List<String> userIds = ['1', '2'];
+
   List<UserArticle> articles = [
     UserArticle(
         userName: "Sascha",
@@ -41,8 +44,8 @@ class MockDatabase implements DatabaseRepository {
   User? _currentUser;
 
   @override
-  Future<User?> getCurrentUser() {
-    return Future.value(_currentUser);
+  User? getCurrentUser() {
+    return _currentUser;
   }
 
   @override
@@ -58,10 +61,12 @@ class MockDatabase implements DatabaseRepository {
   }
 
   @override
-  Future<void> createUser(String userId, String userName, String userPassword,
-      String aboutMe, String userImagePath) {
+  Future<void> createUser(String userName, String userPassword, String aboutMe,
+      String userImagePath) {
+    int lastId = int.parse(userIds.last);
+    int newId = lastId + 1;
     User newUser = User(
-        userId: userId,
+        userId: newId.toString(),
         userName: userName,
         userPassword: userPassword,
         aboutMe: aboutMe,

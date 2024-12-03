@@ -32,6 +32,7 @@ class IsClubArticleCard extends StatelessWidget {
                 builder: (context) => ArticleScreen(
                   repository: repository,
                   article: article,
+                  currentUser: currentUser,
                 ),
               ));
         },

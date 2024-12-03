@@ -35,10 +35,10 @@ class ClubArticle extends StatelessWidget {
             padding: const EdgeInsets.only(top: 8.0),
             child: Row(
               children: [
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
+                 Padding(
+                  padding: const EdgeInsets.all(8.0),
                   child: CircleAvatar(
-                    backgroundImage: AssetImage("assets/images/ich.jpeg"),
+                    backgroundImage: AssetImage(article.userImagePath),
                     radius: 24,
                   ),
                 ),

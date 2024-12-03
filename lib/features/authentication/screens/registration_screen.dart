@@ -26,7 +26,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     if (value == null) {
       return "kein Nutzername angegeben";
     }
-    if (value.length < 5) return "Nutzername mehr als 5 Zeichen";
+    if (value.length < 2) return "Nutzername mehr als 2 Zeichen";
     if (value.length > 20) return "Nutzername maximal 20 Zeichen";
 
     return null;

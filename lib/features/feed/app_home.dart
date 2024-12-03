@@ -11,10 +11,11 @@ import 'package:zaunfunk/features/settings/settings_screen.dart';
 class AppHome extends StatefulWidget {
   const AppHome({
     super.key,
-    required this.repository,
+    required this.repository, required this.currentUser,
   });
 
   final DatabaseRepository repository;
+  final  User currentUser;
 
   @override
   State<AppHome> createState() => _AppHomeState();
@@ -22,40 +23,40 @@ class AppHome extends StatefulWidget {
 
 class _AppHomeState extends State<AppHome> {
   int currentIndex = 0;
-  late User currentUser;
+  
 
-  @override
-  void initState() {
-    super.initState();
-    getLoggedInUser();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   getLoggedInUser();
+  // }
 
-  void getLoggedInUser() async {
-    currentUser = await widget.repository.getCurrentUser() ??
-        User(
-          userId: '000',
-          userName: 'name',
-          userPassword: 'passwort',
-          aboutMe: 'über mich',
-          userImagePath: 'assets/icon/app_icon.png',
-        );
-    setState(() {});
-  }
+  // void getLoggedInUser() async {
+  //   currentUser = await widget.repository.getCurrentUser() ??
+  //       User(
+  //         userId: '000',
+  //         userName: 'name',
+  //         userPassword: 'passwort',
+  //         aboutMe: 'über mich',
+  //         userImagePath: 'assets/images/app_logo_shadow.png',
+  //       );
+  //   setState(() {});
+  // }
 
   @override
   Widget build(BuildContext context) {
     final List<Widget> screens = [
       HomeScreen(
         repository: widget.repository,
-        currentUser: currentUser,
+        currentUser: widget.currentUser,
       ),
       CreateArticleScreen(
         repository: widget.repository,
-        currentUser: currentUser,
+        currentUser: widget.currentUser,
       ),
       ProfileScreen(
         repository: widget.repository,
-        currentUser: currentUser,
+        currentUser: widget.currentUser,
       ),
       const SettingsScreen()
     ];
