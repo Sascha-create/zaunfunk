@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'database_repository.dart';
 import '../features/authentication/models/user.dart';
 import '../features/article/models/user_article.dart';
@@ -29,18 +27,21 @@ class MockDatabase implements DatabaseRepository {
         userImagePath: "assets/images/ich.jpeg",
         userArticle:
             "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-        articleImagePath: "assets/images/ernte.png"),
+        articleImagePath: "assets/images/ernte.png",
+        articleComments: []),
     UserArticle(
         userName: "Sascha",
         userImagePath: "assets/images/ich.jpeg",
         userArticle:
             "Ich habe Gehwegplatten abzugeben ! Essen und trinken ist auch genug da",
-        articleImagePath: "assets/images/floor.png"),
+        articleImagePath: "assets/images/floor.png",
+        articleComments: []),
     UserArticle(
         userName: "Jane",
         userImagePath: "assets/images/jane.png",
         userArticle: "Will jemand Ableger von meinen Rosen haben ?",
-        articleImagePath: "assets/images/roses.png")
+        articleImagePath: "assets/images/roses.png",
+        articleComments: [])
   ];
 
   User? _currentUser;
@@ -68,17 +69,35 @@ class MockDatabase implements DatabaseRepository {
   }
 
   @override
+  Future<bool> isUsernameAvailable(String userName) {
+    User newUser = User(
+        userId: '000',
+        userName: userName,
+        userPassword: 'password',
+        aboutMe: 'aboutMe',
+        userImagePath: 'userImagePath');
+    for (User currentUser in users) {
+      if (currentUser.userName == newUser.userName) {
+        return Future.value(false);
+      } else {
+        return Future.value(true);
+      }
+    }
+    return Future.value(true);
+  }
+
+  @override
   Future<void> createUser(String userName, String userPassword, String aboutMe,
       String userImagePath) {
     int lastId = int.parse(userIds.last);
     int newId = lastId + 1;
-    log('$newId');
     User newUser = User(
         userId: newId.toString(),
         userName: userName,
         userPassword: userPassword,
         aboutMe: aboutMe,
         userImagePath: userImagePath);
+
     users.add(newUser);
     return Future.value();
   }
@@ -107,7 +126,8 @@ class MockDatabase implements DatabaseRepository {
         userName: userName,
         userImagePath: userImagePath,
         userArticle: userArticle,
-        articleImagePath: articleImagePath);
+        articleImagePath: articleImagePath,
+        articleComments: []);
     articles.add(newUserArticle);
     return Future.value();
   }

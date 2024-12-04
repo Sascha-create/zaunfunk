@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:zaunfunk/config/colors.dart';
 import 'package:zaunfunk/features/article/models/user_article.dart';
 import 'package:zaunfunk/features/article/delete_article_dialog.dart';
+import 'package:zaunfunk/features/article_comments/comment_widget.dart';
+import 'package:zaunfunk/features/article_comments/models/article_comment.dart';
 import 'package:zaunfunk/features/authentication/models/user.dart';
 
 import '../../repositories/database_repository.dart';
@@ -85,6 +87,21 @@ class ArticleScreen extends StatelessWidget {
                   style: Theme.of(context).textTheme.bodyLarge,
                   article.userArticle),
             ),
+            const Divider(),
+            SizedBox(
+                child: article.articleComments.isEmpty
+                    ? const Text('')
+                    : ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: article.articleComments.length,
+                        itemBuilder: (BuildContext context, int index) =>
+                            CommentWidget(
+                                userName:
+                                    article.articleComments[index].userName,
+                                comment: article
+                                    .articleComments[index].articleComment))),
+            IconButton.outlined(
+                onPressed: () {}, icon: const Icon(Icons.add_comment_outlined))
           ],
         ),
       )),

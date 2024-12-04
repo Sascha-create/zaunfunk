@@ -16,6 +16,8 @@ abstract class DatabaseRepository {
   // Check
   Future<bool> checkLoginData(String userName, String userPassword);
 
+  Future<bool> isUsernameAvailable(String userName);
+
   //Create
   Future<void> createArticle(String userName, String userImagePath,
       String userArticle, String articleImagePath);

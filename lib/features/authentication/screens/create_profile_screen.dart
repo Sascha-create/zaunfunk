@@ -7,6 +7,7 @@ import 'package:zaunfunk/features/shared/widgets/buttons/zf_elevated_button.dart
 import 'package:zaunfunk/features/shared/widgets/buttons/zf_icon_button.dart';
 import 'package:zaunfunk/features/shared/widgets/textfields/zf_textfield.dart';
 
+import '../../shared/widgets/textfields/zf_text_form_field.dart';
 import '../models/user.dart';
 
 class CreateProfileScreen extends StatefulWidget {
@@ -20,7 +21,6 @@ class CreateProfileScreen extends StatefulWidget {
 class _CreateProfileScreenState extends State<CreateProfileScreen> {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
-  //TextEditingController birthDateController = TextEditingController();
   TextEditingController aboutMeController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   final TextEditingController passwordConfirmController =
@@ -28,6 +28,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  bool isNameAvailable = false;
   bool isLoginDataCorrect = false;
 
   String? isConfirmPassword(String? value) {
@@ -81,10 +82,14 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                   key: _formKey,
                   child: Column(
                     children: [
-                      ZfTextfield(
-                          controller: nameController, labelText: "Nutzername"),
-                      ZfTextfield(
-                          controller: emailController, labelText: "Email"),
+                      ZfTextFormfield(
+                          validator: isValidUsername,
+                          controller: nameController,
+                          labelText: "Nutzername"),
+                      ZfTextFormfield(
+                          validator: isEmailValid,
+                          controller: emailController,
+                          labelText: "Email"),
                       ZfTextfield(
                           controller: aboutMeController,
                           labelText: "Über mich"),
@@ -100,25 +105,32 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                           onPressed: () async {
                             // validieren dann create User
                             if (_formKey.currentState!.validate()) {
-                              widget.repository.createUser(
-                                  nameController.text,
-                                  passwordController.text,
-                                  aboutMeController.text,
-                                  'assets/images/app_logo_shadow.png');
-                              // User als currentUser setzen
-                              isLoginDataCorrect = await widget.repository
-                                  .checkLoginData(nameController.text,
-                                      passwordController.text);
-                              final User? currentUser =
-                                  widget.repository.getCurrentUser();
-                              if (isLoginDataCorrect && currentUser != null) {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => AppHome(
-                                              repository: widget.repository,
-                                              currentUser: currentUser,
-                                            )));
+                              if (isNameAvailable) {
+                                widget.repository.createUser(
+                                    nameController.text,
+                                    passwordController.text,
+                                    aboutMeController.text,
+                                    'assets/images/app_logo_shadow.png');
+                                // User als currentUser setzen
+                                isLoginDataCorrect = await widget.repository
+                                    .checkLoginData(nameController.text,
+                                        passwordController.text);
+                                final User? currentUser =
+                                    widget.repository.getCurrentUser();
+                                if (isLoginDataCorrect && currentUser != null) {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => AppHome(
+                                                repository: widget.repository,
+                                                currentUser: currentUser,
+                                              )));
+                                }
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content: Text(
+                                            'Nutzername schon vergeben !')));
                               }
                             }
                           },
