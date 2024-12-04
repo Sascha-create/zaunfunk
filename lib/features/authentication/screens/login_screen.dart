@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:zaunfunk/config/colors.dart';
 import 'package:zaunfunk/features/authentication/models/user.dart';
 import 'package:zaunfunk/features/authentication/screens/create_profile_screen.dart';
-import 'package:zaunfunk/features/authentication/screens/registration_screen.dart';
 import 'package:zaunfunk/features/feed/app_home.dart';
 import 'package:zaunfunk/repositories/database_repository.dart';
 import 'package:zaunfunk/features/shared/widgets/buttons/zf_elevated_button.dart';

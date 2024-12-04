@@ -7,6 +7,8 @@ import 'package:zaunfunk/repositories/database_repository.dart';
 
 import '../authentication/models/user.dart';
 
+// GridView evtl vorerst verwerfen
+
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key, required this.currentUser, required this.repository});
 
