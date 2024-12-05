@@ -45,7 +45,7 @@ class _CommentBottomSheetState extends State<CommentBottomSheet> {
             TextField(
               cursorColor: gardenGreen,
               decoration: const InputDecoration(
-                hintText: 'Mache ein Komentar...',
+                hintText: 'Mache ein Kommentar...',
                 hintStyle: TextStyle(color: gardenGreen),
                 border: InputBorder.none,
                 focusedBorder: InputBorder.none,
