@@ -13,7 +13,6 @@ class ZfGrowingTextfield extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16.0),
       child: TextField(
-        
         maxLines: null,
         controller: controller,
         cursorColor: gardenGreen,
@@ -31,5 +30,3 @@ class ZfGrowingTextfield extends StatelessWidget {
     );
   }
 }
-
-

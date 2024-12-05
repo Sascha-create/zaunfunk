@@ -5,12 +5,13 @@ import 'package:zaunfunk/repositories/database_repository.dart';
 import 'package:zaunfunk/repositories/mock_database.dart';
 
 void main() {
-  runApp(MainApp());
+  final DatabaseRepository repository = MockDatabase();
+  runApp(MainApp(repository: repository,));
 }
 
 class MainApp extends StatelessWidget {
-  MainApp({super.key});
-  final DatabaseRepository repository = MockDatabase();
+  const MainApp({super.key, required this.repository});
+  final DatabaseRepository repository;
 
   @override
   Widget build(BuildContext context) {

@@ -11,11 +11,12 @@ import 'package:zaunfunk/features/settings/settings_screen.dart';
 class AppHome extends StatefulWidget {
   const AppHome({
     super.key,
-    required this.repository, required this.currentUser,
+    required this.repository,
+    required this.currentUser,
   });
 
   final DatabaseRepository repository;
-  final  User currentUser;
+  final User currentUser;
 
   @override
   State<AppHome> createState() => _AppHomeState();
@@ -23,7 +24,6 @@ class AppHome extends StatefulWidget {
 
 class _AppHomeState extends State<AppHome> {
   int currentIndex = 0;
-  
 
   // @override
   // void initState() {
@@ -68,13 +68,15 @@ class _AppHomeState extends State<AppHome> {
           padding: EdgeInsets.only(left: 8.0),
           child: Text("Zaunfunk"),
         ),
-        actions: [
-          IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.search,
-              ))
-        ],
+        actions: currentIndex == 0
+            ? [
+                IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.search,
+                    ))
+              ]
+            : null,
       ),
       body: screens[currentIndex],
       bottomNavigationBar: NavigationBar(
