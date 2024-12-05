@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:zaunfunk/config/colors.dart';
 import 'package:zaunfunk/features/article/models/user_article.dart';
 import 'package:zaunfunk/features/article/delete_article_dialog.dart';
+import 'package:zaunfunk/features/article_comments/widgets/comment_bottom_sheet.dart';
 import 'package:zaunfunk/features/article_comments/widgets/comment_widget.dart';
 import 'package:zaunfunk/features/article_comments/widgets/empty_comment.dart';
 import 'package:zaunfunk/features/authentication/models/user.dart';
@@ -123,8 +124,9 @@ class _ArticleScreenState extends State<ArticleScreen> {
                                         .articleComments[index]
                                         .articleComment))),
                 IconButton.outlined(
-                    onPressed: () {
-                      showModalBottomSheet(
+                  // durch async wartet es bis das Sheet zu geht
+                    onPressed: () async {  
+                      await showModalBottomSheet(
                         context: context,
                         builder: (context) {
                           return CommentBottomSheet(
@@ -134,6 +136,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
                           );
                         },
                       );
+                      setState(() {});
                     },
                     icon: const Icon(Icons.add_comment_outlined)),
               ],
@@ -141,65 +144,6 @@ class _ArticleScreenState extends State<ArticleScreen> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class CommentBottomSheet extends StatefulWidget {
-  const CommentBottomSheet({
-    super.key,
-    required this.article,
-    required this.currentUser,
-    required this.repository,
-  });
-  final DatabaseRepository repository;
-  final UserArticle article;
-  final User currentUser;
-
-  @override
-  State<CommentBottomSheet> createState() => _CommentBottomSheetState();
-}
-
-class _CommentBottomSheetState extends State<CommentBottomSheet> {
-  final TextEditingController _commentController = TextEditingController();
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.7,
-      width: double.infinity,
-      child: Center(
-          child: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: Column(
-          children: [
-            SizedBox(
-                height: MediaQuery.of(context).size.height * 0.2,
-                child: Text(_commentController.text)),
-            TextField(
-              onChanged: (value) {
-                setState(() {
-                  _commentController.text;
-                });
-              },
-              controller: _commentController,
-            ),
-            ZfElevatedButton(
-                onPressed: () {
-                  widget.article.addComment(
-                      widget.currentUser.userName, _commentController.text);
-                  setState(() {});
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ArticleScreen(
-                              article: widget.article,
-                              repository: widget.repository,
-                              currentUser: widget.currentUser)));
-                },
-                text: 'Posten')
-          ],
-        ),
-      )),
     );
   }
 }

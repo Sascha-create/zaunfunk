@@ -1,0 +1,68 @@
+import 'package:flutter/material.dart';
+import 'package:zaunfunk/features/article/article_screen.dart';
+import 'package:zaunfunk/features/article/models/user_article.dart';
+import 'package:zaunfunk/features/authentication/models/user.dart';
+import 'package:zaunfunk/repositories/database_repository.dart';
+
+import '../../shared/widgets/buttons/zf_elevated_button.dart';
+
+class CommentBottomSheet extends StatefulWidget {
+  const CommentBottomSheet({
+    super.key,
+    required this.article,
+    required this.currentUser,
+    required this.repository,
+  });
+  final DatabaseRepository repository;
+  final UserArticle article;
+  final User currentUser;
+
+  @override
+  State<CommentBottomSheet> createState() => _CommentBottomSheetState();
+}
+
+class _CommentBottomSheetState extends State<CommentBottomSheet> {
+  final TextEditingController _commentController = TextEditingController();
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.7,
+      width: double.infinity,
+      child: Center(
+          child: Padding(
+        padding: const EdgeInsets.all(24.0),
+        child: Column(
+          children: [
+            SizedBox(
+                height: MediaQuery.of(context).size.height * 0.2,
+                child: SingleChildScrollView(
+                  reverse: true,
+                  child: Text(
+                      style: const TextStyle(fontSize: 20),
+                      _commentController.text),
+                )),
+            TextField(
+              onChanged: (value) {
+                setState(() {
+                  _commentController.text;
+                });
+              },
+              controller: _commentController,
+            ),
+            ZfElevatedButton(
+                onPressed: () {
+                  widget.article.addComment(
+                      widget.currentUser.userName, _commentController.text);
+                  setState(() {});
+
+                  Navigator.pop(
+                    context,
+                  );
+                },
+                text: 'Posten')
+          ],
+        ),
+      )),
+    );
+  }
+}
