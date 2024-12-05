@@ -35,7 +35,7 @@ class ClubArticle extends StatelessWidget {
             padding: const EdgeInsets.only(top: 8.0),
             child: Row(
               children: [
-                 Padding(
+                Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: CircleAvatar(
                     backgroundImage: AssetImage(article.userImagePath),
@@ -57,7 +57,9 @@ class ClubArticle extends StatelessWidget {
           SizedBox(
             height: article.articleImagePath == '' ? 8 : 240,
             width: double.infinity,
-            child: article.articleImagePath == '' ? const Text('') : Image.asset(fit: BoxFit.cover, article.articleImagePath),
+            child: article.articleImagePath == ''
+                ? const Text('')
+                : Image.asset(fit: BoxFit.cover, article.articleImagePath),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
@@ -76,10 +78,10 @@ class ClubArticle extends StatelessWidget {
                 Row(
                   children: [
                     Icon(Icons.thumb_up_outlined),
-                    SizedBox(
-                      width: 24,
-                    ),
-                    Icon(Icons.add_comment_outlined),
+                    // SizedBox(
+                    //   width: 24,
+                    // ),
+                    // //Icon(Icons.add_comment_outlined),
                   ],
                 )
               ],

@@ -71,10 +71,10 @@ class MemberArticle extends StatelessWidget {
                 Row(
                   children: [
                     Icon(Icons.thumb_up_outlined),
-                    SizedBox(
-                      width: 24,
-                    ),
-                    Icon(Icons.add_comment_outlined),
+                    // SizedBox(
+                    //   width: 24,
+                    // ),
+                    // //Icon(Icons.add_comment_outlined),
                   ],
                 )
               ],
