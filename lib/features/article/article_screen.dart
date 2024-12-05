@@ -6,7 +6,6 @@ import 'package:zaunfunk/features/article_comments/widgets/comment_bottom_sheet.
 import 'package:zaunfunk/features/article_comments/widgets/comment_widget.dart';
 import 'package:zaunfunk/features/article_comments/widgets/empty_comment.dart';
 import 'package:zaunfunk/features/authentication/models/user.dart';
-import 'package:zaunfunk/features/shared/widgets/buttons/zf_elevated_button.dart';
 
 import '../../repositories/database_repository.dart';
 
@@ -28,7 +27,6 @@ class _ArticleScreenState extends State<ArticleScreen> {
   @override
   void initState() {
     super.initState();
-    setState(() {});
   }
 
   @override
@@ -124,9 +122,10 @@ class _ArticleScreenState extends State<ArticleScreen> {
                                         .articleComments[index]
                                         .articleComment))),
                 IconButton.outlined(
-                  // durch async wartet es bis das Sheet zu geht
-                    onPressed: () async {  
+                    // durch async wartet es bis das Sheet zu geht
+                    onPressed: () async {
                       await showModalBottomSheet(
+                        enableDrag: true,
                         context: context,
                         builder: (context) {
                           return CommentBottomSheet(

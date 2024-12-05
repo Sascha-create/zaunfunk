@@ -4,6 +4,7 @@ import 'package:zaunfunk/features/article/models/user_article.dart';
 import 'package:zaunfunk/features/authentication/models/user.dart';
 import 'package:zaunfunk/repositories/database_repository.dart';
 
+import '../../../config/colors.dart';
 import '../../shared/widgets/buttons/zf_elevated_button.dart';
 
 class CommentBottomSheet extends StatefulWidget {
@@ -42,6 +43,18 @@ class _CommentBottomSheetState extends State<CommentBottomSheet> {
                       _commentController.text),
                 )),
             TextField(
+              cursorColor: gardenGreen,
+              decoration: const InputDecoration(
+                hintText: 'Mache ein Komentar...',
+                hintStyle: TextStyle(color: gardenGreen),
+                border: InputBorder.none,
+                focusedBorder: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                errorBorder: InputBorder.none,
+                disabledBorder: InputBorder.none,
+                fillColor: Colors.white,
+                filled: true,
+              ),
               onChanged: (value) {
                 setState(() {
                   _commentController.text;
@@ -49,17 +62,20 @@ class _CommentBottomSheetState extends State<CommentBottomSheet> {
               },
               controller: _commentController,
             ),
-            ZfElevatedButton(
-                onPressed: () {
-                  widget.article.addComment(
-                      widget.currentUser.userName, _commentController.text);
-                  setState(() {});
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: ZfElevatedButton(
+                  onPressed: () {
+                    widget.article.addComment(
+                        widget.currentUser.userName, _commentController.text);
+                    setState(() {});
 
-                  Navigator.pop(
-                    context,
-                  );
-                },
-                text: 'Posten')
+                    Navigator.pop(
+                      context,
+                    );
+                  },
+                  text: 'Posten'),
+            )
           ],
         ),
       )),
