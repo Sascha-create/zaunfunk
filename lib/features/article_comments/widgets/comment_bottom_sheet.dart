@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:zaunfunk/features/article/article_screen.dart';
 import 'package:zaunfunk/features/article/models/user_article.dart';
 import 'package:zaunfunk/features/authentication/models/user.dart';
 import 'package:zaunfunk/repositories/database_repository.dart';

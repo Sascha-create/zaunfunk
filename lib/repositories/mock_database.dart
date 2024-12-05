@@ -8,8 +8,7 @@ class MockDatabase implements DatabaseRepository {
         userId: '1',
         userName: "Sascha",
         userPassword: "baum123",
-        aboutMe:
-            'Garten 82 dskjafhdsflkdsjgfkdlgjfdlkgjfdglödfkgfdlöagjfdlhjfdlkgjhfdlgkjdsaföljdaflgjafdglkjdgälajkdg',
+        aboutMe: 'Garten 82',
         userImagePath: "assets/images/ich.jpeg"),
     User(
         userId: '2',
