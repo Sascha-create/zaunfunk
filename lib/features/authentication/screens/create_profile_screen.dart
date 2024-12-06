@@ -30,6 +30,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
 
   bool isNameAvailable = false;
   bool isLoginDataCorrect = false;
+  bool ispasswordVisible = true;
 
   String? isConfirmPassword(String? value) {
     if (value == null) return "Kein Passwort";
@@ -96,11 +97,33 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                       ZfTextFormfieldPassword(
                           labelText: 'Passwort',
                           validator: isValidPassword,
-                          controller: passwordController),
+                          controller: passwordController,
+                          obscureText: ispasswordVisible,
+                          suffix: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                ispasswordVisible = !ispasswordVisible;
+                              });
+                            },
+                            child: Icon(ispasswordVisible
+                                ? Icons.visibility_off_outlined
+                                : Icons.visibility_outlined),
+                          )),
                       ZfTextFormfieldPassword(
                           labelText: 'Passwort wiederholen',
                           validator: isConfirmPassword,
-                          controller: passwordConfirmController),
+                          controller: passwordConfirmController,
+                          obscureText: ispasswordVisible,
+                          suffix: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                ispasswordVisible = !ispasswordVisible;
+                              });
+                            },
+                            child: Icon(ispasswordVisible
+                                ? Icons.visibility_off_outlined
+                                : Icons.visibility_outlined),
+                          )),
                       ZfElevatedButton(
                           onPressed: () async {
                             // validieren dann create User
