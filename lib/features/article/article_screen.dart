@@ -36,110 +36,116 @@ class _ArticleScreenState extends State<ArticleScreen> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: const Icon(Icons.arrow_back_ios_new)),
-                  Visibility(
-                    visible:
-                        widget.currentUser.userName == widget.article.userName
-                            ? true
-                            : false,
-                    child: IconButton.outlined(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
                         onPressed: () {
-                          showDialog(
-                              context: context,
-                              builder: (context) => DeleteArticleDialog(
-                                    repository: widget.repository,
-                                    article: widget.article,
-                                    currentUser: widget.currentUser,
-                                  ));
+                          Navigator.pop(context);
                         },
-                        icon: const Icon(Icons.delete_forever)),
-                  ),
-                ],
-              ),
-              const Divider(),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: CircleAvatar(
-                      backgroundImage: AssetImage(widget.article.userImagePath),
-                      radius: 24,
+                        icon: const Icon(Icons.arrow_back_ios_new)),
+                    Visibility(
+                      visible:
+                          widget.currentUser.userName == widget.article.userName
+                              ? true
+                              : false,
+                      child: IconButton.outlined(
+                          onPressed: () {
+                            showDialog(
+                                context: context,
+                                builder: (context) => DeleteArticleDialog(
+                                      repository: widget.repository,
+                                      article: widget.article,
+                                      currentUser: widget.currentUser,
+                                    ));
+                          },
+                          icon: const Icon(Icons.delete_forever)),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 16.0),
-                    child: Text(
-                        style: Theme.of(context).textTheme.titleMedium,
-                        widget.article.userName == widget.currentUser.userName
-                            ? 'Du'
-                            : widget.article.userName),
-                  )
-                ],
-              ),
-              const Divider(),
-              SizedBox(
-                height: widget.article.articleImagePath == '' ? 8 : 240,
-                width: double.infinity,
-                child: widget.article.articleImagePath == ''
-                    ? const Text('')
-                    : Image.asset(
-                        fit: BoxFit.cover, widget.article.articleImagePath),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 8, vertical: 8.0),
-                child: Text(
-                    style: Theme.of(context).textTheme.bodyLarge,
-                    widget.article.userArticle),
-              ),
-              const Divider(),
-              SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.34,
-                  child: widget.article.articleComments.isEmpty
-                      ? const EmptyComment()
-                      : ListView.builder(
-                          //physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: widget.article.articleComments.length,
-                          itemBuilder: (BuildContext context, int index) =>
-                              CommentWidget(
-                                  userName: widget
-                                      .article.articleComments[index].userName,
-                                      userImagePath: widget.currentUser.userImagePath,
-                                  comment: widget.article.articleComments[index]
-                                      .articleComment))),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: IconButton.outlined(
-                    // durch async wartet es bis das Sheet zu geht
-                    onPressed: () async {
-                      await showModalBottomSheet(
-                        enableDrag: true,
-                        context: context,
-                        builder: (context) {
-                          return CommentBottomSheet(
-                            repository: widget.repository,
-                            article: widget.article,
-                            currentUser: widget.currentUser,
-                          );
-                        },
-                      );
-                      setState(() {});
-                    },
-                    icon: const Icon(Icons.add_comment_outlined)),
-              ),
-            ],
+                  ],
+                ),
+                const Divider(),
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CircleAvatar(
+                        backgroundImage:
+                            AssetImage(widget.article.userImagePath),
+                        radius: 24,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16.0),
+                      child: Text(
+                          style: Theme.of(context).textTheme.titleMedium,
+                          widget.article.userName == widget.currentUser.userName
+                              ? 'Du'
+                              : widget.article.userName),
+                    )
+                  ],
+                ),
+                const Divider(),
+                SizedBox(
+                  height: widget.article.articleImagePath == '' ? 8 : 240,
+                  width: double.infinity,
+                  child: widget.article.articleImagePath == ''
+                      ? const Text('')
+                      : Image.asset(
+                          fit: BoxFit.cover, widget.article.articleImagePath),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 8.0),
+                  child: Text(
+                      style: Theme.of(context).textTheme.bodyLarge,
+                      widget.article.userArticle),
+                ),
+                const Divider(),
+                SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.34,
+                    child: widget.article.articleComments.isEmpty
+                        ? const EmptyComment()
+                        : ListView.builder(
+                            //physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: widget.article.articleComments.length,
+                            itemBuilder: (BuildContext context, int index) =>
+                                CommentWidget(
+                                    userName: widget.article
+                                        .articleComments[index].userName,
+                                    userImagePath:
+                                        widget.currentUser.userImagePath,
+                                    comment: widget
+                                        .article
+                                        .articleComments[index]
+                                        .articleComment))),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: IconButton.outlined(
+                      // durch async wartet es bis das Sheet zu geht
+                      onPressed: () async {
+                        await showModalBottomSheet(
+                          enableDrag: true,
+                          context: context,
+                          builder: (context) {
+                            return CommentBottomSheet(
+                              repository: widget.repository,
+                              article: widget.article,
+                              currentUser: widget.currentUser,
+                            );
+                          },
+                        );
+                        setState(() {});
+                      },
+                      icon: const Icon(Icons.add_comment_outlined)),
+                ),
+              ],
+            ),
           ),
         ),
       ),

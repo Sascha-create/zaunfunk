@@ -105,6 +105,8 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                           onPressed: () async {
                             // validieren dann create User
                             if (_formKey.currentState!.validate()) {
+                              isNameAvailable = await widget.repository
+                                  .isUsernameAvailable(nameController.text);
                               if (isNameAvailable) {
                                 widget.repository.createUser(
                                     nameController.text,
