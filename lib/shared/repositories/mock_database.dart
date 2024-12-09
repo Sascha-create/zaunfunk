@@ -46,22 +46,22 @@ class MockDatabase implements DatabaseRepository {
   User? _currentUser;
 
   @override
-  User? getCurrentUser() {
-    return _currentUser;
+  Future<User?> getCurrentUser() async {  // <-- asnyc ?
+    return Future.value(_currentUser);
   }
 
   @override
-  User? logoutUser() {
-    return _currentUser = null;
+  Future<User?> logoutUser() async {  // <-- asnyc ?
+    return Future.value(_currentUser = null);
   }
 
   @override
-  Future<List<User>> getAllUser() {
+  Future<List<User>> getAllUser() async {
     return Future.value(users);
   }
 
   @override
-  Future<List<UserArticle>> getArticles() {
+  Future<List<UserArticle>> getArticles() async {
     return Future.delayed(const Duration(seconds: 1), () {
       return articles;
     });

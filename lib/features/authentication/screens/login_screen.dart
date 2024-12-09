@@ -87,7 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 .checkLoginData(userNameController.text,
                                     passwordController.text);
                             final User? currentUser =
-                                widget.repository.getCurrentUser();
+                                await widget.repository.getCurrentUser();
                             if (isLoginDataCorrect && currentUser != null) {
                               Navigator.push(
                                   context,

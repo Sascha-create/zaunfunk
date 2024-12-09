@@ -2,9 +2,9 @@ import '../../features/authentication/models/user.dart';
 import '../../features/article/models/user_article.dart';
 
 abstract class DatabaseRepository {
-  User? getCurrentUser();
+  Future<User?> getCurrentUser();
 
-  User? logoutUser();
+  Future<User?> logoutUser();
 
   Future<List<User>> getAllUser();
 
