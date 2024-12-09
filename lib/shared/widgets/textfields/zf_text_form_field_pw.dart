@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zaunfunk/config/colors.dart';
+import 'package:zaunfunk/shared/config/colors.dart';
 
 class ZfTextFormfieldPassword extends StatelessWidget {
   const ZfTextFormfieldPassword({

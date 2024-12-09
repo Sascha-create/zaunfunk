@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:zaunfunk/features/authentication/validator.dart';
 import 'package:zaunfunk/features/feed/app_home.dart';
-import 'package:zaunfunk/features/shared/widgets/textfields/zf_text_form_field_pw.dart';
-import 'package:zaunfunk/repositories/database_repository.dart';
-import 'package:zaunfunk/features/shared/widgets/buttons/zf_elevated_button.dart';
-import 'package:zaunfunk/features/shared/widgets/buttons/zf_icon_button.dart';
-import 'package:zaunfunk/features/shared/widgets/textfields/zf_textfield.dart';
+import 'package:zaunfunk/shared/widgets/textfields/zf_text_form_field_pw.dart';
+import 'package:zaunfunk/shared/repositories/database_repository.dart';
+import 'package:zaunfunk/shared/widgets/buttons/zf_elevated_button.dart';
+import 'package:zaunfunk/shared/widgets/buttons/zf_icon_button.dart';
+import 'package:zaunfunk/shared/widgets/textfields/zf_textfield.dart';
 
-import '../../shared/widgets/textfields/zf_text_form_field.dart';
+import '../../../shared/widgets/textfields/zf_text_form_field.dart';
 import '../models/user.dart';
 
 class CreateProfileScreen extends StatefulWidget {

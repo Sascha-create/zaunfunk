@@ -4,8 +4,8 @@ import 'package:zaunfunk/features/authentication/models/user.dart';
 import 'package:zaunfunk/features/feed/home_screen.dart';
 
 import 'package:zaunfunk/features/profile/profile_screen.dart';
-import 'package:zaunfunk/config/colors.dart';
-import 'package:zaunfunk/repositories/database_repository.dart';
+import 'package:zaunfunk/shared/config/colors.dart';
+import 'package:zaunfunk/shared/repositories/database_repository.dart';
 import 'package:zaunfunk/features/settings/settings_screen.dart';
 
 class AppHome extends StatefulWidget {

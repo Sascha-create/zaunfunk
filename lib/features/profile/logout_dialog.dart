@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:zaunfunk/config/colors.dart';
+import 'package:zaunfunk/shared/config/colors.dart';
 import 'package:zaunfunk/features/authentication/models/user.dart';
 import 'package:zaunfunk/features/authentication/screens/login_screen.dart';
-import 'package:zaunfunk/repositories/database_repository.dart';
+import 'package:zaunfunk/shared/repositories/database_repository.dart';
 
-import '../shared/widgets/buttons/zf_elevated_button.dart';
+import '../../shared/widgets/buttons/zf_elevated_button.dart';
 
 class LogoutDialog extends StatelessWidget {
   const LogoutDialog(

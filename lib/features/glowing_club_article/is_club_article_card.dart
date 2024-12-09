@@ -4,7 +4,7 @@ import 'package:zaunfunk/features/glowing_club_article/member_article.dart';
 import 'package:zaunfunk/features/article/models/user_article.dart';
 import 'package:zaunfunk/features/article/article_screen.dart';
 
-import '../../repositories/database_repository.dart';
+import '../../shared/repositories/database_repository.dart';
 import '../authentication/models/user.dart';
 
 class IsClubArticleCard extends StatelessWidget {

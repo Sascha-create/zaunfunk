@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:zaunfunk/features/authentication/models/user.dart';
 import 'package:zaunfunk/features/feed/app_home.dart';
-import 'package:zaunfunk/features/shared/widgets/buttons/zf_elevated_button.dart';
-import 'package:zaunfunk/features/shared/widgets/textfields/zf_growing_textfield.dart';
-import 'package:zaunfunk/repositories/database_repository.dart';
+import 'package:zaunfunk/shared/widgets/buttons/zf_elevated_button.dart';
+import 'package:zaunfunk/shared/widgets/textfields/zf_growing_textfield.dart';
+import 'package:zaunfunk/shared/repositories/database_repository.dart';
 
 class CreateArticleScreen extends StatelessWidget {
   const CreateArticleScreen(

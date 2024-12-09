@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zaunfunk/features/shared/widgets/zf_divider.dart';
+import 'package:zaunfunk/shared/widgets/zf_divider.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:zaunfunk/config/themes.dart';
+import 'package:zaunfunk/shared/config/themes.dart';
 import 'package:zaunfunk/features/authentication/screens/login_screen.dart';
-import 'package:zaunfunk/repositories/database_repository.dart';
-import 'package:zaunfunk/repositories/mock_database.dart';
+import 'package:zaunfunk/shared/repositories/database_repository.dart';
+import 'package:zaunfunk/shared/repositories/mock_database.dart';
 
 void main() {
   final DatabaseRepository repository = MockDatabase();

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zaunfunk/config/colors.dart';
+import 'package:zaunfunk/shared/config/colors.dart';
 import 'package:zaunfunk/features/article/models/user_article.dart';
 import 'package:zaunfunk/features/article/delete_article_dialog.dart';
 import 'package:zaunfunk/features/article_comments/widgets/comment_bottom_sheet.dart';
@@ -7,7 +7,7 @@ import 'package:zaunfunk/features/article_comments/widgets/comment_widget.dart';
 import 'package:zaunfunk/features/article_comments/widgets/empty_comment.dart';
 import 'package:zaunfunk/features/authentication/models/user.dart';
 
-import '../../repositories/database_repository.dart';
+import '../../shared/repositories/database_repository.dart';
 
 class ArticleScreen extends StatefulWidget {
   const ArticleScreen(

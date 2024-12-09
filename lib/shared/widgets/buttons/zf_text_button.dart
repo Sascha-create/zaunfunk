@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zaunfunk/config/colors.dart';
+import 'package:zaunfunk/shared/config/colors.dart';
 
 class ZfTextButton extends StatelessWidget {
   const ZfTextButton({super.key, required this.onPressed, required this.text});

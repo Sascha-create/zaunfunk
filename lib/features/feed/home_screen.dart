@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:zaunfunk/config/colors.dart';
+import 'package:zaunfunk/shared/config/colors.dart';
 import 'package:zaunfunk/features/glowing_club_article/is_club_article_card.dart';
 import 'package:zaunfunk/features/article/models/user_article.dart';
-import 'package:zaunfunk/repositories/database_repository.dart';
+import 'package:zaunfunk/shared/repositories/database_repository.dart';
 
 import '../authentication/models/user.dart';
 
