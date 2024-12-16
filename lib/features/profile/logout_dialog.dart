@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:zaunfunk/shared/config/colors.dart';
 import 'package:zaunfunk/features/authentication/models/user.dart';
 import 'package:zaunfunk/features/authentication/screens/login_screen.dart';
@@ -8,9 +9,9 @@ import '../../shared/widgets/buttons/zf_elevated_button.dart';
 
 class LogoutDialog extends StatelessWidget {
   const LogoutDialog(
-      {super.key, required this.repository, required this.currentUser});
+      {super.key,required this.currentUser});
 
-  final DatabaseRepository repository;
+ 
   final User currentUser;
 
   @override
@@ -40,11 +41,11 @@ class LogoutDialog extends StatelessWidget {
           ZfElevatedButton(
               onPressed: () {
                 // richtig so ?
-                repository.logoutUser();
+                context.read<DatabaseRepository>().logoutUser();
                 Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => LoginScreen(repository: repository),
+                    builder: (context) => LoginScreen(),
                   ),
                   (route) => false,
                 );

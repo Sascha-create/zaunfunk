@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:zaunfunk/features/authentication/models/user.dart';
 import 'package:zaunfunk/features/feed/app_home.dart';
 import 'package:zaunfunk/shared/widgets/buttons/zf_elevated_button.dart';
@@ -7,9 +8,9 @@ import 'package:zaunfunk/shared/repositories/database_repository.dart';
 
 class CreateArticleScreen extends StatelessWidget {
   const CreateArticleScreen(
-      {super.key, required this.repository, required this.currentUser});
+      {super.key, required this.currentUser});
 
-  final DatabaseRepository repository;
+ 
   final User currentUser;
 
   @override
@@ -35,7 +36,7 @@ class CreateArticleScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 16.0),
                 child: ZfElevatedButton(
                     onPressed: () {
-                      repository.createArticle(
+                      context.read<DatabaseRepository>().createArticle(
                           currentUser.userName,
                           currentUser.userImagePath,
                           articleController.text,
@@ -45,7 +46,7 @@ class CreateArticleScreen extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (context) => AppHome(
-                                    repository: repository, currentUser: currentUser,
+                                     currentUser: currentUser,
                                   )));
                     },
                     text: "Posten"),

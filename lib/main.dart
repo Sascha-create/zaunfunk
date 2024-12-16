@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:zaunfunk/firebase_options.dart';
 import 'package:zaunfunk/shared/config/themes.dart';
 import 'package:zaunfunk/features/authentication/screens/login_screen.dart';
@@ -11,16 +12,18 @@ import 'package:zaunfunk/shared/repositories/mock_database.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final DatabaseRepository repository = MockDatabase();
+  //final DatabaseRepository repository = MockDatabase();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
 );
-  runApp(MainApp(repository: repository,));
+  runApp(MultiProvider(providers: [
+    Provider<DatabaseRepository>(create: (context) => MockDatabase(),)
+  ],child: MainApp()));
 }
 
 class MainApp extends StatelessWidget {
-  const MainApp({super.key, required this.repository});
-  final DatabaseRepository repository;
+  const MainApp({super.key,});
+  
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +31,7 @@ class MainApp extends StatelessWidget {
       theme: lightTheme,
       debugShowCheckedModeBanner: false,
       home: LoginScreen(
-        repository: repository,
+        
       ),
     );
   }

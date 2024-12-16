@@ -6,8 +6,8 @@ import 'package:zaunfunk/shared/widgets/textfields/zf_text_form_field.dart';
 import 'package:zaunfunk/shared/widgets/textfields/zf_text_form_field_pw.dart';
 
 class RegistrationScreen extends StatefulWidget {
-  const RegistrationScreen({super.key, required this.repository});
-  final DatabaseRepository repository;
+  const RegistrationScreen({super.key,});
+ 
 
   @override
   State<RegistrationScreen> createState() => _RegistrationScreenState();
@@ -140,7 +140,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => CreateProfileScreen(
-                                          repository: widget.repository,
+                                         
                                         )));
                           }
                         },

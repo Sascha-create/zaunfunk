@@ -10,12 +10,12 @@ import '../authentication/models/user.dart';
 class IsClubArticleCard extends StatelessWidget {
   const IsClubArticleCard({
     super.key,
-     required this.repository,
+    
     required this.article,
     required this.currentUser,
     required this.isClub, 
   });
-  final DatabaseRepository repository;
+ 
   final UserArticle article;
   final User currentUser;
   final bool isClub;
@@ -30,7 +30,7 @@ class IsClubArticleCard extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context) => ArticleScreen(
-                  repository: repository,
+                  
                   article: article,
                   currentUser: currentUser,
                 ),

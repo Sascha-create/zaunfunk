@@ -10,10 +10,10 @@ import '../authentication/models/user.dart';
 // GridView evtl vorerst verwerfen
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key, required this.currentUser, required this.repository});
+  const ProfileScreen({super.key, required this.currentUser,});
 
   final User currentUser;
-  final DatabaseRepository repository;
+  
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ class ProfileScreen extends StatelessWidget {
                             showDialog(
                           context: context,
                           builder: (context) => LogoutDialog(
-                                repository: repository,
+                                
                                 currentUser: currentUser,
                               ));
                           },

@@ -11,9 +11,9 @@ class CommentBottomSheet extends StatefulWidget {
     super.key,
     required this.article,
     required this.currentUser,
-    required this.repository,
+    
   });
-  final DatabaseRepository repository;
+  
   final UserArticle article;
   final User currentUser;
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:zaunfunk/features/authentication/validator.dart';
 import 'package:zaunfunk/features/feed/app_home.dart';
 import 'package:zaunfunk/shared/widgets/textfields/zf_text_form_field_pw.dart';
@@ -11,8 +12,8 @@ import '../../../shared/widgets/textfields/zf_text_form_field.dart';
 import '../models/user.dart';
 
 class CreateProfileScreen extends StatefulWidget {
-  const CreateProfileScreen({super.key, required this.repository});
-  final DatabaseRepository repository;
+  const CreateProfileScreen({super.key, });
+  
 
   @override
   State<CreateProfileScreen> createState() => _CreateProfileScreenState();
@@ -41,6 +42,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final DatabaseRepository repository = context.read<DatabaseRepository>();
     return Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(
@@ -128,26 +130,26 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                           onPressed: () async {
                             // validieren dann create User
                             if (_formKey.currentState!.validate()) {
-                              isNameAvailable = await widget.repository
+                              isNameAvailable = await repository
                                   .isUsernameAvailable(nameController.text);
                               if (isNameAvailable) {
-                                widget.repository.createUser(
+                                repository.createUser(
                                     nameController.text,
                                     passwordController.text,
                                     aboutMeController.text,
                                     'assets/images/app_logo_shadow.png');
                                 // User als currentUser setzen
-                                isLoginDataCorrect = await widget.repository
+                                isLoginDataCorrect = await repository
                                     .checkLoginData(nameController.text,
                                         passwordController.text);
                                 final User? currentUser =
-                                    await widget.repository.getCurrentUser();
+                                    await repository.getCurrentUser();
                                 if (isLoginDataCorrect && currentUser != null) {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) => AppHome(
-                                                repository: widget.repository,
+                                                
                                                 currentUser: currentUser,
                                               )));
                                 }

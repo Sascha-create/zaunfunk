@@ -13,9 +13,9 @@ class ArticleScreen extends StatefulWidget {
   const ArticleScreen(
       {super.key,
       required this.article,
-      required this.repository,
+    
       required this.currentUser});
-  final DatabaseRepository repository;
+ 
   final UserArticle article;
   final User currentUser;
 
@@ -59,7 +59,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
                             showDialog(
                                 context: context,
                                 builder: (context) => DeleteArticleDialog(
-                                      repository: widget.repository,
+                                      
                                       article: widget.article,
                                       currentUser: widget.currentUser,
                                     ));
@@ -134,7 +134,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
                           context: context,
                           builder: (context) {
                             return CommentBottomSheet(
-                              repository: widget.repository,
+                              
                               article: widget.article,
                               currentUser: widget.currentUser,
                             );

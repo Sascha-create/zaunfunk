@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:zaunfunk/main.dart';
 import 'package:zaunfunk/shared/config/colors.dart';
 import 'package:zaunfunk/features/glowing_club_article/is_club_article_card.dart';
 import 'package:zaunfunk/features/article/models/user_article.dart';
@@ -9,17 +11,17 @@ import '../authentication/models/user.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
     super.key,
-    required this.repository,
+  
     required this.currentUser,
   });
 
-  final DatabaseRepository repository;
+  
   final User currentUser;
 
   @override
   Widget build(BuildContext context) {
     late final Future<List<UserArticle>> futureArticles =
-        repository.getArticles();
+       context.read<DatabaseRepository>().getArticles();
     
     bool isClub = false;
 
@@ -35,7 +37,7 @@ class HomeScreen extends StatelessWidget {
                 itemCount: articles.length,
                 itemBuilder: (BuildContext context, int index) =>
                     IsClubArticleCard(
-                      repository: repository,
+                      
                       article: articles[index],
                       currentUser: currentUser,
                       isClub: isClub,

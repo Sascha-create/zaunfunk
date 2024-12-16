@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:zaunfunk/features/feed/home_screen.dart';
 import 'package:zaunfunk/shared/config/colors.dart';
 import 'package:zaunfunk/features/authentication/models/user.dart';
 import 'package:zaunfunk/features/authentication/screens/create_profile_screen.dart';
@@ -10,8 +12,9 @@ import 'package:zaunfunk/shared/widgets/buttons/zf_text_button.dart';
 import 'package:zaunfunk/shared/widgets/textfields/zf_textfield.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key, required this.repository});
-  final DatabaseRepository repository;
+  const LoginScreen({
+    super.key,
+  });
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -26,6 +29,7 @@ bool isLoginDataCorrect = false;
 class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
+    final DatabaseRepository repository = context.read<DatabaseRepository>();
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -83,17 +87,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       ZfElevatedButton(
                           onPressed: () async {
-                            isLoginDataCorrect = await widget.repository
+                            isLoginDataCorrect = await repository
                                 .checkLoginData(userNameController.text,
                                     passwordController.text);
                             final User? currentUser =
-                                await widget.repository.getCurrentUser();
+                                await repository.getCurrentUser();
                             if (isLoginDataCorrect && currentUser != null) {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => AppHome(
-                                            repository: widget.repository,
+                                           
                                             currentUser: currentUser,
                                           )));
                             }
@@ -106,7 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => CreateProfileScreen(
-                                        repository: widget.repository)));
+                                        )));
                           },
                           text: "Registrieren"),
                       const SizedBox(height: 56),

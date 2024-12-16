@@ -11,11 +11,11 @@ import 'package:zaunfunk/features/settings/settings_screen.dart';
 class AppHome extends StatefulWidget {
   const AppHome({
     super.key,
-    required this.repository,
+  
     required this.currentUser,
   });
 
-  final DatabaseRepository repository;
+ 
   final User currentUser;
 
   @override
@@ -47,15 +47,15 @@ class _AppHomeState extends State<AppHome> {
   Widget build(BuildContext context) {
     final List<Widget> screens = [
       HomeScreen(
-        repository: widget.repository,
+        
         currentUser: widget.currentUser,
       ),
       CreateArticleScreen(
-        repository: widget.repository,
+        
         currentUser: widget.currentUser,
       ),
       ProfileScreen(
-        repository: widget.repository,
+        
         currentUser: widget.currentUser,
       ),
       const SettingsScreen()
