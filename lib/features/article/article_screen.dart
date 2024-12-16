@@ -7,15 +7,10 @@ import 'package:zaunfunk/features/article_comments/widgets/comment_widget.dart';
 import 'package:zaunfunk/features/article_comments/widgets/empty_comment.dart';
 import 'package:zaunfunk/features/authentication/models/user.dart';
 
-import '../../shared/repositories/database_repository.dart';
-
 class ArticleScreen extends StatefulWidget {
   const ArticleScreen(
-      {super.key,
-      required this.article,
-    
-      required this.currentUser});
- 
+      {super.key, required this.article, required this.currentUser});
+
   final UserArticle article;
   final User currentUser;
 
@@ -59,7 +54,6 @@ class _ArticleScreenState extends State<ArticleScreen> {
                             showDialog(
                                 context: context,
                                 builder: (context) => DeleteArticleDialog(
-                                      
                                       article: widget.article,
                                       currentUser: widget.currentUser,
                                     ));
@@ -134,7 +128,6 @@ class _ArticleScreenState extends State<ArticleScreen> {
                           context: context,
                           builder: (context) {
                             return CommentBottomSheet(
-                              
                               article: widget.article,
                               currentUser: widget.currentUser,
                             );

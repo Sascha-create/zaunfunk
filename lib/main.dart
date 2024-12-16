@@ -18,7 +18,7 @@ void main() async {
 );
   runApp(MultiProvider(providers: [
     Provider<DatabaseRepository>(create: (context) => MockDatabase(),)
-  ],child: MainApp()));
+  ],child: const MainApp()));
 }
 
 class MainApp extends StatelessWidget {
@@ -30,7 +30,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       theme: lightTheme,
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(
+      home: const LoginScreen(
         
       ),
     );

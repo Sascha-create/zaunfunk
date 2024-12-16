@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:zaunfunk/features/feed/home_screen.dart';
 import 'package:zaunfunk/shared/config/colors.dart';
 import 'package:zaunfunk/features/authentication/models/user.dart';
 import 'package:zaunfunk/features/authentication/screens/create_profile_screen.dart';
@@ -87,8 +86,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       ZfElevatedButton(
                           onPressed: () async {
-                            isLoginDataCorrect = await repository
-                                .checkLoginData(userNameController.text,
+                            isLoginDataCorrect =
+                                await repository.checkLoginData(
+                                    userNameController.text,
                                     passwordController.text);
                             final User? currentUser =
                                 await repository.getCurrentUser();
@@ -97,7 +97,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => AppHome(
-                                           
                                             currentUser: currentUser,
                                           )));
                             }
@@ -109,8 +108,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => CreateProfileScreen(
-                                        )));
+                                    builder: (context) =>
+                                        const CreateProfileScreen()));
                           },
                           text: "Registrieren"),
                       const SizedBox(height: 56),

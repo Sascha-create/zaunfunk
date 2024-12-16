@@ -3,17 +3,17 @@ import 'package:zaunfunk/shared/config/colors.dart';
 import 'package:zaunfunk/features/profile/logout_dialog.dart';
 import 'package:zaunfunk/features/profile/profile_grid_item.dart';
 import 'package:zaunfunk/shared/widgets/zf_divider.dart';
-import 'package:zaunfunk/shared/repositories/database_repository.dart';
-
 import '../authentication/models/user.dart';
 
 // GridView evtl vorerst verwerfen
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key, required this.currentUser,});
+  const ProfileScreen({
+    super.key,
+    required this.currentUser,
+  });
 
   final User currentUser;
-  
 
   @override
   Widget build(BuildContext context) {
@@ -38,11 +38,10 @@ class ProfileScreen extends StatelessWidget {
                       IconButton.outlined(
                           onPressed: () {
                             showDialog(
-                          context: context,
-                          builder: (context) => LogoutDialog(
-                                
-                                currentUser: currentUser,
-                              ));
+                                context: context,
+                                builder: (context) => LogoutDialog(
+                                      currentUser: currentUser,
+                                    ));
                           },
                           icon: const Icon(Icons.logout_rounded))
                     ],

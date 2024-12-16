@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:zaunfunk/features/authentication/screens/create_profile_screen.dart';
-import 'package:zaunfunk/shared/repositories/database_repository.dart';
+
 import 'package:zaunfunk/shared/widgets/buttons/zf_elevated_button.dart';
 import 'package:zaunfunk/shared/widgets/textfields/zf_text_form_field.dart';
 import 'package:zaunfunk/shared/widgets/textfields/zf_text_form_field_pw.dart';
 
 class RegistrationScreen extends StatefulWidget {
-  const RegistrationScreen({super.key,});
- 
+  const RegistrationScreen({
+    super.key,
+  });
 
   @override
   State<RegistrationScreen> createState() => _RegistrationScreenState();
@@ -139,9 +140,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => CreateProfileScreen(
-                                         
-                                        )));
+                                    builder: (context) =>
+                                        const CreateProfileScreen()));
                           }
                         },
                         text: "Registrieren"),
