@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:zaunfunk/shared/config/colors.dart';
 import 'package:zaunfunk/features/article/models/user_article.dart';
 
-import '../authentication/models/user.dart';
+import '../authentication/models/zf_user.dart';
 
 class MemberArticle extends StatelessWidget {
   const MemberArticle({
@@ -12,7 +12,7 @@ class MemberArticle extends StatelessWidget {
   });
 
   final UserArticle article;
-  final User currentUser;
+  final ZfUser currentUser;
 
   @override
   Widget build(BuildContext context) {

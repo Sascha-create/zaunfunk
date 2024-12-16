@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zaunfunk/features/article/models/user_article.dart';
-import 'package:zaunfunk/features/authentication/models/user.dart';
+import 'package:zaunfunk/features/authentication/models/zf_user.dart';
 import 'package:zaunfunk/shared/repositories/database_repository.dart';
 
 import '../../../shared/config/colors.dart';
@@ -15,7 +15,7 @@ class CommentBottomSheet extends StatefulWidget {
   });
   final DatabaseRepository repository;
   final UserArticle article;
-  final User currentUser;
+  final ZfUser currentUser;
 
   @override
   State<CommentBottomSheet> createState() => _CommentBottomSheetState();

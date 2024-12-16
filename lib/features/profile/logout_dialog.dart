@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zaunfunk/shared/config/colors.dart';
-import 'package:zaunfunk/features/authentication/models/user.dart';
+import 'package:zaunfunk/features/authentication/models/zf_user.dart';
 import 'package:zaunfunk/features/authentication/screens/login_screen.dart';
 import 'package:zaunfunk/shared/repositories/database_repository.dart';
 
@@ -11,7 +11,7 @@ class LogoutDialog extends StatelessWidget {
       {super.key, required this.repository, required this.currentUser});
 
   final DatabaseRepository repository;
-  final User currentUser;
+  final ZfUser currentUser;
 
   @override
   Widget build(BuildContext context) {

@@ -4,7 +4,7 @@ import 'package:zaunfunk/features/glowing_club_article/is_club_article_card.dart
 import 'package:zaunfunk/features/article/models/user_article.dart';
 import 'package:zaunfunk/shared/repositories/database_repository.dart';
 
-import '../authentication/models/user.dart';
+import '../authentication/models/zf_user.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
@@ -14,13 +14,13 @@ class HomeScreen extends StatelessWidget {
   });
 
   final DatabaseRepository repository;
-  final User currentUser;
+  final ZfUser currentUser;
 
   @override
   Widget build(BuildContext context) {
     late final Future<List<UserArticle>> futureArticles =
         repository.getArticles();
-    
+
     bool isClub = false;
 
     return FutureBuilder(

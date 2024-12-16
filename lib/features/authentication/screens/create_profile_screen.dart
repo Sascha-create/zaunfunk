@@ -8,7 +8,7 @@ import 'package:zaunfunk/shared/widgets/buttons/zf_icon_button.dart';
 import 'package:zaunfunk/shared/widgets/textfields/zf_textfield.dart';
 
 import '../../../shared/widgets/textfields/zf_text_form_field.dart';
-import '../models/user.dart';
+import '../models/zf_user.dart';
 
 class CreateProfileScreen extends StatefulWidget {
   const CreateProfileScreen({super.key, required this.repository});
@@ -133,14 +133,14 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                               if (isNameAvailable) {
                                 widget.repository.createUser(
                                     nameController.text,
-                                    passwordController.text,
+                                    //passwordController.text,
                                     aboutMeController.text,
                                     'assets/images/app_logo_shadow.png');
                                 // User als currentUser setzen
-                                isLoginDataCorrect = await widget.repository
-                                    .checkLoginData(nameController.text,
-                                        passwordController.text);
-                                final User? currentUser =
+                                // isLoginDataCorrect = await widget.repository
+                                //     .checkLoginData(nameController.text,
+                                //         passwordController.text);
+                                final ZfUser? currentUser =
                                     await widget.repository.getCurrentUser();
                                 if (isLoginDataCorrect && currentUser != null) {
                                   Navigator.push(

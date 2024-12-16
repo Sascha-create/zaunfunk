@@ -5,7 +5,7 @@ import 'package:zaunfunk/features/article/delete_article_dialog.dart';
 import 'package:zaunfunk/features/article_comments/widgets/comment_bottom_sheet.dart';
 import 'package:zaunfunk/features/article_comments/widgets/comment_widget.dart';
 import 'package:zaunfunk/features/article_comments/widgets/empty_comment.dart';
-import 'package:zaunfunk/features/authentication/models/user.dart';
+import 'package:zaunfunk/features/authentication/models/zf_user.dart';
 
 import '../../shared/repositories/database_repository.dart';
 
@@ -17,7 +17,7 @@ class ArticleScreen extends StatefulWidget {
       required this.currentUser});
   final DatabaseRepository repository;
   final UserArticle article;
-  final User currentUser;
+  final ZfUser currentUser;
 
   @override
   State<ArticleScreen> createState() => _ArticleScreenState();

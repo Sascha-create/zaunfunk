@@ -5,22 +5,23 @@ import 'package:zaunfunk/features/profile/profile_grid_item.dart';
 import 'package:zaunfunk/shared/widgets/zf_divider.dart';
 import 'package:zaunfunk/shared/repositories/database_repository.dart';
 
-import '../authentication/models/user.dart';
+import '../authentication/models/zf_user.dart';
 
 // GridView evtl vorerst verwerfen
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key, required this.currentUser, required this.repository});
+  const ProfileScreen(
+      {super.key, required this.currentUser, required this.repository});
 
-  final User currentUser;
+  final ZfUser currentUser;
   final DatabaseRepository repository;
 
   @override
   Widget build(BuildContext context) {
-    User loggedInUser = User(
+    ZfUser loggedInUser = ZfUser(
         userId: currentUser.userId,
         userName: currentUser.userName,
-        userPassword: currentUser.userPassword,
+        //userPassword: currentUser.userPassword,
         aboutMe: currentUser.aboutMe,
         userImagePath: currentUser.userImagePath);
     return Scaffold(
@@ -38,11 +39,11 @@ class ProfileScreen extends StatelessWidget {
                       IconButton.outlined(
                           onPressed: () {
                             showDialog(
-                          context: context,
-                          builder: (context) => LogoutDialog(
-                                repository: repository,
-                                currentUser: currentUser,
-                              ));
+                                context: context,
+                                builder: (context) => LogoutDialog(
+                                      repository: repository,
+                                      currentUser: currentUser,
+                                    ));
                           },
                           icon: const Icon(Icons.logout_rounded))
                     ],

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:zaunfunk/features/authentication/repositories/login_repository.dart';
+import 'package:zaunfunk/features/authentication/screens/login_screen.dart';
 import 'package:zaunfunk/shared/config/colors.dart';
-import 'package:zaunfunk/features/authentication/models/user.dart';
+import 'package:zaunfunk/features/authentication/models/zf_user.dart';
 import 'package:zaunfunk/features/authentication/screens/create_profile_screen.dart';
 import 'package:zaunfunk/features/feed/app_home.dart';
 import 'package:zaunfunk/shared/repositories/database_repository.dart';
@@ -10,22 +12,33 @@ import 'package:zaunfunk/shared/widgets/buttons/zf_text_button.dart';
 import 'package:zaunfunk/shared/widgets/textfields/zf_textfield.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key, required this.repository});
+  const LoginScreen({
+    super.key,
+    required this.repository,
+  });
   final DatabaseRepository repository;
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
-TextEditingController userNameController = TextEditingController();
-TextEditingController passwordController = TextEditingController();
+TextEditingController _emailController = TextEditingController();
+TextEditingController _passwordController = TextEditingController();
 
 bool isChecked = false;
 bool isLoginDataCorrect = false;
 
 class _LoginScreenState extends State<LoginScreen> {
   @override
+  void initState() {
+    super.initState();
+    WidgetsFlutterBinding.ensureInitialized();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final LoginRepository loginRepo = LoginRepository();
+
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -54,10 +67,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                 ),
+                ZfTextfield(controller: _emailController, labelText: "Email"),
                 ZfTextfield(
-                    controller: userNameController, labelText: "Nutzername"),
-                ZfTextfield(
-                    controller: passwordController,
+                    controller: _passwordController,
                     obscureText: true,
                     labelText: "Passwort"),
                 Row(
@@ -83,20 +95,20 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       ZfElevatedButton(
                           onPressed: () async {
-                            isLoginDataCorrect = await widget.repository
-                                .checkLoginData(userNameController.text,
-                                    passwordController.text);
-                            final User? currentUser =
-                                await widget.repository.getCurrentUser();
-                            if (isLoginDataCorrect && currentUser != null) {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => AppHome(
-                                            repository: widget.repository,
-                                            currentUser: currentUser,
-                                          )));
-                            }
+                            await loginRepo.loginUser(_emailController.text,
+                                _passwordController.text);
+
+                            final ZfUser currentUser =
+                                await loginRepo.setCurrentUser();
+                            setState(() {});
+
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => AppHome(
+                                          repository: widget.repository,
+                                          currentUser: currentUser,
+                                        )));
                           },
                           text: "Anmelden"),
                       const SizedBox(height: 16),

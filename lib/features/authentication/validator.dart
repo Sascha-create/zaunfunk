@@ -10,7 +10,7 @@ String? isValidUsername(String? value) {
 
   String? isEmailValid(String? value) {
     if (value == null) return "keine Email";
-    if (value.length < 5) return "Email zu kurz";
+    if (value.length < 7) return "Email zu kurz";
     if (value.length > 30) return "Email zu lang";
     if (value.contains(",")) return "Darf kein , enthalten";
     if (value.contains("@")) return null;

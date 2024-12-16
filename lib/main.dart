@@ -6,6 +6,8 @@ import 'package:zaunfunk/features/authentication/screens/login_screen.dart';
 import 'package:zaunfunk/shared/repositories/database_repository.dart';
 import 'package:zaunfunk/shared/repositories/mock_database.dart';
 
+import 'features/authentication/repositories/login_repository.dart';
+
 // com.example.zaunfunk  muss vor eventuellem hochladen geändert werden !
 
 
@@ -19,8 +21,9 @@ void main() async {
 }
 
 class MainApp extends StatelessWidget {
-  const MainApp({super.key, required this.repository});
+  const MainApp({super.key, required this.repository,});
   final DatabaseRepository repository;
+  
 
   @override
   Widget build(BuildContext context) {
