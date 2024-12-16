@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:zaunfunk/features/authentication/models/zf_user.dart';
 import 'package:zaunfunk/shared/config/colors.dart';
 import 'package:zaunfunk/features/authentication/screens/create_profile_screen.dart';
 import 'package:zaunfunk/features/feed/app_home.dart';
@@ -99,7 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             await context.read<AuthRepository>().loginUser(
                                 emailController.text, passwordController.text);
 
-                            final currentUser = await context
+                            final ZfUser? currentUser = await context
                                 .read<AuthRepository>()
                                 .setCurrentUser();
 

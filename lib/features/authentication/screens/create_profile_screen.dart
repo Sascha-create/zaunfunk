@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zaunfunk/features/authentication/validator.dart';
 import 'package:zaunfunk/features/feed/app_home.dart';
+import 'package:zaunfunk/shared/repositories/auth_repository.dart';
 import 'package:zaunfunk/shared/widgets/textfields/zf_text_form_field_pw.dart';
 import 'package:zaunfunk/shared/repositories/database_repository.dart';
 import 'package:zaunfunk/shared/widgets/buttons/zf_elevated_button.dart';
@@ -44,6 +45,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final DatabaseRepository repository = context.read<DatabaseRepository>();
+    final AuthRepository authRepo = context.read<AuthRepository>();
     return Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(
@@ -133,33 +135,29 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                             if (_formKey.currentState!.validate()) {
                               isNameAvailable = await repository
                                   .isUsernameAvailable(nameController.text);
-                              if (isNameAvailable) {
-                                repository.createUser(
-                                    nameController.text,
-                                    passwordController.text,
-                                    aboutMeController.text,
-                                    'assets/images/app_logo_shadow.png');
-                                // User als currentUser setzen
-                                isLoginDataCorrect =
-                                    await repository.checkLoginData(
-                                        nameController.text,
-                                        passwordController.text);
-                                final ZfUser? currentUser =
-                                    await repository.getCurrentUser();
-                                if (isLoginDataCorrect && currentUser != null) {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => AppHome(
-                                                currentUser: currentUser,
-                                              )));
-                                }
-                              } else {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                        content: Text(
-                                            'Nutzername schon vergeben !')));
+                              await authRepo.signUp(
+                                  nameController.text,
+                                  emailController.text,
+                                  passwordController.text,
+                                  aboutMeController.text,
+                                  'assets/images/app_logo_shadow.png');
+                              // User als currentUser setzen
+
+                              final ZfUser? currentUser =
+                                  await authRepo.setCurrentUser();
+                              if (currentUser != null) {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => AppHome(
+                                              currentUser: currentUser,
+                                            )));
                               }
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      content:
+                                          Text('Nutzername schon vergeben !')));
                             }
                           },
                           text: "Registrieren"),

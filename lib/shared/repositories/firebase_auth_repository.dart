@@ -56,14 +56,15 @@ class FirebaseAuthRepository implements AuthRepository {
       );
       loginUser(email, password);
       try {
-        //final User? createdUser = getUser();
+        
         final userId = authInstance.currentUser?.uid;
-        firestore.collection('users').add({
+        await firestore.collection('users').add({
           'userId': userId,
           'userName': userName,
           'aboutMe': aboutMe,
           'userImagePath': userImagePath
         });
+      
       } catch (e) {
         dev.log("$e");
       }
