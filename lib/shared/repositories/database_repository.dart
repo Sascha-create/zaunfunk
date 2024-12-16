@@ -1,12 +1,12 @@
-import '../../features/authentication/models/user.dart';
+import '../../features/authentication/models/zf_user.dart';
 import '../../features/article/models/user_article.dart';
 
 abstract class DatabaseRepository {
-  Future<User?> getCurrentUser();
+  Future<ZfUser?> getCurrentUser();
 
-  Future<User?> logoutUser();
+  Future<ZfUser?> logoutUser();
 
-  Future<List<User>> getAllUser();
+  Future<List<ZfUser>> getAllUser();
 
   Future<List<UserArticle>> getArticles();
 
@@ -22,7 +22,7 @@ abstract class DatabaseRepository {
   Future<void> createArticle(String userName, String userImagePath,
       String userArticle, String articleImagePath);
   //Delete
-  Future<void> deleteUser(User user);
+  Future<void> deleteUser(ZfUser user);
 
   Future<void> deleteArticle(UserArticle userArticle);
 }

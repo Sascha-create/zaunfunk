@@ -4,17 +4,16 @@ import 'package:zaunfunk/shared/config/colors.dart';
 import 'package:zaunfunk/shared/widgets/buttons/zf_elevated_button.dart';
 import 'package:zaunfunk/shared/repositories/database_repository.dart';
 
-import '../authentication/models/user.dart';
+import '../authentication/models/zf_user.dart';
 import '../feed/app_home.dart';
 import 'models/user_article.dart';
 
 class DeleteArticleDialog extends StatelessWidget {
   const DeleteArticleDialog(
-      {super.key,  required this.article, required this.currentUser});
+      {super.key, required this.article, required this.currentUser});
 
-  
   final UserArticle article;
-  final User currentUser;
+  final ZfUser currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +48,7 @@ class DeleteArticleDialog extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         builder: (context) => AppHome(
-                             currentUser: currentUser,
+                              currentUser: currentUser,
                             )));
               },
               text: "löschen")

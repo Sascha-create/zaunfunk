@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zaunfunk/features/article/models/user_article.dart';
-import 'package:zaunfunk/features/authentication/models/user.dart';
+import 'package:zaunfunk/features/authentication/models/zf_user.dart';
 import '../../../shared/config/colors.dart';
 import '../../../shared/widgets/buttons/zf_elevated_button.dart';
 
@@ -9,11 +9,10 @@ class CommentBottomSheet extends StatefulWidget {
     super.key,
     required this.article,
     required this.currentUser,
-    
   });
-  
+
   final UserArticle article;
-  final User currentUser;
+  final ZfUser currentUser;
 
   @override
   State<CommentBottomSheet> createState() => _CommentBottomSheetState();

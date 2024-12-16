@@ -4,7 +4,9 @@ import 'package:provider/provider.dart';
 import 'package:zaunfunk/firebase_options.dart';
 import 'package:zaunfunk/shared/config/themes.dart';
 import 'package:zaunfunk/features/authentication/screens/login_screen.dart';
+import 'package:zaunfunk/shared/repositories/auth_repository.dart';
 import 'package:zaunfunk/shared/repositories/database_repository.dart';
+import 'package:zaunfunk/shared/repositories/firebase_auth_repository.dart';
 import 'package:zaunfunk/shared/repositories/mock_database.dart';
 
 // com.example.zaunfunk  muss vor eventuellem hochladen geändert werden !
@@ -17,7 +19,8 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
 );
   runApp(MultiProvider(providers: [
-    Provider<DatabaseRepository>(create: (context) => MockDatabase(),)
+    Provider<DatabaseRepository>(create: (context) => MockDatabase()),
+    Provider<AuthRepository>(create: (context) => FirebaseAuthRepository())
   ],child: const MainApp()));
 }
 

@@ -3,7 +3,7 @@ import 'package:zaunfunk/shared/config/colors.dart';
 import 'package:zaunfunk/features/profile/logout_dialog.dart';
 import 'package:zaunfunk/features/profile/profile_grid_item.dart';
 import 'package:zaunfunk/shared/widgets/zf_divider.dart';
-import '../authentication/models/user.dart';
+import '../authentication/models/zf_user.dart';
 
 // GridView evtl vorerst verwerfen
 
@@ -13,14 +13,14 @@ class ProfileScreen extends StatelessWidget {
     required this.currentUser,
   });
 
-  final User currentUser;
+  final ZfUser currentUser;
 
   @override
   Widget build(BuildContext context) {
-    User loggedInUser = User(
+    ZfUser loggedInUser = ZfUser(
         userId: currentUser.userId,
         userName: currentUser.userName,
-        userPassword: currentUser.userPassword,
+        //userPassword: currentUser.userPassword,
         aboutMe: currentUser.aboutMe,
         userImagePath: currentUser.userImagePath);
     return Scaffold(

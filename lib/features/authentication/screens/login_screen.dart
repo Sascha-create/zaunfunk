@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zaunfunk/shared/config/colors.dart';
-import 'package:zaunfunk/features/authentication/models/user.dart';
 import 'package:zaunfunk/features/authentication/screens/create_profile_screen.dart';
 import 'package:zaunfunk/features/feed/app_home.dart';
-import 'package:zaunfunk/shared/repositories/database_repository.dart';
+import 'package:zaunfunk/shared/repositories/auth_repository.dart';
 import 'package:zaunfunk/shared/widgets/buttons/zf_elevated_button.dart';
 import 'package:zaunfunk/shared/widgets/buttons/zf_outlined_button.dart';
 import 'package:zaunfunk/shared/widgets/buttons/zf_text_button.dart';
@@ -19,16 +18,28 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
-TextEditingController userNameController = TextEditingController();
-TextEditingController passwordController = TextEditingController();
-
 bool isChecked = false;
-bool isLoginDataCorrect = false;
+
 
 class _LoginScreenState extends State<LoginScreen> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final DatabaseRepository repository = context.read<DatabaseRepository>();
+   
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -57,8 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                 ),
-                ZfTextfield(
-                    controller: userNameController, labelText: "Nutzername"),
+                ZfTextfield(controller: emailController, labelText: "Email"),
                 ZfTextfield(
                     controller: passwordController,
                     obscureText: true,
@@ -86,19 +96,23 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       ZfElevatedButton(
                           onPressed: () async {
-                            isLoginDataCorrect =
-                                await repository.checkLoginData(
-                                    userNameController.text,
-                                    passwordController.text);
-                            final User? currentUser =
-                                await repository.getCurrentUser();
-                            if (isLoginDataCorrect && currentUser != null) {
+                            await context.read<AuthRepository>().loginUser(
+                                emailController.text, passwordController.text);
+
+                            final currentUser = await context
+                                .read<AuthRepository>()
+                                .setCurrentUser();
+
+                            if (currentUser != null) {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => AppHome(
                                             currentUser: currentUser,
                                           )));
+                            } else {
+                              // Muss noch raus !!!
+                              print('nicht geklappt');
                             }
                           },
                           text: "Anmelden"),

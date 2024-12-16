@@ -3,7 +3,7 @@ import 'package:zaunfunk/features/glowing_club_article/club_article.dart';
 import 'package:zaunfunk/features/glowing_club_article/member_article.dart';
 import 'package:zaunfunk/features/article/models/user_article.dart';
 import 'package:zaunfunk/features/article/article_screen.dart';
-import '../authentication/models/user.dart';
+import '../authentication/models/zf_user.dart';
 
 class IsClubArticleCard extends StatelessWidget {
   const IsClubArticleCard({
@@ -14,7 +14,7 @@ class IsClubArticleCard extends StatelessWidget {
   });
 
   final UserArticle article;
-  final User currentUser;
+  final ZfUser currentUser;
   final bool isClub;
 
   @override

@@ -9,11 +9,12 @@ import 'package:zaunfunk/shared/widgets/buttons/zf_icon_button.dart';
 import 'package:zaunfunk/shared/widgets/textfields/zf_textfield.dart';
 
 import '../../../shared/widgets/textfields/zf_text_form_field.dart';
-import '../models/user.dart';
+import '../models/zf_user.dart';
 
 class CreateProfileScreen extends StatefulWidget {
-  const CreateProfileScreen({super.key, });
-  
+  const CreateProfileScreen({
+    super.key,
+  });
 
   @override
   State<CreateProfileScreen> createState() => _CreateProfileScreenState();
@@ -139,17 +140,17 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                                     aboutMeController.text,
                                     'assets/images/app_logo_shadow.png');
                                 // User als currentUser setzen
-                                isLoginDataCorrect = await repository
-                                    .checkLoginData(nameController.text,
+                                isLoginDataCorrect =
+                                    await repository.checkLoginData(
+                                        nameController.text,
                                         passwordController.text);
-                                final User? currentUser =
+                                final ZfUser? currentUser =
                                     await repository.getCurrentUser();
                                 if (isLoginDataCorrect && currentUser != null) {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) => AppHome(
-                                                
                                                 currentUser: currentUser,
                                               )));
                                 }
