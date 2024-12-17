@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zaunfunk/features/authentication/validator.dart';
 import 'package:zaunfunk/features/feed/app_home.dart';
-import 'package:zaunfunk/shared/repositories/auth_repository.dart';
+import 'package:zaunfunk/features/authentication/repositories/auth_repository.dart';
 import 'package:zaunfunk/shared/widgets/textfields/zf_text_form_field_pw.dart';
 import 'package:zaunfunk/shared/repositories/database_repository.dart';
 import 'package:zaunfunk/shared/widgets/buttons/zf_elevated_button.dart';

@@ -7,13 +7,11 @@ class MockDatabase implements DatabaseRepository {
     ZfUser(
         userId: '1',
         userName: "Sascha",
-        //userPassword: "baum123",
         aboutMe: 'Garten 82',
         userImagePath: "assets/images/ich.jpeg"),
     ZfUser(
         userId: '2',
         userName: "Jane",
-        //userPassword: "rose123",
         aboutMe: 'Ich liebe Rosen',
         userImagePath: "assets/images/jane.png")
   ];

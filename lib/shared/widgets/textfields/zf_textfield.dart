@@ -6,10 +6,12 @@ class ZfTextfield extends StatelessWidget {
     super.key,
     required this.labelText,
     required this.controller,
+    this.suffix,
     this.obscureText,
   });
   final String labelText;
   final TextEditingController controller;
+  final Widget? suffix;
   final bool? obscureText;
 
   @override
@@ -27,6 +29,7 @@ class ZfTextfield extends StatelessWidget {
                 borderSide: BorderSide(color: gardenGreen)),
             labelText: labelText,
             labelStyle: const TextStyle(color: gardenGreen),
+            suffix: suffix,
             fillColor: lightBeige,
             filled: true),
       ),

@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:zaunfunk/shared/config/colors.dart';
 import 'package:zaunfunk/features/authentication/models/zf_user.dart';
 import 'package:zaunfunk/features/authentication/screens/login_screen.dart';
-import 'package:zaunfunk/shared/repositories/auth_repository.dart';
+import 'package:zaunfunk/features/authentication/repositories/auth_repository.dart';
 
 
 import '../../shared/widgets/buttons/zf_elevated_button.dart';

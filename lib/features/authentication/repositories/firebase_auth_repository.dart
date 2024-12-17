@@ -2,14 +2,14 @@ import 'dart:developer' as dev;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:zaunfunk/features/authentication/models/zf_user.dart';
-import 'package:zaunfunk/shared/repositories/auth_repository.dart';
+import 'package:zaunfunk/features/authentication/repositories/auth_repository.dart';
 
 //import 'package:google_sign_in/google_sign_in.dart';
 
 class FirebaseAuthRepository implements AuthRepository {
-  FirebaseAuth auth = FirebaseAuth.instance;
+  //FirebaseAuth auth = FirebaseAuth.instance;
   final FirebaseAuth authInstance = FirebaseAuth.instance;
-  final FirebaseFirestore firestore = FirebaseFirestore.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   ZfUser? _currentUser;
 
@@ -56,7 +56,7 @@ class FirebaseAuthRepository implements AuthRepository {
       loginUser(email, password);
       try {
         final userId = authInstance.currentUser?.uid;
-        await firestore.collection('users').add({
+        await _firestore.collection('users').add({
           'userId': userId,
           'userName': userName,
           'aboutMe': aboutMe,
@@ -75,7 +75,7 @@ class FirebaseAuthRepository implements AuthRepository {
   Future<ZfUser?> setCurrentUser() async {
     try {
       final currentUserId = authInstance.currentUser?.uid;
-      final userDocs = await firestore.collection('users').get();
+      final userDocs = await _firestore.collection('users').get();
 
       for (final doc in userDocs.docs) {
         final Map<String, dynamic> data = doc.data();

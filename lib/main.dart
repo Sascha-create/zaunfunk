@@ -4,9 +4,9 @@ import 'package:provider/provider.dart';
 import 'package:zaunfunk/firebase_options.dart';
 import 'package:zaunfunk/shared/config/themes.dart';
 import 'package:zaunfunk/features/authentication/screens/login_screen.dart';
-import 'package:zaunfunk/shared/repositories/auth_repository.dart';
+import 'package:zaunfunk/features/authentication/repositories/auth_repository.dart';
 import 'package:zaunfunk/shared/repositories/database_repository.dart';
-import 'package:zaunfunk/shared/repositories/firebase_auth_repository.dart';
+import 'package:zaunfunk/features/authentication/repositories/firebase_auth_repository.dart';
 import 'package:zaunfunk/shared/repositories/mock_database.dart';
 
 // com.example.zaunfunk  muss vor eventuellem hochladen geändert werden !

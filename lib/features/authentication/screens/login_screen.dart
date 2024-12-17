@@ -5,7 +5,7 @@ import 'package:zaunfunk/features/authentication/widgets/reset_password_dialog.d
 import 'package:zaunfunk/shared/config/colors.dart';
 import 'package:zaunfunk/features/authentication/screens/create_profile_screen.dart';
 import 'package:zaunfunk/features/feed/app_home.dart';
-import 'package:zaunfunk/shared/repositories/auth_repository.dart';
+import 'package:zaunfunk/features/authentication/repositories/auth_repository.dart';
 import 'package:zaunfunk/shared/widgets/buttons/zf_elevated_button.dart';
 import 'package:zaunfunk/shared/widgets/buttons/zf_outlined_button.dart';
 import 'package:zaunfunk/shared/widgets/buttons/zf_text_button.dart';
@@ -25,6 +25,8 @@ bool isChecked = false;
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  bool ispasswordVisible = true;
 
   @override
   void initState() {
@@ -71,8 +73,20 @@ class _LoginScreenState extends State<LoginScreen> {
                 ZfTextfield(controller: emailController, labelText: "Email"),
                 ZfTextfield(
                     controller: passwordController,
-                    obscureText: true,
-                    labelText: "Passwort"),
+                    obscureText: ispasswordVisible,
+                    labelText: "Passwort",
+                    suffix: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          ispasswordVisible = !ispasswordVisible;
+                        });
+                      },
+                      child: Icon(
+                        ispasswordVisible
+                            ? Icons.visibility_off_outlined
+                            : Icons.visibility_outlined,
+                      ),
+                    )),
                 Row(
                   children: [
                     Checkbox(
@@ -133,7 +147,6 @@ class _LoginScreenState extends State<LoginScreen> {
                               context: context,
                               builder: (context) => const ResetPasswordDialog(),
                             );
-                            
                           },
                           text: "Passwort vergessen"),
                     ],
