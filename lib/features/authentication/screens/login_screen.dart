@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zaunfunk/features/authentication/models/zf_user.dart';
+import 'package:zaunfunk/features/authentication/widgets/reset_password_dialog.dart';
 import 'package:zaunfunk/shared/config/colors.dart';
 import 'package:zaunfunk/features/authentication/screens/create_profile_screen.dart';
 import 'package:zaunfunk/features/feed/app_home.dart';
@@ -21,7 +22,6 @@ class LoginScreen extends StatefulWidget {
 
 bool isChecked = false;
 
-
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -40,7 +40,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-   
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -129,7 +128,14 @@ class _LoginScreenState extends State<LoginScreen> {
                           text: "Registrieren"),
                       const SizedBox(height: 56),
                       ZfTextButton(
-                          onPressed: () {}, text: "Passwort vergessen"),
+                          onPressed: () async {
+                            await showDialog(
+                              context: context,
+                              builder: (context) => const ResetPasswordDialog(),
+                            );
+                            
+                          },
+                          text: "Passwort vergessen"),
                     ],
                   ),
                 ),

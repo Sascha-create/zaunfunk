@@ -16,6 +16,34 @@ class SettingsScreen extends StatelessWidget {
                   style: Theme.of(context).textTheme.headlineLarge,
                   "Einstellungen"),
               const ZfDivider(),
+              ListView(
+                shrinkWrap: true,
+                children: [
+                  ListTile(
+                    title: const Text('Nutzername ändern'),
+                    trailing: const Icon(Icons.arrow_right_rounded),
+                    onTap: () {},
+                  ),
+                  const ZfDivider(),
+                  ListTile(
+                    title: const Text('Email ändern'),
+                    trailing: const Icon(Icons.arrow_right_rounded),
+                    onTap: () {},
+                  ),
+                  const ZfDivider(),
+                  ListTile(
+                    title: const Text('Passwort ändern'),
+                    trailing: const Icon(Icons.arrow_right_rounded),
+                    onTap: () {},
+                  ),
+                  const ZfDivider(),
+                  ListTile(
+                    title: const Text('Account löschen'),
+                    trailing: const Icon(Icons.arrow_right_rounded),
+                    onTap: () {},
+                  ),
+                ],
+              )
             ],
           ),
         ),

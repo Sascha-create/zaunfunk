@@ -4,7 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:zaunfunk/features/authentication/models/zf_user.dart';
 import 'package:zaunfunk/shared/repositories/auth_repository.dart';
 
-
 //import 'package:google_sign_in/google_sign_in.dart';
 
 class FirebaseAuthRepository implements AuthRepository {
@@ -16,7 +15,7 @@ class FirebaseAuthRepository implements AuthRepository {
 
   Stream<User?> get onAuthStateChanged => authInstance.authStateChanges();
 
-  /// Login
+  /// Login Firebase
   @override
   Future<void> loginUser(String email, String password) async {
     try {
@@ -29,7 +28,7 @@ class FirebaseAuthRepository implements AuthRepository {
     }
   }
 
-  /// Logout
+  /// Logout Firebase and App
   @override
   Future<void> logoutUser() async {
     try {
@@ -40,7 +39,7 @@ class FirebaseAuthRepository implements AuthRepository {
     }
   }
 
-  /// SignUp  authInstance.currentUser?.uid;
+  /// SignUp  Firebase and Firestore
   @override
   Future<void> signUp(
     String userName,
@@ -56,7 +55,6 @@ class FirebaseAuthRepository implements AuthRepository {
       );
       loginUser(email, password);
       try {
-        
         final userId = authInstance.currentUser?.uid;
         await firestore.collection('users').add({
           'userId': userId,
@@ -64,7 +62,6 @@ class FirebaseAuthRepository implements AuthRepository {
           'aboutMe': aboutMe,
           'userImagePath': userImagePath
         });
-      
       } catch (e) {
         dev.log("$e");
       }
@@ -105,7 +102,7 @@ class FirebaseAuthRepository implements AuthRepository {
 
   // Reset Password
   @override
-  Future<void> resetPassword(String email) async {
+  Future<void> sendPasswordResetEmail(String email) async {
     try {
       authInstance.sendPasswordResetEmail(email: email);
       dev.log("reset password sent to $email");
@@ -142,7 +139,9 @@ class FirebaseAuthRepository implements AuthRepository {
   //     return false;
   //   }
   // }
+  //___________________________
 
+// Get User from Firebase
   @override
   User? getUser() {
     return authInstance.currentUser;

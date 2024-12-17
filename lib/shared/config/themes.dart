@@ -24,4 +24,14 @@ ThemeData lightTheme = ThemeData(
         elevation: 1,
         iconTheme: IconThemeData(color: gardenGreen, size: 32)),
     bottomSheetTheme: const BottomSheetThemeData(
-        modalBackgroundColor: lightBeige, showDragHandle: true));
+        modalBackgroundColor: lightBeige, showDragHandle: true),
+    listTileTheme: const ListTileThemeData(
+      textColor: gardenGreen,
+      iconColor: gardenGreen,
+    ),
+    snackBarTheme: const SnackBarThemeData(
+      backgroundColor: gardenGreen,
+      contentTextStyle: TextStyle(
+        color: lightBeige,
+      )
+    ));
