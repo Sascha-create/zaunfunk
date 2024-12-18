@@ -5,11 +5,18 @@ import 'package:zaunfunk/features/article/repositories/article_repository.dart';
 
 class FirestoreArticleRepository implements ArticleRepository {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  Stream<QuerySnapshot> articleStream = FirebaseFirestore.instance
+      .collection('articles')
+      .orderBy('createTime')
+      .snapshots(includeMetadataChanges: true);
+
   @override
   Future<void> createArticle(String userName, String userImagePath,
       String userArticle, String articleImagePath) async {
     try {
-      _firestore.collection('articles').add({
+      await _firestore.collection('articles').add({
+        'createTime': Timestamp.now(),
         'userName': userName,
         'userImagePath': userImagePath,
         'userArticle': userArticle,

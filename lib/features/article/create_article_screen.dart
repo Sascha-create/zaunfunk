@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:zaunfunk/features/article/repositories/article_repository.dart';
 import 'package:zaunfunk/features/authentication/models/zf_user.dart';
 import 'package:zaunfunk/features/feed/app_home.dart';
 import 'package:zaunfunk/shared/widgets/buttons/zf_elevated_button.dart';
@@ -33,8 +34,8 @@ class CreateArticleScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 16.0),
                 child: ZfElevatedButton(
-                    onPressed: () {
-                      context.read<DatabaseRepository>().createArticle(
+                    onPressed: () async {
+                      await context.read<ArticleRepository>().createArticle(
                           currentUser.userName,
                           currentUser.userImagePath,
                           articleController.text,
