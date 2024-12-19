@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:zaunfunk/features/authentication/widgets/change_email_dialog.dart';
 import 'package:zaunfunk/shared/widgets/zf_divider.dart';
+
+import '../authentication/widgets/reset_password_dialog.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -28,13 +31,23 @@ class SettingsScreen extends StatelessWidget {
                   ListTile(
                     title: const Text('Email ändern'),
                     trailing: const Icon(Icons.arrow_right_rounded),
-                    onTap: () {},
+                    onTap: () async {
+                      await showDialog(
+                        context: context,
+                        builder: (context) => const ChangeEmailDialog(),
+                      );
+                    },
                   ),
                   const ZfDivider(),
                   ListTile(
                     title: const Text('Passwort ändern'),
                     trailing: const Icon(Icons.arrow_right_rounded),
-                    onTap: () {},
+                    onTap: () async {
+                      await showDialog(
+                        context: context,
+                        builder: (context) => const ResetPasswordDialog(),
+                      );
+                    },
                   ),
                   const ZfDivider(),
                   ListTile(

@@ -1,11 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:zaunfunk/shared/config/colors.dart';
 import 'package:zaunfunk/features/glowing_club_article/is_club_article_card.dart';
 import 'package:zaunfunk/features/article/models/user_article.dart';
-import 'package:zaunfunk/shared/repositories/database_repository.dart';
-
 import '../authentication/models/zf_user.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -23,9 +20,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    // late final Future<List<UserArticle>> futureArticles =
-    //     context.read<DatabaseRepository>().getArticles();
-
+   
     Stream<QuerySnapshot> articleStream = FirebaseFirestore.instance
         .collection('articles')
         .orderBy('createTime', descending: true)

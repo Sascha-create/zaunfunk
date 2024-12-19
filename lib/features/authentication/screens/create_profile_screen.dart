@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:zaunfunk/features/authentication/validator.dart';
 import 'package:zaunfunk/features/feed/app_home.dart';
@@ -42,6 +43,9 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
     return null;
   }
 
+  // final picker = ImagePicker();
+  // late Future<XFile?> pickedFile = Future.value(null);
+
   @override
   Widget build(BuildContext context) {
     final DatabaseRepository repository = context.read<DatabaseRepository>();
@@ -57,17 +61,30 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                 Text(
                     style: Theme.of(context).textTheme.headlineMedium,
                     "Nutzerprofil erstellen"),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 24.0),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 24.0),
                   child: Stack(clipBehavior: Clip.none, children: [
-                    CircleAvatar(
+                    const CircleAvatar(
                       backgroundImage:
                           AssetImage("assets/images/app_logo_shadow.png"),
                       radius: 64,
                     ),
-                    Positioned(bottom: -8, right: -16, child: ZfIconButton())
+                    Positioned(
+                        bottom: -8,
+                        right: -16,
+                        child: ZfIconButton(
+                          onPressed: () async {
+                            
+                            // pickedFile =  picker.pickImage(
+                            //     source: ImageSource.gallery).whenComplete(()=> setState(() {
+                                  
+                            //     })) ;
+                          },
+                          icon: Icons.photo_camera_front_outlined,
+                        ))
                   ]),
                 ),
+                
                 Row(
                   children: [
                     const Text("Box"),

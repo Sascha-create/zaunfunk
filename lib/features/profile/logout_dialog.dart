@@ -5,7 +5,6 @@ import 'package:zaunfunk/features/authentication/models/zf_user.dart';
 import 'package:zaunfunk/features/authentication/screens/login_screen.dart';
 import 'package:zaunfunk/features/authentication/repositories/auth_repository.dart';
 
-
 import '../../shared/widgets/buttons/zf_elevated_button.dart';
 
 class LogoutDialog extends StatelessWidget {
@@ -38,9 +37,8 @@ class LogoutDialog extends StatelessWidget {
               "Möchtest Du Dich von Zaunfunk abmelden?"),
           const SizedBox(height: 40),
           ZfElevatedButton(
-              onPressed: () {
-                
-                context.read<AuthRepository>().logoutUser();
+              onPressed: () async {
+               await context.read<AuthRepository>().logoutUser();
                 Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
@@ -48,13 +46,6 @@ class LogoutDialog extends StatelessWidget {
                   ),
                   (route) => false,
                 );
-                // repository.deleteArticle(article);
-                // Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //         builder: (context) => AppHome(
-                //               repository: repository,
-                //             )));
               },
               text: "abmelden")
         ],

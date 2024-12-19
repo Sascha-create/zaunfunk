@@ -20,13 +20,12 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
-bool isChecked = false;
-
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   bool ispasswordVisible = true;
+  bool isChecked = false;
 
   @override
   void initState() {

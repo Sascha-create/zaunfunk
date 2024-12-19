@@ -56,7 +56,7 @@ class FirebaseAuthRepository implements AuthRepository {
       loginUser(email, password);
       try {
         final userId = authInstance.currentUser?.uid;
-        await _firestore.collection('users').add({
+        await _firestore.collection('users').doc(userId).set({
           'userId': userId,
           'userName': userName,
           'aboutMe': aboutMe,
@@ -111,6 +111,22 @@ class FirebaseAuthRepository implements AuthRepository {
     }
   }
 
+  @override
+  User? getUser() {
+    return authInstance.currentUser;
+  }
+
+  @override
+  Future<void> changeEmail(String email) async {
+    try {
+      await authInstance.currentUser?.verifyBeforeUpdateEmail(email);
+    } catch (e) {
+      dev.log("$e");
+    }
+  }
+
+
+
   // Future<dynamic> signInWithGoogle() async {
   //   try {
   //     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
@@ -142,8 +158,4 @@ class FirebaseAuthRepository implements AuthRepository {
   //___________________________
 
 // Get User from Firebase
-  @override
-  User? getUser() {
-    return authInstance.currentUser;
-  }
 }
