@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -43,8 +45,24 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
     return null;
   }
 
-  // final picker = ImagePicker();
-  // late Future<XFile?> pickedFile = Future.value(null);
+  final picker = ImagePicker();
+  XFile? pickedFile;
+  late File? image;
+
+  Future<void> getImage() async {
+    pickedFile = await picker
+        .pickImage(source: ImageSource.gallery)
+        .whenComplete(() => setState(() {
+              if (pickedFile != null) {
+                image = File(pickedFile!.path);
+              }
+            }));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,9 +82,10 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 24.0),
                   child: Stack(clipBehavior: Clip.none, children: [
-                    const CircleAvatar(
-                      backgroundImage:
-                          AssetImage("assets/images/app_logo_shadow.png"),
+                    CircleAvatar(
+                      backgroundImage: (image == null)
+                          ? AssetImage("assets/images/app_logo_shadow.png")
+                          : FileImage(image!),
                       radius: 64,
                     ),
                     Positioned(
@@ -74,17 +93,13 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                         right: -16,
                         child: ZfIconButton(
                           onPressed: () async {
-                            
-                            // pickedFile =  picker.pickImage(
-                            //     source: ImageSource.gallery).whenComplete(()=> setState(() {
-                                  
-                            //     })) ;
+                            getImage();
+                            setState(() {});
                           },
                           icon: Icons.photo_camera_front_outlined,
                         ))
                   ]),
                 ),
-                
                 Row(
                   children: [
                     const Text("Box"),
@@ -150,6 +165,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                           onPressed: () async {
                             // validieren dann create User
                             if (_formKey.currentState!.validate()) {
+                              // Username prüfen ???
                               isNameAvailable = await repository
                                   .isUsernameAvailable(nameController.text);
                               await authRepo.signUp(

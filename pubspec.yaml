@@ -14,17 +14,27 @@ dependencies:
   firebase_auth: ^5.3.4
   cloud_firestore: ^5.5.1
   image_picker: ^1.1.2
+  
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
   flutter_launcher_icons: ^0.14.1
+  flutter_native_splash: ^2.4.3
 
 flutter_launcher_icons:
   android: true
   ios: true
   image_path: assets/icon/app_icon.png
+
+flutter_native_splash:
+  color: "#F9E4B7"
+  image: assets/splash/app_logo_splash.png
+  android_12:
+    image: assets/splash/app_logo_splash_android.png
+    color: "#F9E4B7"
+    icon_background_color: "#F9E4B7"
 
 flutter:
   uses-material-design: true

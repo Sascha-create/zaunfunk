@@ -15,6 +15,7 @@ import 'package:zaunfunk/shared/repositories/mock_database.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  
   //final DatabaseRepository repository = MockDatabase();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
