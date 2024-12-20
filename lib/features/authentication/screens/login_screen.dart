@@ -25,7 +25,6 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController passwordController = TextEditingController();
 
   bool ispasswordVisible = true;
-  bool isChecked = false;
 
   @override
   void initState() {
@@ -86,23 +85,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             : Icons.visibility_outlined,
                       ),
                     )),
-                Row(
-                  children: [
-                    Checkbox(
-                        side: const BorderSide(color: gardenGreen),
-                        overlayColor: const WidgetStatePropertyAll(gardenGreen),
-                        activeColor: gardenGreen,
-                        value: isChecked,
-                        onChanged: (value) {
-                          setState(() {
-                            isChecked = value!;
-                          });
-                        }),
-                    Text(
-                        style: Theme.of(context).textTheme.titleMedium,
-                        "Passwort speichern"),
-                  ],
-                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 24.0),
                   child: Column(

@@ -14,14 +14,7 @@ class StartingApp extends StatefulWidget {
 }
 
 class _StartingAppState extends State<StartingApp> {
-  //ZfUser? zfUser;
 
-  // void setUser(String uid) async {
-  //   final ZfUser user =
-  //       await FirebaseAuthRepository().getUserFromCollection(uid);
-  //   zfUser = user;
-  //   setState(() {});
-  // }
 
   @override
   Widget build(BuildContext context) {
