@@ -24,5 +24,7 @@ abstract class AuthRepository {
 
   
 
+  Future<ZfUser> getUserFromCollection(String uid);
+
   Future<void> changeEmail(String email);
 }

@@ -116,7 +116,17 @@ class FirebaseAuthRepository implements AuthRepository {
     return authInstance.currentUser;
   }
 
+  @override
+  Future<ZfUser> getUserFromCollection(String uid) async {
+    final userDoc = await _firestore.collection('users').doc(uid).get();
 
+    final user = ZfUser(
+        userId: userDoc['userId'],
+        userName: userDoc['userName'],
+        aboutMe: userDoc['aboutMe'],
+        userImagePath: userDoc['userImagePath']);
+    return user;
+  }
 
   @override
   Future<void> changeEmail(String email) async {

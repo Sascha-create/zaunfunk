@@ -12,13 +12,14 @@ import 'package:zaunfunk/shared/repositories/database_repository.dart';
 import 'package:zaunfunk/features/authentication/repositories/firebase_auth_repository.dart';
 import 'package:zaunfunk/shared/repositories/mock_database.dart';
 import 'package:zaunfunk/shared/repositories/shared_preferences_repository.dart';
+import 'package:zaunfunk/starting_app.dart';
 
 // com.example.zaunfunk  muss vor eventuellem hochladen geändert werden !
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
-  //final DatabaseRepository repository = MockDatabase();
+ 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -41,7 +42,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       theme: lightTheme,
       debugShowCheckedModeBanner: false,
-      home: const LoginScreen(),
+      home: const StartingApp(),
     );
   }
 }

@@ -4,6 +4,7 @@ import 'package:zaunfunk/shared/config/colors.dart';
 import 'package:zaunfunk/features/authentication/models/zf_user.dart';
 import 'package:zaunfunk/features/authentication/screens/login_screen.dart';
 import 'package:zaunfunk/features/authentication/repositories/auth_repository.dart';
+import 'package:zaunfunk/starting_app.dart';
 
 import '../../shared/widgets/buttons/zf_elevated_button.dart';
 
@@ -38,11 +39,11 @@ class LogoutDialog extends StatelessWidget {
           const SizedBox(height: 40),
           ZfElevatedButton(
               onPressed: () async {
-               await context.read<AuthRepository>().logoutUser();
+                await context.read<AuthRepository>().logoutUser();
                 Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const LoginScreen(),
+                    builder: (context) => const StartingApp(),
                   ),
                   (route) => false,
                 );
