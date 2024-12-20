@@ -47,16 +47,16 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
 
   final picker = ImagePicker();
   XFile? pickedFile;
-  late File? image;
+  File? image;
 
   Future<void> getImage() async {
-    pickedFile = await picker
-        .pickImage(source: ImageSource.gallery)
-        .whenComplete(() => setState(() {
-              if (pickedFile != null) {
-                image = File(pickedFile!.path);
-              }
-            }));
+    pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      setState(() {
+        image = File(pickedFile!.path);
+      });
+    }
   }
 
   @override
@@ -68,6 +68,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
   Widget build(BuildContext context) {
     final DatabaseRepository repository = context.read<DatabaseRepository>();
     final AuthRepository authRepo = context.read<AuthRepository>();
+
     return Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(
@@ -83,7 +84,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                   padding: const EdgeInsets.symmetric(vertical: 24.0),
                   child: Stack(clipBehavior: Clip.none, children: [
                     CircleAvatar(
-                      backgroundImage: (image == null)
+                      backgroundImage: image == null
                           ? AssetImage("assets/images/app_logo_shadow.png")
                           : FileImage(image!),
                       radius: 64,
@@ -93,7 +94,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                         right: -16,
                         child: ZfIconButton(
                           onPressed: () async {
-                            getImage();
+                            await getImage();
                             setState(() {});
                           },
                           icon: Icons.photo_camera_front_outlined,
