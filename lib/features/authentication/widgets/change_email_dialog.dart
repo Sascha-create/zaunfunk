@@ -55,9 +55,11 @@ class _ChangeEmailDialogState extends State<ChangeEmailDialog> {
                   await context
                       .read<AuthRepository>()
                       .changeEmail(emailController.text);
-                  ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Email versendet !')));
-                  Navigator.pop(context);
+                  if (context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Email versendet !')));
+                    Navigator.pop(context);
+                  }
                 }
               },
               text: "Senden")

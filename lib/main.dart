@@ -1,12 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zaunfunk/features/article/repositories/article_repository.dart';
 import 'package:zaunfunk/features/article/repositories/firestore_article_repository.dart';
 import 'package:zaunfunk/firebase_options.dart';
 import 'package:zaunfunk/shared/config/themes.dart';
-import 'package:zaunfunk/features/authentication/screens/login_screen.dart';
 import 'package:zaunfunk/features/authentication/repositories/auth_repository.dart';
 import 'package:zaunfunk/shared/repositories/database_repository.dart';
 import 'package:zaunfunk/features/authentication/repositories/firebase_auth_repository.dart';

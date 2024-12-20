@@ -180,12 +180,14 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                               final ZfUser? currentUser =
                                   await authRepo.setCurrentUser();
                               if (currentUser != null) {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => AppHome(
-                                              currentUser: currentUser,
-                                            )));
+                                if (context.mounted) {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => AppHome(
+                                                currentUser: currentUser,
+                                              )));
+                                }
                               }
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(

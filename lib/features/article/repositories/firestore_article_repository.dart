@@ -39,4 +39,6 @@ class FirestoreArticleRepository implements ArticleRepository {
     // TODO: implement getArticles
     throw UnimplementedError();
   }
+
+  // TODO: add comments to Firestore
 }

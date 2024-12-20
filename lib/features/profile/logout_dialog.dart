@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zaunfunk/shared/config/colors.dart';
 import 'package:zaunfunk/features/authentication/models/zf_user.dart';
-import 'package:zaunfunk/features/authentication/screens/login_screen.dart';
 import 'package:zaunfunk/features/authentication/repositories/auth_repository.dart';
 import 'package:zaunfunk/starting_app.dart';
 
@@ -40,13 +39,15 @@ class LogoutDialog extends StatelessWidget {
           ZfElevatedButton(
               onPressed: () async {
                 await context.read<AuthRepository>().logoutUser();
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const StartingApp(),
-                  ),
-                  (route) => false,
-                );
+                if (context.mounted) {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const StartingApp(),
+                    ),
+                    (route) => false,
+                  );
+                }
               },
               text: "abmelden")
         ],

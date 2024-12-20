@@ -5,7 +5,6 @@ import 'package:zaunfunk/features/authentication/models/zf_user.dart';
 import 'package:zaunfunk/features/feed/app_home.dart';
 import 'package:zaunfunk/shared/widgets/buttons/zf_elevated_button.dart';
 import 'package:zaunfunk/shared/widgets/textfields/zf_growing_textfield.dart';
-import 'package:zaunfunk/shared/repositories/database_repository.dart';
 
 class CreateArticleScreen extends StatelessWidget {
   const CreateArticleScreen({super.key, required this.currentUser});
@@ -41,12 +40,14 @@ class CreateArticleScreen extends StatelessWidget {
                           articleController.text,
                           '');
                       articleController.clear();
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => AppHome(
-                                    currentUser: currentUser,
-                                  )));
+                      if (context.mounted) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => AppHome(
+                                      currentUser: currentUser,
+                                    )));
+                      }
                     },
                     text: "Posten"),
               )
