@@ -116,6 +116,8 @@ class FirebaseAuthRepository implements AuthRepository {
     return authInstance.currentUser;
   }
 
+
+
   @override
   Future<void> changeEmail(String email) async {
     try {
@@ -124,8 +126,6 @@ class FirebaseAuthRepository implements AuthRepository {
       dev.log("$e");
     }
   }
-
-
 
   // Future<dynamic> signInWithGoogle() async {
   //   try {

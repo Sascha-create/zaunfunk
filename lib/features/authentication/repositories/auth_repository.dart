@@ -22,7 +22,7 @@ abstract class AuthRepository {
 
   User? getUser();
 
-  Future<void> changeEmail(String email);
+  
 
- 
+  Future<void> changeEmail(String email);
 }

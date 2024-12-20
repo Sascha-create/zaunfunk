@@ -21,23 +21,7 @@ class AppHome extends StatefulWidget {
 class _AppHomeState extends State<AppHome> {
   int currentIndex = 0;
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   getLoggedInUser();
-  // }
 
-  // void getLoggedInUser() async {
-  //   currentUser = await widget.repository.getCurrentUser() ??
-  //       User(
-  //         userId: '000',
-  //         userName: 'name',
-  //         userPassword: 'passwort',
-  //         aboutMe: 'über mich',
-  //         userImagePath: 'assets/images/app_logo_shadow.png',
-  //       );
-  //   setState(() {});
-  // }
 
   @override
   Widget build(BuildContext context) {
