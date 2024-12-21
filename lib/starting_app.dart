@@ -12,22 +12,25 @@ class StartingApp extends StatefulWidget {
 }
 
 class _StartingAppState extends State<StartingApp> {
-
-
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
       stream: FirebaseAuthRepository().onAuthStateChanged,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
+          return Builder(builder: (context) {
+            return Scaffold(
+              body: Center(
+                  child: Image(
+                      image:
+                          AssetImage('assets/images/splash_screen_logo.png'))),
+            );
+          });
         } else if (snapshot.hasError) {
           return Center(
-            child: Builder(
-              builder: (context) {
-                return Text('Es ist ein Fehler aufgetreten');
-              }
-            ),
+            child: Builder(builder: (context) {
+              return Text('Es ist ein Fehler aufgetreten');
+            }),
           );
         } else {
           if (snapshot.data == null) {
@@ -38,15 +41,19 @@ class _StartingAppState extends State<StartingApp> {
               future: FirebaseAuthRepository().getUserFromCollection(uid),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
+                  return Builder(builder: (context) {
+                    return Scaffold(
+                      body: Center(
+                        child: Image(
+                            image: AssetImage(
+                                'assets/images/splash_screen_logo.png')),
+                      ),
+                    );
+                  });
                 } else if (snapshot.hasError) {
-                  return Center(child: Builder(
-                    builder: (context) {
-                      return Text('Es ist ein Fehler aufgetreten');
-                    }
-                  ));
+                  return Center(child: Builder(builder: (context) {
+                    return Text('Es ist ein Fehler aufgetreten');
+                  }));
                 } else {
                   final currentUser = ZfUser(
                       userId: snapshot.data!.userId,

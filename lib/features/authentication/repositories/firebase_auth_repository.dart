@@ -7,7 +7,7 @@ import 'package:zaunfunk/features/authentication/repositories/auth_repository.da
 //import 'package:google_sign_in/google_sign_in.dart';
 
 class FirebaseAuthRepository implements AuthRepository {
-  //FirebaseAuth auth = FirebaseAuth.instance;
+  
   final FirebaseAuth authInstance = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
