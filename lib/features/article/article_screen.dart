@@ -121,7 +121,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: IconButton.outlined(
-                      // durch async wartet es bis das Sheet zu geht
+                      // durch async await wartet es bis das Sheet zu geht
                       onPressed: () async {
                         await showModalBottomSheet(
                           enableDrag: true,

@@ -22,8 +22,7 @@ class _StartingAppState extends State<StartingApp> {
             return Scaffold(
               body: Center(
                   child: Image(
-                      image:
-                          AssetImage('assets/images/splash_screen_logo.png'))),
+                      image: AssetImage('assets/images/splash_screen_logo.png'))),
             );
           });
         } else if (snapshot.hasError) {

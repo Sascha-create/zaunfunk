@@ -22,6 +22,7 @@ class FirestoreArticleRepository implements ArticleRepository {
         'userArticle': userArticle,
         'articleImagePath': articleImagePath
       });
+      
     } catch (e) {
       dev.log("$e");
     }
