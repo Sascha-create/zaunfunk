@@ -142,29 +142,9 @@ class _ArticleScreenState extends State<ArticleScreen> {
                     return const Center(child: EmptyComment());
                   },
                 ),
-
-                // SizedBox(
-                //     height: MediaQuery.of(context).size.height * 0.34,
-                //     child: widget.article.articleComments.isEmpty
-                //         ? const EmptyComment()
-                //         : ListView.builder(
-                //             //physics: const NeverScrollableScrollPhysics(),
-                //             shrinkWrap: true,
-                //             itemCount: widget.article.articleComments.length,
-                //             itemBuilder: (BuildContext context, int index) =>
-                //                 CommentWidget(
-                //                     userName: widget.article
-                //                         .articleComments[index].userName,
-                //                     userImagePath:
-                //                         widget.currentUser.userImagePath,
-                //                     comment: widget
-                //                         .article
-                //                         .articleComments[index]
-                //                         .articleComment))),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: IconButton.outlined(
-                      // durch async await wartet es bis das Sheet zu geht
                       onPressed: () async {
                         await showModalBottomSheet(
                           enableDrag: true,
@@ -176,7 +156,6 @@ class _ArticleScreenState extends State<ArticleScreen> {
                             );
                           },
                         );
-                        //setState(() {});
                       },
                       icon: const Icon(Icons.add_comment_outlined)),
                 ),

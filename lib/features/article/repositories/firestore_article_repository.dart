@@ -1,6 +1,5 @@
 import 'dart:developer' as dev;
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:zaunfunk/features/article/models/user_article.dart';
 import 'package:zaunfunk/features/article/repositories/article_repository.dart';
 
 class FirestoreArticleRepository implements ArticleRepository {
@@ -57,17 +56,15 @@ class FirestoreArticleRepository implements ArticleRepository {
   }
 
   @override
-  Future<void> deleteArticle(UserArticle userArticle) {
-    // TODO: implement deleteArticle
-    throw UnimplementedError();
+  Future<void> deleteArticle(String articleId) async {
+    try {
+      await _firestore
+          .collection('articles')
+          .doc(articleId)
+          .delete();
+    } catch (e) {
+      dev.log("$e");
+    }
   }
-
-// wahrscheinlich über StreamBuilder
-  @override
-  Future<List<UserArticle>> getArticles() {
-    // TODO: implement getArticles
-    throw UnimplementedError();
-  }
-
-  // TODO: add comments to Firestore
+  
 }

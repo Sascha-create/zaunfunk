@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:zaunfunk/features/article/repositories/article_repository.dart';
 import 'package:zaunfunk/shared/config/colors.dart';
 import 'package:zaunfunk/shared/widgets/buttons/zf_elevated_button.dart';
 import 'package:zaunfunk/shared/repositories/database_repository.dart';
@@ -43,7 +44,9 @@ class DeleteArticleDialog extends StatelessWidget {
           const SizedBox(height: 40),
           ZfElevatedButton(
               onPressed: () {
-                context.read<DatabaseRepository>().deleteArticle(article);
+                context
+                    .read<ArticleRepository>()
+                    .deleteArticle(article.articleId);
                 Navigator.push(
                     context,
                     MaterialPageRoute(

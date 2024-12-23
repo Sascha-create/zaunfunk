@@ -1,7 +1,7 @@
-import '../models/user_article.dart';
+
 
 abstract class ArticleRepository {
-  Future<List<UserArticle>> getArticles();
+
 
   //Create
   Future<void> createArticle(String userName, String userImagePath,
@@ -9,5 +9,5 @@ abstract class ArticleRepository {
 
   Future<void> addComment(String articleId, String userName,String userImagePath, String comment);
 
-  Future<void> deleteArticle(UserArticle userArticle);
+  Future<void> deleteArticle(String articleId);
 }
