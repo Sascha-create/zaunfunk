@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:zaunfunk/shared/config/colors.dart';
 import 'package:zaunfunk/features/article/models/user_article.dart';
@@ -18,7 +19,12 @@ class ArticleScreen extends StatefulWidget {
   State<ArticleScreen> createState() => _ArticleScreenState();
 }
 
+
+
 class _ArticleScreenState extends State<ArticleScreen> {
+  Stream<QuerySnapshot> commentStream = FirebaseFirestore.instance
+  .collection('articles').doc().collection('comments').snapshots();
+
   @override
   void initState() {
     super.initState();

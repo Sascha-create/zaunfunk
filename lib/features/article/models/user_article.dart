@@ -1,6 +1,7 @@
 import 'package:zaunfunk/features/article_comments/models/article_comment.dart';
 
 class UserArticle {
+  final String articleId;
   final String userName;
   final String userImagePath;
   final String userArticle;
@@ -8,6 +9,7 @@ class UserArticle {
   final List<ArticleComment> articleComments;
 
   UserArticle({
+    required this.articleId,
     required this.userName,
     required this.userImagePath,
     required this.userArticle,

@@ -12,36 +12,45 @@ class FirestoreArticleRepository implements ArticleRepository {
       .snapshots(includeMetadataChanges: true);
 
 
-  // Stream<QuerySnapshot> commentStream = FirebaseFirestore.instance
-  // .collection('articles').snapshots().    
 
   @override
   Future<void> createArticle(String userName, String userImagePath,
       String userArticle, String articleImagePath) async {
     try {
       await _firestore.collection('articles').add({
-        
         'createTime': Timestamp.now(),
         'userName': userName,
         'userImagePath': userImagePath,
         'userArticle': userArticle,
         'articleImagePath': articleImagePath
+      }).then((doc) {
+        doc.set({
+          'articleId': doc.id,
+          'createTime': Timestamp.now(),
+          'userName': userName,
+          'userImagePath': userImagePath,
+          'userArticle': userArticle,
+          'articleImagePath': articleImagePath
+        });
       });
-      
     } catch (e) {
       dev.log("$e");
     }
   }
 
   @override
-  Future<void> addComment(String articleId, String userName,String userImagePath, String comment)async {
+  Future<void> addComment(String articleId, String userName,
+      String userImagePath, String comment) async {
     try {
-      await _firestore.collection('articles').doc(articleId).collection('comments').add({
+      await _firestore
+          .collection('articles')
+          .doc(articleId)
+          .collection('comments')
+          .add({
         'userName': userName,
-        'userImagePath':userImagePath,
+        'userImagePath': userImagePath,
         'comment': comment
       });
-      
     } catch (e) {
       dev.log("$e");
     }

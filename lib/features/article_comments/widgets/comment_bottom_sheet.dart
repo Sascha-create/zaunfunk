@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:zaunfunk/features/article/models/user_article.dart';
 import 'package:zaunfunk/features/authentication/models/zf_user.dart';
 import '../../../shared/config/colors.dart';
 import '../../../shared/widgets/buttons/zf_elevated_button.dart';
+import '../../article/repositories/article_repository.dart';
 
 class CommentBottomSheet extends StatefulWidget {
   const CommentBottomSheet({
@@ -20,6 +22,7 @@ class CommentBottomSheet extends StatefulWidget {
 
 class _CommentBottomSheetState extends State<CommentBottomSheet> {
   final TextEditingController _commentController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -62,9 +65,14 @@ class _CommentBottomSheetState extends State<CommentBottomSheet> {
               padding: const EdgeInsets.all(16.0),
               child: ZfElevatedButton(
                   onPressed: () {
-                    widget.article.addComment(
-                        widget.currentUser.userName, _commentController.text);
-                    setState(() {});
+                    context.read<ArticleRepository>().addComment(
+                        widget.article.articleId,
+                        widget.article.userName,
+                        widget.article.userImagePath,
+                        _commentController.text);
+                    // widget.article.addComment(
+                    //     widget.currentUser.userName, _commentController.text);
+                    // setState(() {});
 
                     Navigator.pop(
                       context,

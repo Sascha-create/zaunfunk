@@ -20,6 +20,7 @@ class MockDatabase implements DatabaseRepository {
 
   List<UserArticle> articles = [
     UserArticle(
+        articleId: 'dsfdsf',
         userName: "Sascha",
         userImagePath: "assets/images/ich.jpeg",
         userArticle:
@@ -27,6 +28,7 @@ class MockDatabase implements DatabaseRepository {
         articleImagePath: "assets/images/ernte.png",
         articleComments: []),
     UserArticle(
+        articleId: 'dsfdsfg',
         userName: "Sascha",
         userImagePath: "assets/images/ich.jpeg",
         userArticle:
@@ -34,6 +36,7 @@ class MockDatabase implements DatabaseRepository {
         articleImagePath: "assets/images/floor.png",
         articleComments: []),
     UserArticle(
+        articleId: 'sdfsdafds',
         userName: "Jane",
         userImagePath: "assets/images/jane.png",
         userArticle: "Will jemand Ableger von meinen Rosen haben ?",
@@ -122,6 +125,7 @@ class MockDatabase implements DatabaseRepository {
   Future<void> createArticle(String userName, String userImagePath,
       String userArticle, String articleImagePath) {
     UserArticle newUserArticle = UserArticle(
+        articleId: 'ertwert',
         userName: userName,
         userImagePath: userImagePath,
         userArticle: userArticle,

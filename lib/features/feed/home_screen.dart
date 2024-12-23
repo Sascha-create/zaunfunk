@@ -39,6 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Map<String, dynamic> data =
                     document.data()! as Map<String, dynamic>;
                 UserArticle article = UserArticle(
+                  articleId: data['articleId'],
                     userName: data['userName'],
                     userImagePath: data['userImagePath'],
                     userArticle: data['userArticle'],
