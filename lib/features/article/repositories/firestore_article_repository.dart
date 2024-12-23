@@ -11,16 +11,35 @@ class FirestoreArticleRepository implements ArticleRepository {
       .orderBy('createTime')
       .snapshots(includeMetadataChanges: true);
 
+
+  // Stream<QuerySnapshot> commentStream = FirebaseFirestore.instance
+  // .collection('articles').snapshots().    
+
   @override
   Future<void> createArticle(String userName, String userImagePath,
       String userArticle, String articleImagePath) async {
     try {
       await _firestore.collection('articles').add({
+        
         'createTime': Timestamp.now(),
         'userName': userName,
         'userImagePath': userImagePath,
         'userArticle': userArticle,
         'articleImagePath': articleImagePath
+      });
+      
+    } catch (e) {
+      dev.log("$e");
+    }
+  }
+
+  @override
+  Future<void> addComment(String articleId, String userName,String userImagePath, String comment)async {
+    try {
+      await _firestore.collection('articles').doc(articleId).collection('comments').add({
+        'userName': userName,
+        'userImagePath':userImagePath,
+        'comment': comment
       });
       
     } catch (e) {
