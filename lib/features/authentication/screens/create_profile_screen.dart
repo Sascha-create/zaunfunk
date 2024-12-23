@@ -7,7 +7,6 @@ import 'package:zaunfunk/features/authentication/validator.dart';
 import 'package:zaunfunk/features/feed/app_home.dart';
 import 'package:zaunfunk/features/authentication/repositories/auth_repository.dart';
 import 'package:zaunfunk/shared/widgets/textfields/zf_text_form_field_pw.dart';
-import 'package:zaunfunk/shared/repositories/database_repository.dart';
 import 'package:zaunfunk/shared/widgets/buttons/zf_elevated_button.dart';
 import 'package:zaunfunk/shared/widgets/buttons/zf_icon_button.dart';
 import 'package:zaunfunk/shared/widgets/textfields/zf_textfield.dart';
@@ -34,7 +33,6 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  bool isNameAvailable = false;
   bool isLoginDataCorrect = false;
   bool ispasswordVisible = true;
 
@@ -66,7 +64,6 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final DatabaseRepository repository = context.read<DatabaseRepository>();
     final AuthRepository authRepo = context.read<AuthRepository>();
 
     return Scaffold(
@@ -166,9 +163,6 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                           onPressed: () async {
                             // validieren dann create User
                             if (_formKey.currentState!.validate()) {
-                              // Username prüfen ???
-                              isNameAvailable = await repository
-                                  .isUsernameAvailable(nameController.text);
                               await authRepo.signUp(
                                   nameController.text,
                                   emailController.text,
@@ -189,11 +183,6 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                                               )));
                                 }
                               }
-                            } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                      content:
-                                          Text('Nutzername schon vergeben !')));
                             }
                           },
                           text: "Registrieren"),
