@@ -48,21 +48,38 @@ class _ArticleScreenState extends State<ArticleScreen> {
                           Navigator.pop(context);
                         },
                         icon: const Icon(Icons.arrow_back_ios_new)),
-                    Visibility(
-                      visible:
-                          widget.currentUser.userName == widget.article.userName
+                    Row(
+                      children: [
+                        Visibility(
+                          visible: widget.currentUser.userName ==
+                                  widget.article.userName
                               ? true
                               : false,
-                      child: IconButton.outlined(
-                          onPressed: () {
-                            showDialog(
+                          child: IconButton.outlined(
+                              onPressed: () {
+                                showDialog(
+                                    context: context,
+                                    builder: (context) => DeleteArticleDialog(
+                                          article: widget.article,
+                                          currentUser: widget.currentUser,
+                                        ));
+                              },
+                              icon: const Icon(Icons.delete_forever)),
+                        ),
+                        IconButton.outlined(
+                            onPressed: () async {
+                              await showModalBottomSheet(
                                 context: context,
-                                builder: (context) => DeleteArticleDialog(
-                                      article: widget.article,
-                                      currentUser: widget.currentUser,
-                                    ));
-                          },
-                          icon: const Icon(Icons.delete_forever)),
+                                builder: (context) {
+                                  return CommentBottomSheet(
+                                    article: widget.article,
+                                    currentUser: widget.currentUser,
+                                  );
+                                },
+                              );
+                            },
+                            icon: const Icon(Icons.add_comment_outlined)),
+                      ],
                     ),
                   ],
                 ),
@@ -142,23 +159,6 @@ class _ArticleScreenState extends State<ArticleScreen> {
                     }
                     return const Center(child: EmptyComment());
                   },
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: IconButton.outlined(
-                      onPressed: () async {
-                        await showModalBottomSheet(
-                          enableDrag: true,
-                          context: context,
-                          builder: (context) {
-                            return CommentBottomSheet(
-                              article: widget.article,
-                              currentUser: widget.currentUser,
-                            );
-                          },
-                        );
-                      },
-                      icon: const Icon(Icons.add_comment_outlined)),
                 ),
               ],
             ),
