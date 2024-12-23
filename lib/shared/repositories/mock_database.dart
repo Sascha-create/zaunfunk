@@ -26,7 +26,7 @@ class MockDatabase implements DatabaseRepository {
         userArticle:
             "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
         articleImagePath: "assets/images/ernte.png",
-        articleComments: []),
+        ),
     UserArticle(
         articleId: 'dsfdsfg',
         userName: "Sascha",
@@ -34,14 +34,14 @@ class MockDatabase implements DatabaseRepository {
         userArticle:
             "Ich habe Gehwegplatten abzugeben ! Essen und trinken ist auch genug da",
         articleImagePath: "assets/images/floor.png",
-        articleComments: []),
+        ),
     UserArticle(
         articleId: 'sdfsdafds',
         userName: "Jane",
         userImagePath: "assets/images/jane.png",
         userArticle: "Will jemand Ableger von meinen Rosen haben ?",
         articleImagePath: "assets/images/roses.png",
-        articleComments: [])
+        )
   ];
 
   ZfUser? _currentUser;
@@ -130,7 +130,7 @@ class MockDatabase implements DatabaseRepository {
         userImagePath: userImagePath,
         userArticle: userArticle,
         articleImagePath: articleImagePath,
-        articleComments: []);
+        );
     articles.add(newUserArticle);
     return Future.value();
   }

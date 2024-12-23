@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     userImagePath: data['userImagePath'],
                     userArticle: data['userArticle'],
                     articleImagePath: data['articleImagePath'],
-                    articleComments: []);
+                    );
                 return IsClubArticleCard(
                     article: article,
                     currentUser: widget.currentUser,
