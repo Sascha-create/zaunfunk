@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:zaunfunk/features/article_comments/models/article_comment.dart';
 import 'package:zaunfunk/shared/config/colors.dart';
 import 'package:zaunfunk/features/article/models/user_article.dart';
 import 'package:zaunfunk/features/article/delete_article_dialog.dart';
@@ -19,19 +20,15 @@ class ArticleScreen extends StatefulWidget {
   State<ArticleScreen> createState() => _ArticleScreenState();
 }
 
-
-
 class _ArticleScreenState extends State<ArticleScreen> {
-  Stream<QuerySnapshot> commentStream = FirebaseFirestore.instance
-  .collection('articles').doc().collection('comments').snapshots();
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
+    Stream<QuerySnapshot> commentStream = FirebaseFirestore.instance
+        .collection('articles')
+        .doc(widget.article.articleId)
+        .collection('comments')
+        .snapshots(includeMetadataChanges: true);
+
     return Scaffold(
       backgroundColor: lightBeige,
       body: SafeArea(
@@ -106,24 +103,64 @@ class _ArticleScreenState extends State<ArticleScreen> {
                       widget.article.userArticle),
                 ),
                 const Divider(),
-                SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.34,
-                    child: widget.article.articleComments.isEmpty
-                        ? const EmptyComment()
-                        : ListView.builder(
-                            //physics: const NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            itemCount: widget.article.articleComments.length,
-                            itemBuilder: (BuildContext context, int index) =>
-                                CommentWidget(
-                                    userName: widget.article
-                                        .articleComments[index].userName,
-                                    userImagePath:
-                                        widget.currentUser.userImagePath,
-                                    comment: widget
-                                        .article
-                                        .articleComments[index]
-                                        .articleComment))),
+                Center(
+                    child: Text(
+                        style: Theme.of(context).textTheme.titleMedium,
+                        'Kommentare')),
+                const Divider(),
+                StreamBuilder(
+                  stream: commentStream,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.active &&
+                        snapshot.hasData) {
+                      return Center(
+                        child: ListView(
+                          shrinkWrap: true,
+                          children: snapshot.data!.docs.map((document) {
+                            Map<String, dynamic> data =
+                                document.data()! as Map<String, dynamic>;
+                            ArticleComment comment = ArticleComment(
+                                userName: data['userName'],
+                                userImagePath: data['userImagePath'],
+                                articleComment: data['comment']);
+                            return CommentWidget(
+                                userName: comment.userName,
+                                comment: comment.articleComment,
+                                userImagePath: comment.userImagePath);
+                          }).toList(),
+                        ),
+                      );
+                    } else if (snapshot.connectionState ==
+                            ConnectionState.active &&
+                        snapshot.hasError) {
+                      return const Icon(
+                        Icons.error,
+                        size: 48,
+                        color: Colors.red,
+                      );
+                    }
+                    return const Center(child: EmptyComment());
+                  },
+                ),
+
+                // SizedBox(
+                //     height: MediaQuery.of(context).size.height * 0.34,
+                //     child: widget.article.articleComments.isEmpty
+                //         ? const EmptyComment()
+                //         : ListView.builder(
+                //             //physics: const NeverScrollableScrollPhysics(),
+                //             shrinkWrap: true,
+                //             itemCount: widget.article.articleComments.length,
+                //             itemBuilder: (BuildContext context, int index) =>
+                //                 CommentWidget(
+                //                     userName: widget.article
+                //                         .articleComments[index].userName,
+                //                     userImagePath:
+                //                         widget.currentUser.userImagePath,
+                //                     comment: widget
+                //                         .article
+                //                         .articleComments[index]
+                //                         .articleComment))),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: IconButton.outlined(
@@ -139,7 +176,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
                             );
                           },
                         );
-                        setState(() {});
+                        //setState(() {});
                       },
                       icon: const Icon(Icons.add_comment_outlined)),
                 ),

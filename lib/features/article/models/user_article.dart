@@ -17,9 +17,9 @@ class UserArticle {
     required this.articleComments,
   });
 
-  void addComment(String userName, String comment) {
-    ArticleComment newComment =
-        ArticleComment(userName: userName, articleComment: comment);
-    articleComments.add(newComment);
-  }
+  // void addComment(String userName, String comment) {
+  //   ArticleComment newComment =
+  //       ArticleComment(userName: userName, articleComment: comment);
+  //   articleComments.add(newComment);
+  // }
 }

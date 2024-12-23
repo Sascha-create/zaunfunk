@@ -67,16 +67,11 @@ class _CommentBottomSheetState extends State<CommentBottomSheet> {
                   onPressed: () {
                     context.read<ArticleRepository>().addComment(
                         widget.article.articleId,
-                        widget.article.userName,
-                        widget.article.userImagePath,
+                        widget.currentUser.userName,
+                        widget.currentUser.userImagePath,
                         _commentController.text);
-                    // widget.article.addComment(
-                    //     widget.currentUser.userName, _commentController.text);
-                    // setState(() {});
 
-                    Navigator.pop(
-                      context,
-                    );
+                    Navigator.pop(context);
                   },
                   text: 'Posten'),
             )
