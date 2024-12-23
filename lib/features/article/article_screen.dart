@@ -27,6 +27,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
         .collection('articles')
         .doc(widget.article.articleId)
         .collection('comments')
+        .orderBy('createTime', descending: false)
         .snapshots(includeMetadataChanges: true);
 
     return Scaffold(

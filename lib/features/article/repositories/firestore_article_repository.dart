@@ -10,8 +10,6 @@ class FirestoreArticleRepository implements ArticleRepository {
       .orderBy('createTime')
       .snapshots(includeMetadataChanges: true);
 
-
-
   @override
   Future<void> createArticle(String userName, String userImagePath,
       String userArticle, String articleImagePath) async {
@@ -46,6 +44,7 @@ class FirestoreArticleRepository implements ArticleRepository {
           .doc(articleId)
           .collection('comments')
           .add({
+        'createTime': Timestamp.now(),
         'userName': userName,
         'userImagePath': userImagePath,
         'comment': comment
@@ -58,13 +57,9 @@ class FirestoreArticleRepository implements ArticleRepository {
   @override
   Future<void> deleteArticle(String articleId) async {
     try {
-      await _firestore
-          .collection('articles')
-          .doc(articleId)
-          .delete();
+      await _firestore.collection('articles').doc(articleId).delete();
     } catch (e) {
       dev.log("$e");
     }
   }
-  
 }
