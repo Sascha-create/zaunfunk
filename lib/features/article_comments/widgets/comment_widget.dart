@@ -22,13 +22,16 @@ class CommentWidget extends StatelessWidget {
               padding: const EdgeInsets.only(right: 8.0),
               child: CircleAvatar(
                 backgroundImage: AssetImage(userImagePath),
-                radius: 8,
+                radius: 9,
               ),
             ),
-            Text(userName),
+            Text(
+              style: Theme.of(context).textTheme.bodyLarge,
+              userName,
+            ),
           ],
         ),
-        Text(comment),
+        Text(style: Theme.of(context).textTheme.bodyMedium, comment),
         const Divider()
       ],
     );

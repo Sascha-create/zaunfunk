@@ -5,13 +5,15 @@ ThemeData lightTheme = ThemeData(
     useMaterial3: true,
     scaffoldBackgroundColor: naturalBeige,
     fontFamily: "Roboto",
-    textTheme: const TextTheme(
-      headlineLarge: TextStyle(fontWeight: FontWeight.bold, color: gardenGreen),
-      headlineMedium:
-          TextStyle(fontWeight: FontWeight.bold, color: gardenGreen),
-      headlineSmall: TextStyle(color: gardenGreen),
-      titleMedium: TextStyle(color: gardenGreen),
-    ),
+    textTheme: TextTheme(
+        headlineLarge:
+            TextStyle(fontWeight: FontWeight.bold, color: gardenGreen),
+        headlineMedium:
+            TextStyle(fontWeight: FontWeight.bold, color: gardenGreen),
+        headlineSmall: TextStyle(color: gardenGreen),
+        titleMedium: TextStyle(color: gardenGreen),
+        bodyLarge: TextStyle(color: Colors.black87),
+        bodyMedium: TextStyle(color: Colors.grey.shade700)),
     iconTheme: const IconThemeData(color: gardenGreen),
     appBarTheme: const AppBarTheme(
         centerTitle: false,
@@ -30,8 +32,7 @@ ThemeData lightTheme = ThemeData(
       iconColor: gardenGreen,
     ),
     snackBarTheme: const SnackBarThemeData(
-      backgroundColor: gardenGreen,
-      contentTextStyle: TextStyle(
-        color: lightBeige,
-      )
-    ));
+        backgroundColor: gardenGreen,
+        contentTextStyle: TextStyle(
+          color: lightBeige,
+        )));

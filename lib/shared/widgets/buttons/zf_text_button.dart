@@ -11,13 +11,8 @@ class ZfTextButton extends StatelessWidget {
     return TextButton(
         onPressed: onPressed,
         style: const ButtonStyle(
-          
           fixedSize: WidgetStatePropertyAll(Size(160, 40)),
         ),
-
-        child: Text(
-            style:
-                TextStyle(color: gardenGreen.withOpacity(0.75), fontSize: 14),
-            text));
+        child: Text(style: TextStyle(color: gardenGreen, fontSize: 14), text));
   }
 }

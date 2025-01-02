@@ -24,7 +24,7 @@ class FirebaseAuthRepository implements AuthRepository {
         password: password,
       );
     } catch (e) {
-      dev.log("$e");
+      dev.log("loginUser: $e");
     }
   }
 
@@ -95,7 +95,7 @@ class FirebaseAuthRepository implements AuthRepository {
         }
       }
     } catch (e) {
-      dev.log("$e");
+      dev.log("setCurrentUser: $e");
     }
     return Future.value();
   }

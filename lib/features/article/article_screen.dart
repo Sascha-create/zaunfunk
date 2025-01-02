@@ -8,6 +8,7 @@ import 'package:zaunfunk/features/article_comments/widgets/comment_bottom_sheet.
 import 'package:zaunfunk/features/article_comments/widgets/comment_widget.dart';
 import 'package:zaunfunk/features/article_comments/widgets/empty_comment.dart';
 import 'package:zaunfunk/features/authentication/models/zf_user.dart';
+import 'package:zaunfunk/shared/widgets/buttons/zf_icon_outlined_button.dart';
 
 class ArticleScreen extends StatefulWidget {
   const ArticleScreen(
@@ -55,7 +56,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
                                   widget.article.userName
                               ? true
                               : false,
-                          child: IconButton.outlined(
+                          child: ZfIconOutlinedButton(
                               onPressed: () {
                                 showDialog(
                                     context: context,
@@ -64,9 +65,9 @@ class _ArticleScreenState extends State<ArticleScreen> {
                                           currentUser: widget.currentUser,
                                         ));
                               },
-                              icon: const Icon(Icons.delete_forever)),
+                              icon: Icons.delete_forever),
                         ),
-                        IconButton.outlined(
+                        ZfIconOutlinedButton(
                             onPressed: () async {
                               await showModalBottomSheet(
                                 context: context,
@@ -78,7 +79,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
                                 },
                               );
                             },
-                            icon: const Icon(Icons.add_comment_outlined)),
+                            icon: Icons.add_comment_outlined),
                       ],
                     ),
                   ],
@@ -134,6 +135,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
                       return Center(
                         child: ListView(
                           shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
                           children: snapshot.data!.docs.map((document) {
                             Map<String, dynamic> data =
                                 document.data()! as Map<String, dynamic>;

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:zaunfunk/shared/config/colors.dart';
 import 'package:zaunfunk/features/profile/logout_dialog.dart';
 import 'package:zaunfunk/features/profile/profile_grid_item.dart';
+import 'package:zaunfunk/shared/widgets/buttons/zf_icon_outlined_button.dart';
 import 'package:zaunfunk/shared/widgets/zf_divider.dart';
 import '../authentication/models/zf_user.dart';
 
@@ -35,7 +36,7 @@ class ProfileScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      IconButton.outlined(
+                      ZfIconOutlinedButton(
                           onPressed: () {
                             showDialog(
                                 context: context,
@@ -43,7 +44,7 @@ class ProfileScreen extends StatelessWidget {
                                       currentUser: currentUser,
                                     ));
                           },
-                          icon: const Icon(Icons.logout_rounded))
+                          icon: Icons.logout_rounded)
                     ],
                   ),
                 ),

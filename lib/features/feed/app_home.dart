@@ -21,8 +21,6 @@ class AppHome extends StatefulWidget {
 class _AppHomeState extends State<AppHome> {
   int currentIndex = 0;
 
-
-
   @override
   Widget build(BuildContext context) {
     final List<Widget> screens = [
@@ -64,7 +62,7 @@ class _AppHomeState extends State<AppHome> {
             setState(() {});
           },
           backgroundColor: navBarBeige,
-          indicatorColor: impulseGreen.withOpacity(0.3),
+          indicatorColor: impulseGreen.withValues(alpha: .5),
           labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
           destinations: const [
             NavigationDestination(
