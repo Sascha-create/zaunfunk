@@ -41,6 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 UserArticle article = UserArticle(
                   articleId: data['articleId'],
                     userName: data['userName'],
+                    authorId: data['authorId'],
                     userImagePath: data['userImagePath'],
                     userArticle: data['userArticle'],
                     articleImagePath: data['articleImagePath'],

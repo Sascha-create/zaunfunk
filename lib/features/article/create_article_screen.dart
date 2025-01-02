@@ -36,6 +36,7 @@ class CreateArticleScreen extends StatelessWidget {
                     onPressed: () async {
                       await context.read<ArticleRepository>().createArticle(
                           currentUser.userName,
+                          currentUser.userId,
                           currentUser.userImagePath,
                           articleController.text,
                           '');

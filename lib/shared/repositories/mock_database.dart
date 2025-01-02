@@ -22,6 +22,7 @@ class MockDatabase implements DatabaseRepository {
     UserArticle(
         articleId: 'dsfdsf',
         userName: "Sascha",
+        authorId: 'dsfjhdsfkjds',
         userImagePath: "assets/images/ich.jpeg",
         userArticle:
             "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
@@ -30,6 +31,7 @@ class MockDatabase implements DatabaseRepository {
     UserArticle(
         articleId: 'dsfdsfg',
         userName: "Sascha",
+        authorId: 'dsfjhdsfkjds',
         userImagePath: "assets/images/ich.jpeg",
         userArticle:
             "Ich habe Gehwegplatten abzugeben ! Essen und trinken ist auch genug da",
@@ -38,6 +40,7 @@ class MockDatabase implements DatabaseRepository {
     UserArticle(
         articleId: 'sdfsdafds',
         userName: "Jane",
+        authorId: 'jhgjlgh',
         userImagePath: "assets/images/jane.png",
         userArticle: "Will jemand Ableger von meinen Rosen haben ?",
         articleImagePath: "assets/images/roses.png",
@@ -121,19 +124,19 @@ class MockDatabase implements DatabaseRepository {
     });
   }
 
-  @override
-  Future<void> createArticle(String userName, String userImagePath,
-      String userArticle, String articleImagePath) {
-    UserArticle newUserArticle = UserArticle(
-        articleId: 'ertwert',
-        userName: userName,
-        userImagePath: userImagePath,
-        userArticle: userArticle,
-        articleImagePath: articleImagePath,
-        );
-    articles.add(newUserArticle);
-    return Future.value();
-  }
+  // @override
+  // Future<void> createArticle(String userName, String userImagePath,
+  //     String userArticle, String articleImagePath) {
+  //   UserArticle newUserArticle = UserArticle(
+  //       articleId: 'ertwert',
+  //       userName: userName,
+  //       userImagePath: userImagePath,
+  //       userArticle: userArticle,
+  //       articleImagePath: articleImagePath,
+  //       );
+  //   articles.add(newUserArticle);
+  //   return Future.value();
+  // }
 
   @override
   Future<void> deleteUser(ZfUser user) {

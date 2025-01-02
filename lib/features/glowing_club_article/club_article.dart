@@ -46,7 +46,7 @@ class ClubArticle extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 16.0),
                   child: Text(
                       style: Theme.of(context).textTheme.titleMedium,
-                      article.userName == currentUser.userName
+                      article.authorId == currentUser.userId
                           ? 'Du'
                           : article.userName),
                 )

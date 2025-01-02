@@ -11,12 +11,13 @@ class FirestoreArticleRepository implements ArticleRepository {
       .snapshots(includeMetadataChanges: true);
 
   @override
-  Future<void> createArticle(String userName, String userImagePath,
+  Future<void> createArticle(String userName, String userId,String userImagePath,
       String userArticle, String articleImagePath) async {
     try {
       await _firestore.collection('articles').add({
         'createTime': Timestamp.now(),
         'userName': userName,
+        'authorId': userId,
         'userImagePath': userImagePath,
         'userArticle': userArticle,
         'articleImagePath': articleImagePath
@@ -25,6 +26,7 @@ class FirestoreArticleRepository implements ArticleRepository {
           'articleId': doc.id,
           'createTime': Timestamp.now(),
           'userName': userName,
+          'authorId': userId,
           'userImagePath': userImagePath,
           'userArticle': userArticle,
           'articleImagePath': articleImagePath

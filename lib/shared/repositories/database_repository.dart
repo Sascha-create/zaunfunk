@@ -19,8 +19,8 @@ abstract class DatabaseRepository {
   Future<bool> isUsernameAvailable(String userName);
 
   //Create
-  Future<void> createArticle(String userName, String userImagePath,
-      String userArticle, String articleImagePath);
+  // Future<void> createArticle(String userName, String userImagePath,
+  //     String userArticle, String articleImagePath);
   //Delete
   Future<void> deleteUser(ZfUser user);
 

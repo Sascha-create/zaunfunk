@@ -52,8 +52,8 @@ class _ArticleScreenState extends State<ArticleScreen> {
                     Row(
                       children: [
                         Visibility(
-                          visible: widget.currentUser.userName ==
-                                  widget.article.userName
+                          visible: widget.currentUser.userId ==
+                                  widget.article.authorId
                               ? true
                               : false,
                           child: ZfIconOutlinedButton(
@@ -99,7 +99,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
                       padding: const EdgeInsets.only(left: 16.0),
                       child: Text(
                           style: Theme.of(context).textTheme.titleMedium,
-                          widget.article.userName == widget.currentUser.userName
+                          widget.article.authorId == widget.currentUser.userId
                               ? 'Du'
                               : widget.article.userName),
                     )

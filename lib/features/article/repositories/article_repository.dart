@@ -4,7 +4,7 @@ abstract class ArticleRepository {
 
 
   //Create
-  Future<void> createArticle(String userName, String userImagePath,
+  Future<void> createArticle(String userName,String userId, String userImagePath,
       String userArticle, String articleImagePath);
 
   Future<void> addComment(String articleId, String userName,String userImagePath, String comment);
