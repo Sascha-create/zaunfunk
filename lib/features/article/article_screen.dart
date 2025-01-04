@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:zaunfunk/features/article_comments/models/article_comment.dart';
+import 'package:zaunfunk/features/authentication/logic/user_provider.dart';
 import 'package:zaunfunk/shared/config/colors.dart';
 import 'package:zaunfunk/features/article/models/user_article.dart';
 import 'package:zaunfunk/features/article/delete_article_dialog.dart';
@@ -11,11 +13,9 @@ import 'package:zaunfunk/features/authentication/models/zf_user.dart';
 import 'package:zaunfunk/shared/widgets/buttons/zf_icon_outlined_button.dart';
 
 class ArticleScreen extends StatefulWidget {
-  const ArticleScreen(
-      {super.key, required this.article, required this.currentUser});
+  const ArticleScreen({super.key, required this.article});
 
   final UserArticle article;
-  final ZfUser currentUser;
 
   @override
   State<ArticleScreen> createState() => _ArticleScreenState();
@@ -30,6 +30,8 @@ class _ArticleScreenState extends State<ArticleScreen> {
         .collection('comments')
         .orderBy('createTime', descending: false)
         .snapshots(includeMetadataChanges: true);
+
+    final ZfUser? currentUser = context.watch<UserProvider>().currentUser;
 
     return Scaffold(
       backgroundColor: lightBeige,
@@ -52,7 +54,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
                     Row(
                       children: [
                         Visibility(
-                          visible: widget.currentUser.userId ==
+                          visible: currentUser?.userId ==
                                   widget.article.authorId
                               ? true
                               : false,
@@ -62,7 +64,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
                                     context: context,
                                     builder: (context) => DeleteArticleDialog(
                                           article: widget.article,
-                                          currentUser: widget.currentUser,
+                                          
                                         ));
                               },
                               icon: Icons.delete_forever),
@@ -74,7 +76,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
                                 builder: (context) {
                                   return CommentBottomSheet(
                                     article: widget.article,
-                                    currentUser: widget.currentUser,
+                                    
                                   );
                                 },
                               );
@@ -99,7 +101,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
                       padding: const EdgeInsets.only(left: 16.0),
                       child: Text(
                           style: Theme.of(context).textTheme.titleMedium,
-                          widget.article.authorId == widget.currentUser.userId
+                          widget.article.authorId == currentUser?.userId
                               ? 'Du'
                               : widget.article.userName),
                     )

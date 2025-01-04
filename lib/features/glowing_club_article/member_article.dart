@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:zaunfunk/features/authentication/logic/user_provider.dart';
 import 'package:zaunfunk/shared/config/colors.dart';
 import 'package:zaunfunk/features/article/models/user_article.dart';
 
-import '../authentication/models/zf_user.dart';
+
 
 class MemberArticle extends StatelessWidget {
   const MemberArticle({
     super.key,
     required this.article,
-    required this.currentUser,
+    
   });
 
   final UserArticle article;
-  final ZfUser currentUser;
+  
 
   @override
   Widget build(BuildContext context) {
@@ -37,11 +39,12 @@ class MemberArticle extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 16.0),
-                  child: Text(
-                      style: Theme.of(context).textTheme.titleMedium,
-                      article.authorId == currentUser.userId
-                          ? 'Du'
-                          : article.userName),
+                  child: Consumer<UserProvider>(builder: (context, provider, child) => Text(
+                        style: Theme.of(context).textTheme.titleMedium,
+                        article.authorId == provider.currentUser?.userId
+                            ? 'Du'
+                            : article.userName),
+                  ),
                 )
               ],
             ),

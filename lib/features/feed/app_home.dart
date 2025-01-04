@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:zaunfunk/features/article/create_article_screen.dart';
-import 'package:zaunfunk/features/authentication/models/zf_user.dart';
 import 'package:zaunfunk/features/feed/home_screen.dart';
 import 'package:zaunfunk/features/profile/profile_screen.dart';
 import 'package:zaunfunk/shared/config/colors.dart';
@@ -9,10 +8,7 @@ import 'package:zaunfunk/features/settings/settings_screen.dart';
 class AppHome extends StatefulWidget {
   const AppHome({
     super.key,
-    required this.currentUser,
   });
-
-  final ZfUser currentUser;
 
   @override
   State<AppHome> createState() => _AppHomeState();
@@ -24,15 +20,9 @@ class _AppHomeState extends State<AppHome> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> screens = [
-      HomeScreen(
-        currentUser: widget.currentUser,
-      ),
-      CreateArticleScreen(
-        currentUser: widget.currentUser,
-      ),
-      ProfileScreen(
-        currentUser: widget.currentUser,
-      ),
+      HomeScreen(),
+      CreateArticleScreen(),
+      ProfileScreen(),
       const SettingsScreen()
     ];
     return Scaffold(

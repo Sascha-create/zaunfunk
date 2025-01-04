@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:zaunfunk/features/authentication/models/zf_user.dart';
 import 'package:zaunfunk/features/authentication/widgets/reset_password_dialog.dart';
 import 'package:zaunfunk/features/authentication/screens/create_profile_screen.dart';
 import 'package:zaunfunk/features/feed/app_home.dart';
@@ -39,7 +38,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final AuthRepository authRepo = context.read<AuthRepository>();
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -94,18 +92,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             await context.read<AuthRepository>().loginUser(
                                 emailController.text, passwordController.text);
 
-                            final ZfUser? currentUser =
-                                await authRepo.setCurrentUser();
-
-                            if (currentUser != null) {
-                              if (context.mounted) {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => AppHome(
-                                              currentUser: currentUser,
-                                            )));
-                              }
+                            if (context.mounted) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => AppHome()));
                             }
                           },
                           text: "Anmelden"),

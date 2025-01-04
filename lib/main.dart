@@ -16,8 +16,8 @@ import 'package:zaunfunk/starting_app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
- 
+  Provider.debugCheckInvalidValueType = null;
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -26,7 +26,7 @@ void main() async {
     Provider<AuthRepository>(create: (context) => FirebaseAuthRepository()),
     Provider<ArticleRepository>(
         create: (context) => FirestoreArticleRepository()),
-        Provider<UserProvider>(create: (context) => UserProvider()),
+    Provider<UserProvider>(create: (context) => UserProvider()),
   ], child: const MainApp()));
 }
 

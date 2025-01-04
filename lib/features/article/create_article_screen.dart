@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zaunfunk/features/article/repositories/article_repository.dart';
-import 'package:zaunfunk/features/authentication/models/zf_user.dart';
+import 'package:zaunfunk/features/authentication/logic/user_provider.dart';
 import 'package:zaunfunk/features/feed/app_home.dart';
 import 'package:zaunfunk/shared/widgets/buttons/zf_elevated_button.dart';
 import 'package:zaunfunk/shared/widgets/textfields/zf_growing_textfield.dart';
 
 class CreateArticleScreen extends StatelessWidget {
-  const CreateArticleScreen({super.key, required this.currentUser});
+  const CreateArticleScreen({super.key});
 
-  final ZfUser currentUser;
+  
 
   @override
   Widget build(BuildContext context) {
@@ -32,25 +32,22 @@ class CreateArticleScreen extends StatelessWidget {
                   labelText: "Beitrag erstellen..."),
               Padding(
                 padding: const EdgeInsets.only(top: 16.0),
-                child: ZfElevatedButton(
-                    onPressed: () async {
-                      await context.read<ArticleRepository>().createArticle(
-                          currentUser.userName,
-                          currentUser.userId,
-                          currentUser.userImagePath,
-                          articleController.text,
-                          '');
-                      articleController.clear();
-                      if (context.mounted) {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => AppHome(
-                                      currentUser: currentUser,
-                                    )));
-                      }
-                    },
-                    text: "Posten"),
+                child: Consumer<UserProvider>(builder: (context, provider, child) => ZfElevatedButton(
+                      onPressed: () async {
+                        await context.read<ArticleRepository>().createArticle(
+                            provider.currentUser!.userName,
+                            provider.currentUser!.userId,
+                            provider.currentUser!.userImagePath,
+                            articleController.text,
+                            '');
+                        articleController.clear();
+                        if (context.mounted) {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => AppHome()));
+                        }
+                      },
+                      text: "Posten"),
+                ),
               )
             ],
           ),

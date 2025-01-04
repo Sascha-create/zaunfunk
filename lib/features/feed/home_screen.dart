@@ -3,15 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:zaunfunk/shared/config/colors.dart';
 import 'package:zaunfunk/features/glowing_club_article/is_club_article_card.dart';
 import 'package:zaunfunk/features/article/models/user_article.dart';
-import '../authentication/models/zf_user.dart';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
     super.key,
-    required this.currentUser,
   });
-
-  final ZfUser currentUser;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -20,7 +17,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-   
     Stream<QuerySnapshot> articleStream = FirebaseFirestore.instance
         .collection('articles')
         .orderBy('createTime', descending: true)
@@ -40,16 +36,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     document.data()! as Map<String, dynamic>;
                 UserArticle article = UserArticle(
                   articleId: data['articleId'],
-                    userName: data['userName'],
-                    authorId: data['authorId'],
-                    userImagePath: data['userImagePath'],
-                    userArticle: data['userArticle'],
-                    articleImagePath: data['articleImagePath'],
-                    );
-                return IsClubArticleCard(
-                    article: article,
-                    currentUser: widget.currentUser,
-                    isClub: isClub);
+                  userName: data['userName'],
+                  authorId: data['authorId'],
+                  userImagePath: data['userImagePath'],
+                  userArticle: data['userArticle'],
+                  articleImagePath: data['articleImagePath'],
+                );
+                return IsClubArticleCard(article: article, isClub: isClub);
               }).toList(),
             ),
           );

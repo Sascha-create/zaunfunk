@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:zaunfunk/features/authentication/logic/user_provider.dart';
 import 'package:zaunfunk/shared/config/colors.dart';
-import 'package:zaunfunk/features/authentication/models/zf_user.dart';
 import 'package:zaunfunk/features/authentication/repositories/auth_repository.dart';
 import 'package:zaunfunk/starting_app.dart';
 
 import '../../shared/widgets/buttons/zf_elevated_button.dart';
 
 class LogoutDialog extends StatelessWidget {
-  const LogoutDialog({super.key, required this.currentUser});
-
-  final ZfUser currentUser;
+  const LogoutDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final userProvider = context.watch<UserProvider>();
     return AlertDialog(
       backgroundColor: navBarBeige,
       content: Column(
@@ -39,6 +38,7 @@ class LogoutDialog extends StatelessWidget {
           ZfElevatedButton(
               onPressed: () async {
                 await context.read<AuthRepository>().logoutUser();
+                userProvider.removeUser();
                 if (context.mounted) {
                   Navigator.pushAndRemoveUntil(
                     context,

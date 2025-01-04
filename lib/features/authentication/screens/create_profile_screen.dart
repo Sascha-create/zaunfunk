@@ -4,15 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:zaunfunk/features/authentication/logic/validator.dart';
-import 'package:zaunfunk/features/feed/app_home.dart';
 import 'package:zaunfunk/features/authentication/repositories/auth_repository.dart';
 import 'package:zaunfunk/shared/widgets/textfields/zf_text_form_field_pw.dart';
 import 'package:zaunfunk/shared/widgets/buttons/zf_elevated_button.dart';
 import 'package:zaunfunk/shared/widgets/buttons/zf_icon_button.dart';
 import 'package:zaunfunk/shared/widgets/textfields/zf_textfield.dart';
-
+import 'package:zaunfunk/starting_app.dart';
 import '../../../shared/widgets/textfields/zf_text_form_field.dart';
-import '../models/zf_user.dart';
+
 
 class CreateProfileScreen extends StatefulWidget {
   const CreateProfileScreen({
@@ -171,17 +170,11 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                                   'assets/images/app_logo_shadow.png');
                               // User als currentUser setzen
 
-                              final ZfUser? currentUser =
-                                  await authRepo.setCurrentUser();
-                              if (currentUser != null) {
-                                if (context.mounted) {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => AppHome(
-                                                currentUser: currentUser,
-                                              )));
-                                }
+                              if (context.mounted) {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => StartingApp()));
                               }
                             }
                           },

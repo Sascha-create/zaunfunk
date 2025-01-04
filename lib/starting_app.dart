@@ -62,8 +62,8 @@ class _StartingAppState extends State<StartingApp> {
                       userName: snapshot.data!.userName,
                       aboutMe: snapshot.data!.aboutMe,
                       userImagePath: snapshot.data!.userImagePath);
-                  //context.read<UserProvider>().setUser(user: currentUser);
-                  return AppHome(currentUser: currentUser);
+                  context.read<UserProvider>().setUser(user: currentUser);
+                  return AppHome();
                 }
               },
             );

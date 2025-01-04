@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:zaunfunk/features/authentication/logic/user_provider.dart';
 import 'package:zaunfunk/shared/config/colors.dart';
 import 'package:zaunfunk/features/profile/logout_dialog.dart';
 import 'package:zaunfunk/features/profile/profile_grid_item.dart';
@@ -11,19 +13,11 @@ import '../authentication/models/zf_user.dart';
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({
     super.key,
-    required this.currentUser,
   });
-
-  final ZfUser currentUser;
 
   @override
   Widget build(BuildContext context) {
-    ZfUser loggedInUser = ZfUser(
-        userId: currentUser.userId,
-        userName: currentUser.userName,
-        //userPassword: currentUser.userPassword,
-        aboutMe: currentUser.aboutMe,
-        userImagePath: currentUser.userImagePath);
+    final ZfUser? currentUser = context.read<UserProvider>().currentUser;
     return Scaffold(
       body: Center(
         child: Padding(
@@ -40,9 +34,7 @@ class ProfileScreen extends StatelessWidget {
                           onPressed: () {
                             showDialog(
                                 context: context,
-                                builder: (context) => LogoutDialog(
-                                      currentUser: currentUser,
-                                    ));
+                                builder: (context) => LogoutDialog());
                           },
                           icon: Icons.logout_rounded)
                     ],
@@ -60,18 +52,18 @@ class ProfileScreen extends StatelessWidget {
                               color: impulseGreen, style: BorderStyle.solid)),
                     ),
                     CircleAvatar(
-                      backgroundImage: AssetImage(loggedInUser.userImagePath),
+                      backgroundImage: AssetImage(currentUser!.userImagePath),
                       radius: 64,
                     ),
                   ]),
                 ),
                 Text(
                     style: Theme.of(context).textTheme.headlineMedium,
-                    loggedInUser.userName),
+                    currentUser.userName),
                 const ZfDivider(),
                 Text(
                     style: Theme.of(context).textTheme.headlineSmall,
-                    loggedInUser.aboutMe),
+                    currentUser.aboutMe),
                 const ZfDivider(),
                 const SizedBox(height: 16),
                 GridView(

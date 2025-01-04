@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zaunfunk/features/article/models/user_article.dart';
-import 'package:zaunfunk/features/authentication/models/zf_user.dart';
+import 'package:zaunfunk/features/authentication/logic/user_provider.dart';
 import '../../../shared/config/colors.dart';
 import '../../../shared/widgets/buttons/zf_elevated_button.dart';
 import '../../article/repositories/article_repository.dart';
@@ -10,11 +10,9 @@ class CommentBottomSheet extends StatefulWidget {
   const CommentBottomSheet({
     super.key,
     required this.article,
-    required this.currentUser,
   });
 
   final UserArticle article;
-  final ZfUser currentUser;
 
   @override
   State<CommentBottomSheet> createState() => _CommentBottomSheetState();
@@ -63,17 +61,18 @@ class _CommentBottomSheetState extends State<CommentBottomSheet> {
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: ZfElevatedButton(
-                  onPressed: () {
-                    context.read<ArticleRepository>().addComment(
-                        widget.article.articleId,
-                        widget.currentUser.userName,
-                        widget.currentUser.userImagePath,
-                        _commentController.text);
-
-                    Navigator.pop(context);
-                  },
-                  text: 'Posten'),
+              child: Consumer<UserProvider>(builder: (context, provider, child) => ZfElevatedButton(
+                    onPressed: () {
+                      context.read<ArticleRepository>().addComment(
+                          widget.article.articleId,
+                          provider.currentUser!.userName,
+                          provider.currentUser!.userImagePath,
+                          _commentController.text);
+                
+                      Navigator.pop(context);
+                    },
+                    text: 'Posten'),
+              ),
             )
           ],
         ),
