@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zaunfunk/features/authentication/models/zf_user.dart';
@@ -108,9 +106,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                               currentUser: currentUser,
                                             )));
                               }
-                            } else {
-                              // Muss noch raus !!!
-                              log('nicht geklappt');
                             }
                           },
                           text: "Anmelden"),

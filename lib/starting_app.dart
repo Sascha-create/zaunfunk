@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:zaunfunk/features/authentication/logic/user_provider.dart';
 import 'package:zaunfunk/features/authentication/models/zf_user.dart';
 import 'package:zaunfunk/features/authentication/repositories/firebase_auth_repository.dart';
 import 'package:zaunfunk/features/authentication/screens/login_screen.dart';
@@ -22,7 +24,8 @@ class _StartingAppState extends State<StartingApp> {
             return Scaffold(
               body: Center(
                   child: Image(
-                      image: AssetImage('assets/images/splash_screen_logo.png'))),
+                      image:
+                          AssetImage('assets/images/splash_screen_logo.png'))),
             );
           });
         } else if (snapshot.hasError) {
@@ -59,6 +62,7 @@ class _StartingAppState extends State<StartingApp> {
                       userName: snapshot.data!.userName,
                       aboutMe: snapshot.data!.aboutMe,
                       userImagePath: snapshot.data!.userImagePath);
+                  //context.read<UserProvider>().setUser(user: currentUser);
                   return AppHome(currentUser: currentUser);
                 }
               },

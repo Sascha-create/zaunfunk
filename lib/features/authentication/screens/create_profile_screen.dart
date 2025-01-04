@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
-import 'package:zaunfunk/features/authentication/validator.dart';
+import 'package:zaunfunk/features/authentication/logic/validator.dart';
 import 'package:zaunfunk/features/feed/app_home.dart';
 import 'package:zaunfunk/features/authentication/repositories/auth_repository.dart';
 import 'package:zaunfunk/shared/widgets/textfields/zf_text_form_field_pw.dart';

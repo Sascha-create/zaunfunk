@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zaunfunk/features/article/repositories/article_repository.dart';
 import 'package:zaunfunk/features/article/repositories/firestore_article_repository.dart';
+import 'package:zaunfunk/features/authentication/logic/user_provider.dart';
 import 'package:zaunfunk/firebase_options.dart';
 import 'package:zaunfunk/shared/config/themes.dart';
 import 'package:zaunfunk/features/authentication/repositories/auth_repository.dart';
 import 'package:zaunfunk/shared/repositories/database_repository.dart';
 import 'package:zaunfunk/features/authentication/repositories/firebase_auth_repository.dart';
 import 'package:zaunfunk/shared/repositories/mock_database.dart';
-import 'package:zaunfunk/shared/repositories/shared_preferences_repository.dart';
 import 'package:zaunfunk/starting_app.dart';
 
 // com.example.zaunfunk  muss vor eventuellem hochladen geändert werden !
@@ -26,7 +26,7 @@ void main() async {
     Provider<AuthRepository>(create: (context) => FirebaseAuthRepository()),
     Provider<ArticleRepository>(
         create: (context) => FirestoreArticleRepository()),
-        Provider<SharedPreferencesRepository>(create: (context) => SharedPreferencesRepository()),
+        Provider<UserProvider>(create: (context) => UserProvider()),
   ], child: const MainApp()));
 }
 
