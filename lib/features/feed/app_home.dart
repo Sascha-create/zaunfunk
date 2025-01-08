@@ -23,7 +23,7 @@ class _AppHomeState extends State<AppHome> {
       HomeScreen(),
       CreateArticleScreen(),
       ProfileScreen(),
-      const SettingsScreen()
+      SettingsScreen()
     ];
     return Scaffold(
       appBar: AppBar(

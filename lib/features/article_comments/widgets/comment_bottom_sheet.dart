@@ -66,6 +66,7 @@ class _CommentBottomSheetState extends State<CommentBottomSheet> {
                       context.read<ArticleRepository>().addComment(
                           widget.article.articleId,
                           provider.currentUser!.userName,
+                          provider.currentUser!.clubId,
                           provider.currentUser!.userImagePath,
                           _commentController.text);
                 

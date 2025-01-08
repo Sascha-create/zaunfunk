@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zaunfunk/features/authentication/screens/create_profile_screen.dart';
-
+import 'package:zaunfunk/features/feed/app_home.dart';
 import 'package:zaunfunk/shared/widgets/buttons/zf_elevated_button.dart';
 import 'package:zaunfunk/shared/widgets/textfields/zf_text_form_field.dart';
 import 'package:zaunfunk/shared/widgets/textfields/zf_text_form_field_pw.dart';
@@ -141,7 +140,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        const CreateProfileScreen()));
+                                        const AppHome()));
                           }
                         },
                         text: "Registrieren"),

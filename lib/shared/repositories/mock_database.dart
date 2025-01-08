@@ -7,11 +7,13 @@ class MockDatabase implements DatabaseRepository {
     ZfUser(
         userId: '1',
         userName: "Sascha",
+        clubId: 'dsfdsf',
         aboutMe: 'Garten 82',
         userImagePath: "assets/images/ich.jpeg"),
     ZfUser(
         userId: '2',
         userName: "Jane",
+        clubId: 'dfsdf',
         aboutMe: 'Ich liebe Rosen',
         userImagePath: "assets/images/jane.png")
   ];
@@ -79,6 +81,7 @@ class MockDatabase implements DatabaseRepository {
         userId: '000',
         userName: userName,
         //userPassword: 'password',
+        clubId: 'dsfsdf',
         aboutMe: 'aboutMe',
         userImagePath: 'userImagePath');
     for (ZfUser currentUser in users) {
@@ -100,6 +103,7 @@ class MockDatabase implements DatabaseRepository {
         userId: newId.toString(),
         userName: userName,
         //userPassword: userPassword,
+        clubId: 'dsfdsf',
         aboutMe: aboutMe,
         userImagePath: userImagePath);
 

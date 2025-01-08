@@ -3,28 +3,30 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import 'package:zaunfunk/features/article/repositories/article_repository.dart';
 import 'package:zaunfunk/features/authentication/logic/validator.dart';
-import 'package:zaunfunk/features/authentication/repositories/auth_repository.dart';
-import 'package:zaunfunk/shared/widgets/textfields/zf_text_form_field_pw.dart';
-import 'package:zaunfunk/shared/widgets/buttons/zf_elevated_button.dart';
-import 'package:zaunfunk/shared/widgets/buttons/zf_icon_button.dart';
-import 'package:zaunfunk/shared/widgets/textfields/zf_textfield.dart';
-import 'package:zaunfunk/starting_app.dart';
+import 'package:zaunfunk/features/authentication/widgets/club_welcome_screen.dart';
+import '../../../shared/widgets/buttons/zf_elevated_button.dart';
+import '../../../shared/widgets/buttons/zf_icon_button.dart';
 import '../../../shared/widgets/textfields/zf_text_form_field.dart';
+import '../../../shared/widgets/textfields/zf_text_form_field_pw.dart';
+import '../../../shared/widgets/textfields/zf_textfield.dart';
+import '../../../starting_app.dart';
+import '../repositories/auth_repository.dart';
 
-
-class CreateProfileScreen extends StatefulWidget {
-  const CreateProfileScreen({
-    super.key,
-  });
+class CreateClubProfileScreen extends StatefulWidget {
+  const CreateClubProfileScreen({super.key});
 
   @override
-  State<CreateProfileScreen> createState() => _CreateProfileScreenState();
+  State<CreateClubProfileScreen> createState() =>
+      _CreateClubProfileScreenState();
 }
 
-class _CreateProfileScreenState extends State<CreateProfileScreen> {
+class _CreateClubProfileScreenState extends State<CreateClubProfileScreen> {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
+  TextEditingController streetController = TextEditingController();
+  TextEditingController locationController = TextEditingController();
   TextEditingController aboutMeController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   final TextEditingController passwordConfirmController =
@@ -75,13 +77,13 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
               children: [
                 Text(
                     style: Theme.of(context).textTheme.headlineMedium,
-                    "Nutzerprofil erstellen"),
+                    "Vereinsprofil erstellen"),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 24.0),
                   child: Stack(clipBehavior: Clip.none, children: [
                     CircleAvatar(
                       backgroundImage: image == null
-                          ? AssetImage("assets/images/app_logo_shadow.png")
+                          ? AssetImage("assets/images/splash_screen_logo.png")
                           : FileImage(image!),
                       radius: 64,
                     ),
@@ -97,22 +99,6 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                         ))
                   ]),
                 ),
-                Row(
-                  children: [
-                    const Text("Box"),
-                    Text(
-                        style: Theme.of(context).textTheme.headlineSmall,
-                        "Verein"),
-                  ],
-                ),
-                Row(
-                  children: [
-                    const Text("Box"),
-                    Text(
-                        style: Theme.of(context).textTheme.headlineSmall,
-                        "Mitglied"),
-                  ],
-                ),
                 Form(
                   key: _formKey,
                   child: Column(
@@ -120,14 +106,19 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                       ZfTextFormfield(
                           validator: isValidUsername,
                           controller: nameController,
-                          labelText: "Nutzername"),
+                          labelText: "Vereinsname"),
                       ZfTextFormfield(
                           validator: isEmailValid,
                           controller: emailController,
                           labelText: "Email"),
                       ZfTextfield(
+                          controller: streetController,
+                          labelText: "Straße/HausNr."),
+                      ZfTextfield(
+                          controller: locationController, labelText: "Ort"),
+                      ZfTextfield(
                           controller: aboutMeController,
-                          labelText: "Über mich"),
+                          labelText: "Vereinsinfo"),
                       ZfTextFormfieldPassword(
                           labelText: 'Passwort',
                           validator: isValidPassword,
@@ -162,19 +153,20 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                           onPressed: () async {
                             // validieren dann create User
                             if (_formKey.currentState!.validate()) {
-                              await authRepo.signUp(
+                              await authRepo.signUpClub(
                                   nameController.text,
                                   emailController.text,
                                   passwordController.text,
+                                  locationController.text,
+                                  streetController.text,
                                   aboutMeController.text,
-                                  'assets/images/app_logo_shadow.png');
-                              // User als currentUser setzen
-
+                                  'assets/images/splash_screen_logo.png');
+                              
                               if (context.mounted) {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => StartingApp()));
+                                        builder: (context) => ClubWelcomeScreen()));
                               }
                             }
                           },

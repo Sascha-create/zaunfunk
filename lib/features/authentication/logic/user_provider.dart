@@ -6,8 +6,8 @@ class UserProvider with ChangeNotifier {
 
   ZfUser? get currentUser => _currentUser;
 
-  void setUser({required ZfUser user}) {
-    _currentUser = user;
+  void setUser({required ZfUser user}) async {
+    _currentUser =  user;
     notifyListeners();
   }
 

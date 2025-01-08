@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:zaunfunk/features/authentication/widgets/registration_dialog.dart';
 import 'package:zaunfunk/features/authentication/widgets/reset_password_dialog.dart';
-import 'package:zaunfunk/features/authentication/screens/create_profile_screen.dart';
-import 'package:zaunfunk/features/feed/app_home.dart';
 import 'package:zaunfunk/features/authentication/repositories/auth_repository.dart';
 import 'package:zaunfunk/shared/widgets/buttons/zf_elevated_button.dart';
 import 'package:zaunfunk/shared/widgets/buttons/zf_outlined_button.dart';
 import 'package:zaunfunk/shared/widgets/buttons/zf_text_button.dart';
 import 'package:zaunfunk/shared/widgets/textfields/zf_textfield.dart';
+import 'package:zaunfunk/starting_app.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({
@@ -96,18 +96,17 @@ class _LoginScreenState extends State<LoginScreen> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => AppHome()));
+                                      builder: (context) => StartingApp()));
                             }
                           },
                           text: "Anmelden"),
                       const SizedBox(height: 16),
                       ZfOutlinedButton(
                           onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const CreateProfileScreen()));
+                            showDialog(
+                                context: context,
+                                builder: (context) => RegistrationDialog());
+                            
                           },
                           text: "Registrieren"),
                       const SizedBox(height: 56),

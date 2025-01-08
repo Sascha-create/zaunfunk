@@ -7,7 +7,6 @@ import 'package:zaunfunk/features/authentication/repositories/auth_repository.da
 //import 'package:google_sign_in/google_sign_in.dart';
 
 class FirebaseAuthRepository implements AuthRepository {
-  
   final FirebaseAuth authInstance = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
@@ -41,7 +40,8 @@ class FirebaseAuthRepository implements AuthRepository {
 
   /// SignUp  Firebase and Firestore
   @override
-  Future<void> signUp(
+  Future<void> signUpMember(
+    String clubId,
     String userName,
     String email,
     String password,
@@ -53,11 +53,12 @@ class FirebaseAuthRepository implements AuthRepository {
         email: email,
         password: password,
       );
-      loginUser(email, password);
+      await loginUser(email, password);
       try {
         final userId = authInstance.currentUser?.uid;
         await _firestore.collection('users').doc(userId).set({
           'userId': userId,
+          'clubId': clubId,
           'userName': userName,
           'aboutMe': aboutMe,
           'userImagePath': userImagePath
@@ -68,6 +69,107 @@ class FirebaseAuthRepository implements AuthRepository {
     } catch (e) {
       dev.log("$e");
     }
+  }
+
+  @override
+  Future<void> signUpClub(
+    String clubName,
+    String email,
+    String password,
+    String location,
+    String street,
+    String aboutMe,
+    String userImagePath,
+  ) async {
+    try {
+      await authInstance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      await loginUser(email, password);
+      try {
+        final userId = authInstance.currentUser?.uid;
+        await _firestore.collection('clubs').add({
+          'clubId': userId,
+          'clubName': clubName,
+          'location': location,
+          'street': street
+        }).then((doc) async {
+          _firestore.collection('clubs').doc(doc.id).set({
+            'clubId': doc.id,
+            'clubName': clubName,
+            'location': location,
+            'street': street
+          });
+          await _firestore.collection('users').doc(userId).set({
+            'userId': userId,
+            'clubId': doc.id,
+            'userName': clubName,
+            'aboutMe': aboutMe,
+            'userImagePath': userImagePath
+          });
+        });
+       
+      } catch (e) {
+        dev.log("$e");
+      }
+    } catch (e) {
+      dev.log("$e");
+    }
+  }
+
+  @override
+  Future<void> createClub(
+    String clubName,
+    String location,
+    String street,
+  ) async {
+    try {
+      await _firestore.collection('clubs').add({
+        'clubId': '',
+        'clubName': clubName,
+        'location': location,
+        'street': street,
+      }).then(
+        (doc) {
+          doc.set({
+            'clubId': doc.id,
+            'clubName': clubName,
+            'location': location,
+            'street': street,
+          });
+        },
+      );
+    } catch (e) {
+      dev.log("$e");
+    }
+  }
+
+  @override
+  Future<void> joinClub(String userId, String clubId) async {
+    try {
+      final userDoc = await _firestore.collection('users').doc(userId).get();
+      await _firestore.collection('users').doc(userId).set({
+        'userId': userId,
+        'userName': userDoc['userName'],
+        'clubId': clubId,
+        'aboutMe': userDoc['aboutMe'],
+        'userImagePath': userDoc['userImagePath']
+      }).then((doc) async {
+        await _firestore
+            .collection('clubs')
+            .doc(clubId)
+            .update({'members': userId});
+      });
+    } catch (e) {
+      dev.log("$e");
+    }
+  }
+
+  @override
+  Future<QuerySnapshot<Map<String, dynamic>>> getClubs() async {
+    final clubs = await _firestore.collection('clubs').get();
+    return clubs;
   }
 
   // Set current User in App
@@ -83,11 +185,13 @@ class FirebaseAuthRepository implements AuthRepository {
         if (data['userId'] == currentUserId) {
           final String userId = data['userId'];
           final String userName = data['userName'];
+          final String clubId = data['clubId'];
           final String aboutMe = data['aboutMe'];
           final String userImagePath = data['userImagePath'];
           final newUser = ZfUser(
               userId: userId,
               userName: userName,
+              clubId: clubId,
               aboutMe: aboutMe,
               userImagePath: userImagePath);
           _currentUser = newUser;
@@ -123,6 +227,7 @@ class FirebaseAuthRepository implements AuthRepository {
     final user = ZfUser(
         userId: userDoc['userId'],
         userName: userDoc['userName'],
+        clubId: userDoc['clubId'],
         aboutMe: userDoc['aboutMe'],
         userImagePath: userDoc['userImagePath']);
     return user;

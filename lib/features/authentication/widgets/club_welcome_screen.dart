@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:zaunfunk/features/article/repositories/article_repository.dart';
 import 'package:zaunfunk/features/authentication/logic/user_provider.dart';
 import 'package:zaunfunk/features/authentication/models/zf_user.dart';
-import 'package:zaunfunk/features/authentication/repositories/firebase_auth_repository.dart';
-import 'package:zaunfunk/features/authentication/screens/login_screen.dart';
-import 'package:zaunfunk/features/feed/app_home.dart';
+import 'package:zaunfunk/shared/config/colors.dart';
+import 'package:zaunfunk/shared/widgets/buttons/zf_elevated_button.dart';
 
-class StartingApp extends StatefulWidget {
-  const StartingApp({super.key});
+import '../../../starting_app.dart';
+import '../../feed/app_home.dart';
+import '../repositories/firebase_auth_repository.dart';
+import '../screens/login_screen.dart';
 
-  @override
-  State<StartingApp> createState() => _StartingAppState();
-}
+class ClubWelcomeScreen extends StatelessWidget {
+  const ClubWelcomeScreen({super.key});
 
-class _StartingAppState extends State<StartingApp> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
@@ -63,8 +63,34 @@ class _StartingAppState extends State<StartingApp> {
                       clubId: snapshot.data!.clubId,
                       aboutMe: snapshot.data!.aboutMe,
                       userImagePath: snapshot.data!.userImagePath);
-                  context.read<UserProvider>().setUser(user: currentUser);
-                  return AppHome();
+                  context.read<ArticleRepository>().setClubWelcomeMessage(
+                      currentUser.userId, currentUser.clubId);
+                  return Scaffold(
+                    body: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Image(
+                              image: AssetImage(
+                                  'assets/images/splash_screen_logo.png')),
+                          Text(
+                              style: Theme.of(context).textTheme.headlineMedium,
+                              'Dein Verein wurde erstellt'),
+                          ZfElevatedButton(
+                              onPressed: () {
+                                Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const StartingApp(),
+                                  ),
+                                  (route) => false,
+                                );
+                              },
+                              text: 'beitreten')
+                        ],
+                      ),
+                    ),
+                  );
                 }
               },
             );
