@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zaunfunk/features/article/repositories/article_repository.dart';
-import 'package:zaunfunk/features/authentication/logic/user_provider.dart';
 import 'package:zaunfunk/features/authentication/models/zf_user.dart';
-import 'package:zaunfunk/shared/config/colors.dart';
 import 'package:zaunfunk/shared/widgets/buttons/zf_elevated_button.dart';
-
 import '../../../starting_app.dart';
-import '../../feed/app_home.dart';
 import '../repositories/firebase_auth_repository.dart';
 import '../screens/login_screen.dart';
 

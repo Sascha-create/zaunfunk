@@ -1,9 +1,7 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
-import 'package:zaunfunk/features/article/repositories/article_repository.dart';
 import 'package:zaunfunk/features/authentication/logic/validator.dart';
 import 'package:zaunfunk/features/authentication/widgets/club_welcome_screen.dart';
 import '../../../shared/widgets/buttons/zf_elevated_button.dart';
@@ -11,7 +9,6 @@ import '../../../shared/widgets/buttons/zf_icon_button.dart';
 import '../../../shared/widgets/textfields/zf_text_form_field.dart';
 import '../../../shared/widgets/textfields/zf_text_form_field_pw.dart';
 import '../../../shared/widgets/textfields/zf_textfield.dart';
-import '../../../starting_app.dart';
 import '../repositories/auth_repository.dart';
 
 class CreateClubProfileScreen extends StatefulWidget {
