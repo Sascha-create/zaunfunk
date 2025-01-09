@@ -5,10 +5,7 @@ import 'package:zaunfunk/features/article/repositories/article_repository.dart';
 class FirestoreArticleRepository implements ArticleRepository {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  // Stream<QuerySnapshot> articleStream = FirebaseFirestore.instance
-  //     .collection('articles')
-  //     .orderBy('createTime')
-  //     .snapshots(includeMetadataChanges: true);
+
 
   @override
   Future<void> createArticle(String userName, String userId, String clubId,
