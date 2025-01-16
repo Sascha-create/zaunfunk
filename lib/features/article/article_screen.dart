@@ -24,14 +24,16 @@ class ArticleScreen extends StatefulWidget {
 class _ArticleScreenState extends State<ArticleScreen> {
   @override
   Widget build(BuildContext context) {
+    final ZfUser? currentUser = context.watch<UserProvider>().currentUser;
+
     Stream<QuerySnapshot> commentStream = FirebaseFirestore.instance
+        .collection('clubs')
+        .doc(currentUser?.clubId)
         .collection('articles')
         .doc(widget.article.articleId)
         .collection('comments')
         .orderBy('createTime', descending: false)
         .snapshots(includeMetadataChanges: true);
-
-    final ZfUser? currentUser = context.watch<UserProvider>().currentUser;
 
     return Scaffold(
       backgroundColor: lightBeige,
@@ -54,17 +56,16 @@ class _ArticleScreenState extends State<ArticleScreen> {
                     Row(
                       children: [
                         Visibility(
-                          visible: currentUser?.userId ==
-                                  widget.article.authorId
-                              ? true
-                              : false,
+                          visible:
+                              currentUser?.userId == widget.article.authorId
+                                  ? true
+                                  : false,
                           child: ZfIconOutlinedButton(
                               onPressed: () {
                                 showDialog(
                                     context: context,
                                     builder: (context) => DeleteArticleDialog(
                                           article: widget.article,
-                                          
                                         ));
                               },
                               icon: Icons.delete_forever),
@@ -76,7 +77,6 @@ class _ArticleScreenState extends State<ArticleScreen> {
                                 builder: (context) {
                                   return CommentBottomSheet(
                                     article: widget.article,
-                                    
                                   );
                                 },
                               );
@@ -155,11 +155,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
                     } else if (snapshot.connectionState ==
                             ConnectionState.active &&
                         snapshot.hasError) {
-                      return const Icon(
-                        Icons.error,
-                        size: 48,
-                        color: Colors.red,
-                      );
+                      return Text('${snapshot.error}');
                     }
                     return const Center(child: EmptyComment());
                   },

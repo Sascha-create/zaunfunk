@@ -15,6 +15,7 @@ dependencies:
   cloud_firestore: ^5.5.1
   image_picker: ^1.1.2
   shared_preferences: ^2.3.4
+  rename: ^3.0.2
   
 
 dev_dependencies:
@@ -27,8 +28,8 @@ dev_dependencies:
 
 flutter_launcher_icons:
   android: true
-  adaptive_icon_background: "#F9E4B7"
   ios: true
+  remove_alpha_ios: true
   image_path: assets/icon/app_icon.png
 
 flutter_native_splash:

@@ -12,7 +12,7 @@ import 'package:zaunfunk/features/authentication/repositories/firebase_auth_repo
 import 'package:zaunfunk/shared/repositories/mock_database.dart';
 import 'package:zaunfunk/starting_app.dart';
 
-// com.example.zaunfunk  muss vor eventuellem hochladen geändert werden !
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
