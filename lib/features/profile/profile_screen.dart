@@ -74,7 +74,7 @@ class ProfileScreen extends StatelessWidget {
                   children: const [
                     ProfileGridItem(imagePath: "assets/images/ernte.png"),
                     ProfileGridItem(imagePath: "assets/images/floor.png"),
-                    ProfileGridItem(imagePath: "assets/images/ernte.png"),
+                    ProfileGridItem(imagePath: "assets/images/bird_feeder.png"),
                     ProfileGridItem(imagePath: "assets/images/roses.png"),
                   ],
                 )

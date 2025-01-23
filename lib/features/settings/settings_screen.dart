@@ -31,7 +31,6 @@ class SettingsScreen extends StatelessWidget {
                       onTap: () {},
                     ),
                   ),
-                  const ZfDivider(),
                   Card(
                     color: lightBeige,
                     child: ListTile(
@@ -45,7 +44,6 @@ class SettingsScreen extends StatelessWidget {
                       },
                     ),
                   ),
-                  const ZfDivider(),
                   Card(
                     color: lightBeige,
                     child: ListTile(
@@ -59,7 +57,6 @@ class SettingsScreen extends StatelessWidget {
                       },
                     ),
                   ),
-                  const ZfDivider(),
                   Card(
                     color: lightBeige,
                     child: ListTile(
