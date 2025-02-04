@@ -58,7 +58,8 @@ class ClubWelcomeScreen extends StatelessWidget {
                       userName: snapshot.data!.userName,
                       clubId: snapshot.data!.clubId,
                       aboutMe: snapshot.data!.aboutMe,
-                      userImagePath: snapshot.data!.userImagePath);
+                      userImagePath: snapshot.data!.userImagePath,
+                      isClub: snapshot.data!.isClub);
                   context.read<ArticleRepository>().setClubWelcomeMessage(
                       currentUser.userId, currentUser.clubId);
                   return Scaffold(

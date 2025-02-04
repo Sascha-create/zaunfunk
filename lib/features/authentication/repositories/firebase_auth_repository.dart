@@ -61,7 +61,8 @@ class FirebaseAuthRepository implements AuthRepository {
           'clubId': clubId,
           'userName': userName,
           'aboutMe': aboutMe,
-          'userImagePath': userImagePath
+          'userImagePath': userImagePath,
+          'isClub': false
         });
       } catch (e) {
         dev.log("$e");
@@ -106,10 +107,10 @@ class FirebaseAuthRepository implements AuthRepository {
             'clubId': doc.id,
             'userName': clubName,
             'aboutMe': aboutMe,
-            'userImagePath': userImagePath
+            'userImagePath': userImagePath,
+            'isClub': true
           });
         });
-       
       } catch (e) {
         dev.log("$e");
       }
@@ -188,12 +189,14 @@ class FirebaseAuthRepository implements AuthRepository {
           final String clubId = data['clubId'];
           final String aboutMe = data['aboutMe'];
           final String userImagePath = data['userImagePath'];
+          final bool isClub = data['isClub'];
           final newUser = ZfUser(
               userId: userId,
               userName: userName,
               clubId: clubId,
               aboutMe: aboutMe,
-              userImagePath: userImagePath);
+              userImagePath: userImagePath,
+              isClub: isClub);
           _currentUser = newUser;
           return _currentUser;
         }
@@ -229,7 +232,8 @@ class FirebaseAuthRepository implements AuthRepository {
         userName: userDoc['userName'],
         clubId: userDoc['clubId'],
         aboutMe: userDoc['aboutMe'],
-        userImagePath: userDoc['userImagePath']);
+        userImagePath: userDoc['userImagePath'],
+        isClub: userDoc['isClub']);
     return user;
   }
 

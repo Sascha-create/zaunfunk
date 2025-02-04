@@ -40,7 +40,8 @@ class CreateArticleScreen extends StatelessWidget {
                             provider.currentUser!.clubId,
                             provider.currentUser!.userImagePath,
                             articleController.text,
-                            '');
+                            '',
+                            provider.currentUser!.isClub);
                         articleController.clear();
                         if (context.mounted) {
                           Navigator.push(

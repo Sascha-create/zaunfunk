@@ -7,12 +7,8 @@ import 'package:zaunfunk/features/authentication/logic/user_provider.dart';
 import 'package:zaunfunk/firebase_options.dart';
 import 'package:zaunfunk/shared/config/themes.dart';
 import 'package:zaunfunk/features/authentication/repositories/auth_repository.dart';
-import 'package:zaunfunk/shared/repositories/database_repository.dart';
 import 'package:zaunfunk/features/authentication/repositories/firebase_auth_repository.dart';
-import 'package:zaunfunk/shared/repositories/mock_database.dart';
 import 'package:zaunfunk/starting_app.dart';
-
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +20,6 @@ void main() async {
 
   //FirebaseAuth.instance.signOut();
   runApp(MultiProvider(providers: [
-    Provider<DatabaseRepository>(create: (context) => MockDatabase()),
     Provider<AuthRepository>(create: (context) => FirebaseAuthRepository()),
     Provider<ArticleRepository>(
         create: (context) => FirestoreArticleRepository()),

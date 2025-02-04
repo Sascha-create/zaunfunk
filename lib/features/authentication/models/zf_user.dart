@@ -4,12 +4,14 @@ class ZfUser {
   final String clubId;
   final String aboutMe;
   final String userImagePath;
+  final bool isClub;
 
-  ZfUser({
+  ZfUser( {
     required this.userId,
     required this.userName,
     required this.clubId,
     required this.aboutMe,
     required this.userImagePath,
+    required this.isClub,
   });
 }

@@ -23,8 +23,6 @@ class HomeScreen extends StatelessWidget {
         .orderBy('createTime', descending: true)
         .snapshots(includeMetadataChanges: true);
 
-    bool isClub = false;
-
     return StreamBuilder(
       stream: articleStream,
       builder: (context, snapshot) {
@@ -36,15 +34,16 @@ class HomeScreen extends StatelessWidget {
                 Map<String, dynamic> data =
                     document.data() as Map<String, dynamic>;
                 UserArticle article = UserArticle(
-                  articleId: data['articleId'] ?? '',
-                  userName: data['userName'] ?? '',
-                  authorId: data['authorId'] ?? '',
-                  userImagePath: data['userImagePath'] ??
-                      'assets/images/splash_screen_logo.png',
-                  userArticle: data['userArticle'] ?? '',
-                  articleImagePath: data['articleImagePath'] ?? '',
-                );
-                return IsClubArticleCard(article: article, isClub: isClub);
+                    articleId: data['articleId'] ?? '',
+                    userName: data['userName'] ?? '',
+                    authorId: data['authorId'] ?? '',
+                    userImagePath: data['userImagePath'] ??
+                        'assets/images/splash_screen_logo.png',
+                    userArticle: data['userArticle'] ?? '',
+                    articleImagePath: data['articleImagePath'] ?? '',
+                    isClub: data['isClub']);
+                return IsClubArticleCard(
+                    article: article, isClub: article.isClub);
               }).toList(),
             ),
           );

@@ -9,7 +9,7 @@ class FirestoreArticleRepository implements ArticleRepository {
 
   @override
   Future<void> createArticle(String userName, String userId, String clubId,
-      String userImagePath, String userArticle, String articleImagePath) async {
+      String userImagePath, String userArticle, String articleImagePath, bool isClub) async {
     try {
       await _firestore
           .collection('clubs')
@@ -21,7 +21,8 @@ class FirestoreArticleRepository implements ArticleRepository {
         'authorId': userId,
         'userImagePath': userImagePath,
         'userArticle': userArticle,
-        'articleImagePath': articleImagePath
+        'articleImagePath': articleImagePath,
+        'isClub': isClub
       }).then((doc) {
         doc.set({
           'articleId': doc.id,
@@ -30,7 +31,8 @@ class FirestoreArticleRepository implements ArticleRepository {
           'authorId': userId,
           'userImagePath': userImagePath,
           'userArticle': userArticle,
-          'articleImagePath': articleImagePath
+          'articleImagePath': articleImagePath,
+          'isClub': isClub
         });
       });
     } catch (e) {
@@ -89,7 +91,8 @@ class FirestoreArticleRepository implements ArticleRepository {
         'authorId': userId,
         'userImagePath': 'assets/images/splash_screen_logo.png',
         'userArticle': 'Willkommen bei Zaunfunk',
-        'articleImagePath': 'assets/images/splash_screen_logo.png'
+        'articleImagePath': 'assets/images/splash_screen_logo.png',
+        'isClub': true
       }).then((doc) {
         doc.set({
           'articleId': doc.id,
@@ -98,7 +101,8 @@ class FirestoreArticleRepository implements ArticleRepository {
           'authorId': userId,
           'userImagePath': 'assets/images/splash_screen_logo.png',
           'userArticle': 'Willkommen bei Zaunfunk',
-          'articleImagePath': 'assets/images/splash_screen_logo.png'
+          'articleImagePath': 'assets/images/splash_screen_logo.png',
+          'isClub': true
         });
       });
     } catch (e) {

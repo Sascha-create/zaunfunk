@@ -5,6 +5,7 @@ class UserArticle {
   final String userImagePath;
   final String userArticle;
   final String articleImagePath;
+  final bool isClub;
 
   UserArticle({
     required this.articleId,
@@ -13,5 +14,6 @@ class UserArticle {
     required this.userImagePath,
     required this.userArticle,
     this.articleImagePath = '',
+    required this.isClub
   });
 }
