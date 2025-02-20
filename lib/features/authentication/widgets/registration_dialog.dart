@@ -32,7 +32,7 @@ class RegistrationDialog extends StatelessWidget {
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.titleMedium,
               "Möchtest du Dich als Verein oder als Mitglied in einem verein anmelden ?"),
-          const SizedBox(height: 40),
+           const SizedBox(height: 40),
           ZfElevatedButton(
               onPressed: () {
                 Navigator.pop(context);

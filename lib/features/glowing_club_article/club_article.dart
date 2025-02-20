@@ -4,17 +4,13 @@ import 'package:zaunfunk/features/authentication/logic/user_provider.dart';
 import 'package:zaunfunk/shared/config/colors.dart';
 import 'package:zaunfunk/features/article/models/user_article.dart';
 
-
-
 class ClubArticle extends StatelessWidget {
   const ClubArticle({
     super.key,
     required this.article,
-    
   });
 
   final UserArticle article;
- 
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +42,8 @@ class ClubArticle extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 16.0),
-                  child: Consumer<UserProvider>(builder: (context, provider, child) => Text(
+                  child: Consumer<UserProvider>(
+                    builder: (context, provider, child) => Text(
                         style: Theme.of(context).textTheme.titleMedium,
                         article.authorId == provider.currentUser?.userId
                             ? 'Du'
@@ -67,7 +64,7 @@ class ClubArticle extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
             child: Text(
-                style: Theme.of(context).textTheme.bodyMedium,
+                style: Theme.of(context).textTheme.bodyLarge,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 5,
                 article.userArticle),
@@ -81,7 +78,6 @@ class ClubArticle extends StatelessWidget {
                 Row(
                   children: [
                     Icon(Icons.thumb_up_outlined),
-                    
                   ],
                 )
               ],

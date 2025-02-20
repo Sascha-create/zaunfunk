@@ -12,7 +12,7 @@ class JoinClubScreen extends StatelessWidget {
     final clubs = FirebaseFirestore.instance
         .collection('clubs')
         .orderBy('clubName')
-        .snapshots();
+        .get();
 
     return Scaffold(
       body: SafeArea(
@@ -22,10 +22,10 @@ class JoinClubScreen extends StatelessWidget {
             Text(
                 style: Theme.of(context).textTheme.headlineMedium,
                 'Verein wählen'),
-            StreamBuilder(
-              stream: clubs,
+            FutureBuilder(
+              future: clubs,
               builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.active &&
+                if (snapshot.connectionState == ConnectionState.done &&
                     snapshot.hasData) {
                   return Center(
                     child: ListView(
@@ -57,7 +57,7 @@ class JoinClubScreen extends StatelessWidget {
                       }).toList(),
                     ),
                   );
-                } else if (snapshot.connectionState == ConnectionState.active &&
+                } else if (snapshot.connectionState == ConnectionState.done &&
                     snapshot.hasError) {
                   return Text('${snapshot.error}');
                 }

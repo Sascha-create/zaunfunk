@@ -59,11 +59,10 @@ class _CreateMemberProfileScreenState extends State<CreateMemberProfileScreen> {
     }
   }
 
+
   @override
   void initState() {
     super.initState();
-    
-    
   }
 
   @override
