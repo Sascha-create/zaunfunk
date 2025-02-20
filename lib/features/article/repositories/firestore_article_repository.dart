@@ -5,11 +5,15 @@ import 'package:zaunfunk/features/article/repositories/article_repository.dart';
 class FirestoreArticleRepository implements ArticleRepository {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-
-
   @override
-  Future<void> createArticle(String userName, String userId, String clubId,
-      String userImagePath, String userArticle, String articleImagePath, bool isClub) async {
+  Future<void> createArticle(
+      String userName,
+      String userId,
+      String clubId,
+      String userImagePath,
+      String userArticle,
+      String articleImagePath,
+      bool isClub) async {
     try {
       await _firestore
           .collection('clubs')
@@ -79,7 +83,7 @@ class FirestoreArticleRepository implements ArticleRepository {
   }
 
   @override
-  Future<void> setClubWelcomeMessage(String userId, String clubId)async {
+  Future<void> setClubWelcomeMessage(String userId, String clubId) async {
     try {
       await _firestore
           .collection('clubs')
@@ -88,7 +92,7 @@ class FirestoreArticleRepository implements ArticleRepository {
           .add({
         'createTime': Timestamp.now(),
         'userName': 'Zaunfunk',
-        'authorId': userId,
+        'authorId': '12345',
         'userImagePath': 'assets/images/splash_screen_logo.png',
         'userArticle': 'Willkommen bei Zaunfunk',
         'articleImagePath': 'assets/images/splash_screen_logo.png',
@@ -98,7 +102,7 @@ class FirestoreArticleRepository implements ArticleRepository {
           'articleId': doc.id,
           'createTime': Timestamp.now(),
           'userName': 'Zaunfunk',
-          'authorId': userId,
+          'authorId': '12345',
           'userImagePath': 'assets/images/splash_screen_logo.png',
           'userArticle': 'Willkommen bei Zaunfunk',
           'articleImagePath': 'assets/images/splash_screen_logo.png',
